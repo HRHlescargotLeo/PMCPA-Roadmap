@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <!-- @@include head.html -->
+  <title>Clause — The ABPI Code of Practice 2024 — PMCPA prototype</title>
+</head>
+<body>
+  <!-- @@include header.html -->
+
+  <main id="main" class="flush">
+    <aside class="proposal" aria-label="About this prototype">
+      <div class="container">
+        <p class="proposal-eyebrow">Prototype 3 of 5 · Clause page</p>
+        <div class="proposal-grid">
+          <div><h2>What we're proposing</h2><p>Every clause as a hub. Each sub-clause shows its text and supplementary information, then the Q&amp;As, guidance and cases that apply to it, with "See all cases under 14.4" opening the case finder already filtered. Terms defined in Clause 1 show their definition in place.</p></div>
+          <div><h2>Why</h2><p>The live clause pages already show recent cases under each sub-clause, which is a strong start. But "See all" goes to the general cases page, and the Q&amp;As and guidance for the same clause are on other pages with no link between them.</p></div>
+        </div>
+        <p class="proposal-foot">Clause 14 shows its published text. Other clauses show their title with placeholder text. Open another clause from the index on the left.</p>
+      </div>
+    </aside>
+
+    <div class="container">
+      <a class="back-link" href="~/pages/code.html" style="margin-top:1.5rem">All sections of the Code</a>
+      <div class="code-layout">
+        <!-- Section index and previous / next (R38) -->
+        <nav class="code-index" id="code-index" aria-label="Clauses in this section">
+          <p class="eyebrow" id="idx-section"></p>
+          <button type="button" class="btn btn-secondary btn-sm idx-toggle" id="idx-toggle" aria-expanded="false">Show clauses in this section</button>
+          <ol class="idx-list" id="idx-list"></ol>
+          <form class="goto" id="goto-form" style="margin-top:1rem">
+            <div class="field"><label for="goto-n">Go to clause</label><input type="text" id="goto-n" inputmode="decimal" placeholder="e.g. 14.2"><p class="field-error" hidden>Enter a clause from 1 to 31</p></div>
+            <button class="btn btn-sm" type="submit">Go</button>
+          </form>
+        </nav>
+
+        <!-- Clause hub (R34–R37) -->
+        <article>
+          <span class="eyebrow" id="cl-eyebrow"></span>
+          <h1 id="cl-title"></h1>
+          <div id="cl-changed"></div>
+          <p id="cl-intro"></p>
+          <nav class="subnav" id="cl-subnav" aria-label="Sub-clauses"></nav>
+          <div class="wf-note" data-note="1"><span class="wf-note-label">Behaviour</span>Each sub-clause has its own address (<code>#c14-4</code>) and a copy-link button, so a compliance team can point a colleague to exactly the right paragraph.</div>
+          <div id="cl-body"></div>
+          <div class="wf-note query" data-note="2"><span class="wf-note-label">Question for the PMCPA</span>Who maintains the link between Q&amp;As, guidance and clauses today? A single clause tag on each item in Umbraco would drive all of these panels.</div>
+          <nav class="clause-pager" id="cl-pager" aria-label="Previous and next clause"></nav>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <div class="gloss-pop" id="gloss-pop" role="dialog" aria-label="Definition" hidden></div>
+
+  <!-- @@include footer.html -->
+  <!-- @@include scripts.html -->
+</body>
+</html>

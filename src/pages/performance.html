@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <!-- @@include head.html -->
+  <title>Our performance — PMCPA prototype</title>
+</head>
+<body>
+  <!-- @@include header.html -->
+
+  <main id="main" class="flush">
+    <aside class="proposal" aria-label="About this prototype">
+      <div class="container">
+        <p class="proposal-eyebrow">Prototype 5 of 5 · Open by default: our performance</p>
+        <div class="proposal-grid">
+          <div><h2>What we're proposing</h2><p>A page that shows how the complaints procedure is performing, updated each month from the same figures as the ongoing-cases table: rulings by year, open cases over time, how many Panel rulings stand, and how many cases are at each stage now compared with the last snapshot. Below it, ongoing cases with a simple status track and a "follow" option.</p></div>
+          <div><h2>Why</h2><p>The PMCPA has a good story to tell (161 rulings in 2025 against 104 in 2024, open cases down from 155 to 65 by June 2026, 98% of Panel rulings accepted or upheld), but it lives in one news post. The ongoing-cases table has two unlabelled total rows and refers to "the table on the right".</p></div>
+        </div>
+        <p class="proposal-foot">All figures in the charts and table are as published by the PMCPA. The ongoing cases listed underneath are invented.</p>
+      </div>
+    </aside>
+
+    <div class="page-head">
+      <div class="container">
+        <span class="eyebrow">About us</span>
+        <h1>Our performance</h1>
+        <p class="lead">How many complaints we rule on, how many are waiting, and how long cases take. Updated monthly.</p>
+      </div>
+    </div>
+
+    <div class="container" style="margin-top:2rem">
+      <!-- Headline figures and charts (R54) -->
+      <section aria-labelledby="charts-h">
+        <h2 id="charts-h" class="visually-hidden">Headline figures</h2>
+        <div class="grid grid-2">
+          <div class="panel">
+            <h3 class="h-sm">Rulings issued</h3>
+            <div class="chart" id="chart-rulings"></div>
+            <p class="chart-note">Source: PMCPA 2025 Annual Report. 55% more rulings in 2025 than in 2024.</p>
+          </div>
+          <div class="panel">
+            <h3 class="h-sm">Cases awaiting a decision or Panel ruling</h3>
+            <div class="chart" id="chart-open"></div>
+            <p class="chart-note">Cases at case preparation, referred to the Panel or assigned to Panel members.</p>
+          </div>
+        </div>
+        <div class="stat-tiles" style="margin-top:1rem">
+          <div class="stat-tile"><b>98%</b><span>of Panel rulings on complaints received in 2024 were accepted by the parties or upheld on appeal</span></div>
+          <div class="stat-tile"><b>~8 weeks</b><span>shorter average completion time for 2024 complaints than for 2023</span></div>
+          <div class="stat-tile"><b>[x] weeks</b><span>average time from complaint to Panel ruling (to be published)</span></div>
+        </div>
+        <div class="wf-note" data-note="1"><span class="wf-note-label">Behaviour</span>Every chart has its figures written beside the bars, so it reads without the graphic and works with a screen reader.</div>
+      </section>
+
+      <!-- Ongoing-cases table with labelled totals (R55) -->
+      <section aria-labelledby="pipe-h">
+        <div class="row between">
+          <h2 id="pipe-h">Cases at each stage</h2>
+          <div class="field" style="margin:0"><label for="snap" class="visually-hidden">Snapshot</label><select id="snap"></select></div>
+        </div>
+        <div class="table-wrap"><table class="pipeline" id="pipeline"></table></div>
+        <div class="wf-note" data-note="2"><span class="wf-note-label">Content</span>The two total rows are labelled, and each month shows the change since the previous snapshot. Earlier snapshots stay available from the menu.</div>
+      </section>
+
+      <!-- Ongoing cases with status and follow (R56) -->
+      <section aria-labelledby="ongoing-h">
+        <h2 id="ongoing-h">Ongoing cases</h2>
+        <p>Cases that are resolved but not yet published, and cases still in progress. <span class="sample-flag">Sample cases</span></p>
+        <ul class="ongoing" id="ongoing-list"></ul>
+        <div class="wf-note query" data-note="3"><span class="wf-note-label">Question for the PMCPA</span>Today only resolved cases are named on Ongoing cases. Would the PMCPA name cases at earlier stages, or keep those as counts only?</div>
+      </section>
+    </div>
+  </main>
+
+  <div class="wf-modal" id="follow-modal" role="dialog" aria-modal="true" aria-labelledby="fo-title">
+    <div class="wf-modal-panel">
+      <button type="button" class="wf-modal-close" aria-label="Close">×</button>
+      <h2 id="fo-title">Follow this case</h2>
+      <form id="fo-form" novalidate>
+        <p id="fo-case" class="muted"></p>
+        <div class="field"><label for="fo-email">Email address</label><input type="email" id="fo-email" required><p class="field-error" hidden>Enter an email address like name@example.com</p></div>
+        <button class="btn" type="submit">Email me when it moves on</button>
+      </form>
+      <div id="fo-done" hidden><h3 tabindex="-1">You're following this case</h3><p>We'll email you when its status changes and when the report is published.</p></div>
+    </div>
+  </div>
+
+  <!-- @@include footer.html -->
+  <!-- @@include scripts.html -->
+</body>
+</html>

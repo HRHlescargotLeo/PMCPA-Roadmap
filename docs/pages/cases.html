@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pmcpa.css">
+  <link rel="stylesheet" href="../css/theme.css">
+
+  <title>Completed cases — PMCPA prototype</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <!-- Prototype navigator (replaces the PMCPA header, R01) -->
+  <header class="sticky site-header proto-nav">
+    <div class="container proto-nav-row">
+      <a class="proto-home" href="../index.html" aria-label="PMCPA prototypes, overview">PMCPA <span>prototypes</span></a>
+      <nav aria-label="Prototypes">
+        <ul class="proto-links">
+          <li><a href="../index.html" data-proto="index">Overview</a></li>
+          <li><a href="../pages/cases.html" data-proto="cases"><span class="n">1</span> Case finder</a></li>
+          <li><a href="../pages/case.html" data-proto="case"><span class="n">2</span> Case report</a></li>
+          <li><a href="../pages/code.html" data-proto="code clause"><span class="n">3</span> The Code</a></li>
+          <li><a href="../pages/raise-a-concern.html" data-proto="raise-a-concern"><span class="n">4</span> Raise a concern</a></li>
+          <li><a href="../pages/home.html" data-proto="home performance alerts"><span class="n">5</span> Open by default</a></li>
+        </ul>
+      </nav>
+      <button type="button" class="notes-toggle" role="switch" aria-checked="false" data-notes-toggle>
+        <span class="notes-track" aria-hidden="true"><span class="notes-thumb"></span></span>
+        <span class="notes-label">Notes off</span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="main" class="flush">
+    <!-- What we're proposing and why (shown when Notes are on, R03) -->
+    <aside class="proposal" aria-label="About this prototype">
+      <div class="container">
+        <p class="proposal-eyebrow">Prototype 1 of 5 · Case finder</p>
+        <div class="proposal-grid">
+          <div><h2>What we're proposing</h2><p>A completed-cases search that opens on the latest rulings and lets you narrow by the things people actually look for: the clause, the outcome, the company, who complained, the Code year, sanctions and when the case finished. Each result says what happened in one line, shows the outcome at a glance, and links its clauses to the Code. You can save any search as an email alert.</p></div>
+          <div><h2>Why</h2><p>Today Completed cases opens with no sort selected, so the first results we saw were completed in 2017 and 2018, out of 1,923. The only filters are year received and Code year, even though clauses, outcome, complainant and sanctions are already recorded on every case. On a phone the first result is about two screens down, below the introduction and the search tips.</p></div>
+        </div>
+        <p class="proposal-foot">Case data here is invented (fictional companies, CASE/9xxx references). The filters use fields the case pages already carry.</p>
+      </div>
+    </aside>
+
+    <!-- Page head with search (R11, R16) -->
+    <div class="page-head">
+      <div class="container">
+        <span class="eyebrow">Cases</span>
+        <h1>Completed cases</h1>
+        <p class="lead">Every case ruled under the Code, breach or not, with the newest first.</p>
+        <form class="finder-search" id="finder-form" role="search" style="margin-top:1rem">
+          <label class="visually-hidden" for="finder-q">Search completed cases</label>
+          <input type="search" id="finder-q" placeholder="Search by company, subject or case number, e.g. CASE/9071/03/26">
+          <button class="btn" type="submit">Search</button>
+        </form>
+        <details class="howto">
+          <summary>How to search</summary>
+          <ul>
+            <li>Type a case number in either format, AUTH/ or CASE/, with or without the slashes.</li>
+            <li>Put a phrase in quotation marks to match it exactly: "data on file".</li>
+            <li>Use the filters to narrow by clause, outcome, company, complainant, Code year, sanctions or date.</li>
+          </ul>
+        </details>
+        <div class="wf-note" data-note="1"><span class="wf-note-label">Behaviour</span>Search matches the reference, parties, headline and summary. "9071", "case 9071" and "CASE/9071/03/26" all find the same case. The search terms and filters are kept in the address, so a search can be shared or bookmarked.</div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="filter-btn-row">
+        <button type="button" class="btn btn-secondary" id="facets-open" aria-controls="facets" aria-expanded="false">Filters <span id="facet-count"></span></button>
+      </div>
+
+      <div class="finder">
+        <!-- Facets (R12, R13); a full-screen sheet on phones (R16) -->
+        <aside class="facets" id="facets" aria-label="Filter cases">
+          <div class="facets-head"><h2>Filter cases</h2><button type="button" class="drawer-close" id="facets-close" aria-label="Close filters">×</button></div>
+          <div id="facet-body"></div>
+          <div class="wf-note" data-note="3"><span class="wf-note-label">Behaviour</span>Counts update as you filter, and options with no matching cases are greyed out rather than hidden, so you can see what exists.</div>
+          <div class="wf-note query" data-note="4"><span class="wf-note-label">Question for the PMCPA</span>Clause numbers changed between Codes (for example, high standards was 9.1 in 2019 and is 5.1 in 2024). The clause filter here uses 2024 numbering and 2024 Code cases. Should it map earlier clauses to their 2024 equivalents?</div>
+          <div class="facets-foot"><button type="button" class="btn btn-secondary" data-clear-all>Clear all</button><button type="button" class="btn" id="facets-done">Show cases</button></div>
+        </aside>
+
+        <!-- Results (R10, R14, R15, R17, R18) -->
+        <div>
+          <div class="alert-cta">
+            <p><strong>Get an email</strong> when a new case matches this search.</p>
+            <button type="button" class="btn btn-secondary btn-sm" id="alert-open">Set up an alert</button>
+          </div>
+          <div class="results-toolbar">
+            <p class="results-count" id="results-count" aria-live="polite" style="margin:0"></p>
+            <div class="field">
+              <label for="finder-sort" class="visually-hidden">Sort by</label>
+              <select id="finder-sort">
+                <option value="completed-desc">Most recently completed</option>
+                <option value="completed-asc">Oldest completed first</option>
+                <option value="received-desc">Most recently received</option>
+                <option value="relevance">Best match</option>
+              </select>
+            </div>
+          </div>
+          <div class="active-filters" id="active-filters" aria-label="Active filters"></div>
+          <div class="wf-note" data-note="2"><span class="wf-note-label">Behaviour</span>Newest completed first by default. "Best match" appears once you've typed a search. Every result shows the outcome as a pill and the clauses as chips: solid for a breach, dashed for no breach. 2024 Code clauses link to the clause in the Code.</div>
+          <ol class="case-list" id="case-list"></ol>
+          <nav aria-label="Results pages"><ul class="pagination" id="pagination"></ul></nav>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Email alert for this search (R18) -->
+  <div class="wf-modal" id="alert-modal" role="dialog" aria-modal="true" aria-labelledby="alert-title">
+    <div class="wf-modal-panel">
+      <button type="button" class="wf-modal-close" aria-label="Close">×</button>
+      <h2 id="alert-title">Email me new cases</h2>
+      <form id="alert-form" novalidate>
+        <p class="muted" id="alert-summary"></p>
+        <div class="field"><label for="alert-email">Email address</label><input type="email" id="alert-email" autocomplete="email" required><p class="field-error" hidden>Enter an email address like name@example.com</p></div>
+        <fieldset><legend>How often</legend>
+          <label class="check"><input type="radio" name="alert-freq" value="each" checked> As each case is published</label>
+          <label class="check"><input type="radio" name="alert-freq" value="week"> A weekly summary</label>
+        </fieldset>
+        <button class="btn" type="submit">Create alert</button>
+      </form>
+      <div id="alert-done" hidden><h3 tabindex="-1">Alert set up</h3><p>We've sent a link to <strong id="alert-done-email"></strong> to confirm. You can change or stop alerts from any email.</p><p><a href="../pages/alerts.html">Manage all your PMCPA alerts</a></p></div>
+    </div>
+  </div>
+
+  <!-- Prototype pager (replaces the PMCPA footer, R02) -->
+  <footer class="proto-footer">
+    <div class="container">
+      <nav class="proto-pager" aria-label="Previous and next prototype" data-proto-pager></nav>
+      <p class="wf-meta">Prepared by ClerksWell · Prototypes for discussion · Companies, case references and rulings are invented sample data</p>
+    </div>
+  </footer>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/wireframe.js"></script>
+  <script src="../js/prototypes.js"></script>
+
+</body>
+</html>

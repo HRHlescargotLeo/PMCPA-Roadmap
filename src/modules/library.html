@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <!-- @@include head.html -->
+  <title>Module library — PMCPA prototypes</title>
+</head>
+<body>
+  <!-- @@include header.html -->
+
+  <main id="main">
+    <div class="container">
+      <h1>Module library</h1>
+      <p class="lead">The new components used across the five prototypes, each shown once with the requirements it serves.</p>
+
+      <!-- Outcome pills (R14) -->
+      <section class="lib-item" aria-labelledby="m1"><h2 id="m1">Outcome pill <span class="wf-req">R14</span></h2>
+        <div class="row"><span class="pill breach">Breach ruled</span><span class="pill nobreach">No breach</span><span class="pill mixed">Breach and no breach</span><span class="pill pending">Not yet ruled</span></div>
+        <p class="wf-meta" style="margin-top:0.5rem">Distinguished by fill and label, not colour alone.</p>
+      </section>
+
+      <!-- Clause chips (R14, R21) -->
+      <section class="lib-item" aria-labelledby="m2"><h2 id="m2">Clause chips <span class="wf-req">R14, R21</span></h2>
+        <div class="chips-row"><span class="chip-key">Breach</span><a class="clause-chip b" href="~/pages/clause.html?clause=14#c14-4">14.4</a><a class="clause-chip b" href="~/pages/clause.html?clause=5">5.1</a><span class="chip-key">No breach</span><a class="clause-chip nb" href="~/pages/clause.html?clause=2">2</a></div>
+      </section>
+
+      <!-- Case result (R14, R15) -->
+      <section class="lib-item" aria-labelledby="m3"><h2 id="m3">Case result <span class="wf-req">R14, R15</span></h2>
+        <ol class="case-list" id="lib-case"></ol>
+      </section>
+
+      <!-- Timeline (R22, R47) -->
+      <section class="lib-item" aria-labelledby="m4"><h2 id="m4">Timeline <span class="wf-req">R22, R47</span></h2>
+        <ol class="timeline"><li><b>Complaint received</b>[Date]</li><li class="now"><b>Panel ruling</b>[Date]</li><li class="todo"><b>Appeal</b>If either party appeals</li><li class="todo"><b>Case report</b>Published</li></ol>
+      </section>
+
+      <!-- Status track (R56) -->
+      <section class="lib-item" aria-labelledby="m5"><h2 id="m5">Ongoing case status track <span class="wf-req">R56</span></h2>
+        <ol class="track-steps"><li class="done">Case preparation</li><li class="done">Referred to the Panel</li><li class="now" aria-current="step">Assigned to Panel members</li><li>Ruled: awaiting undertaking or appeal</li><li>Processing appeal</li><li>Case report pending</li></ol>
+      </section>
+
+      <!-- Route cards (R50) -->
+      <section class="lib-item" aria-labelledby="m6"><h2 id="m6">Route card <span class="wf-req">R50</span></h2>
+        <div class="routes" style="margin-top:0"><a class="route" href="~/pages/raise-a-concern.html"><b>Raise a concern</b><span>About a pharmaceutical company's promotion or conduct</span><span class="go">Start</span></a></div>
+      </section>
+
+      <!-- Bar chart with figures (R54) -->
+      <section class="lib-item" aria-labelledby="m7"><h2 id="m7">Bar chart with figures as text <span class="wf-req">R54</span></h2>
+        <div class="chart"><div class="chart-row"><span>2024</span><span class="track" aria-hidden="true"><span class="fill" style="width:65%;display:block"></span></span><b>104</b></div><div class="chart-row"><span>2025</span><span class="track" aria-hidden="true"><span class="fill" style="width:100%;display:block"></span></span><b>161</b></div></div>
+      </section>
+
+      <!-- Training status (R53) -->
+      <section class="lib-item" aria-labelledby="m8"><h2 id="m8">Date with status <span class="wf-req">R53</span></h2>
+        <ul class="dates"><li><span>[Date]</span><span class="status">Places available</span></li><li><span>5 November 2026</span><span class="status full">Fully booked</span></li><li><span>12 May 2026</span><span class="status past">Took place</span></li></ul>
+      </section>
+
+      <!-- Hub panel (R34) -->
+      <section class="lib-item" aria-labelledby="m9"><h2 id="m9">Clause hub panel <span class="wf-req">R34</span></h2>
+        <div class="hub-panels"><div class="hub-panel"><h3>Q&amp;As <span class="count">1</span></h3><ul><li><a href="#">What are the expectations with regards to using data on file?</a><span class="small">Revised October 2024</span></li></ul></div></div>
+      </section>
+    </div>
+  </main>
+
+  <!-- @@include footer.html -->
+  <!-- @@include scripts.html -->
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <!-- @@include head.html -->
+  <title>The ABPI Code of Practice 2024 — PMCPA prototype</title>
+</head>
+<body>
+  <!-- @@include header.html -->
+
+  <main id="main" class="flush">
+    <aside class="proposal" aria-label="About this prototype">
+      <div class="container">
+        <p class="proposal-eyebrow">Prototype 3 of 5 · The Code, connected</p>
+        <div class="proposal-grid">
+          <div><h2>What we're proposing</h2><p>One place to check the Code. A single search covers the Code, Q&amp;As, guidance and cases, with a tab for each and no duplicates. Sections open in place and each has its own address. You can jump straight to a clause by typing "14.2". On every clause page, the Q&amp;As, guidance and cases for each sub-clause sit beside its text.</p></div>
+          <div><h2>Why</h2><p>Today the Code, Q&amp;As, guidance and cases are four separate places. A Code search for "social media" returned 71 Code-only results with Clause 26 listed four times, and the social media guidance wasn't among them. The Q&amp;A clause list runs 10.1, 12.1, 15.1… 8.1, 12.2, and the Code page title still says "Comes into operation 1 October 2024".</p></div>
+        </div>
+        <p class="proposal-foot">Clause titles, Clause 14's text and the Q&amp;A and guidance titles are as published. Which clauses each Q&amp;A and guidance item is tagged to is our illustration.</p>
+      </div>
+    </aside>
+
+    <!-- Code landing titled for today (R30) -->
+    <div class="page-head">
+      <div class="container">
+        <span class="eyebrow">The Code</span>
+        <h1>The ABPI Code of Practice 2024</h1>
+        <p class="lead">In effect since 1 October 2024. Search it, browse by section, or go straight to a clause.</p>
+        <p><a href="#">Download the 2024 Code (PDF)</a> · <a href="#">Previous Codes</a> · <a href="#changes">What changed from the 2021 Code</a></p>
+
+        <!-- One search (R31) -->
+        <form class="code-search" id="code-search" role="search" style="margin-top:1rem">
+          <label class="visually-hidden" for="code-q">Search the Code, Q&amp;As, guidance and cases</label>
+          <input type="search" id="code-q" placeholder="Search the Code, Q&amp;As, guidance and cases, e.g. data on file">
+          <button class="btn" type="submit">Search</button>
+        </form>
+        <p class="wf-meta" style="margin:0.5rem 0 0">Try: <button type="button" class="btn-link" data-try="data on file">data on file</button> · <button type="button" class="btn-link" data-try="press release">press release</button> · <button type="button" class="btn-link" data-try="social media">social media</button> · <button type="button" class="btn-link" data-try="14.4">14.4</button></p>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Search results with tabs (R31) -->
+      <section id="search-results" hidden aria-labelledby="sr-h" style="margin-top:1.5rem">
+        <h2 id="sr-h" class="h-sm" aria-live="polite"></h2>
+        <div class="search-tabs" role="tablist" id="sr-tabs"></div>
+        <ul class="hit-list" id="sr-list"></ul>
+        <div class="wf-note" data-note="1"><span class="wf-note-label">Behaviour</span>One result per clause, Q&amp;A, guidance item or case, so a clause can't appear four times. Typing a clause number such as 14.4 puts that clause first.</div>
+      </section>
+
+      <!-- Go to clause (R33) -->
+      <section aria-labelledby="goto-h" style="margin-top:2rem">
+        <h2 id="goto-h" class="h-sm">Go to a clause</h2>
+        <form class="goto" id="goto-form">
+          <div class="field"><label for="goto-n">Clause number</label><input type="text" id="goto-n" inputmode="decimal" placeholder="e.g. 14.2"><p class="field-error" hidden>Enter a clause from 1 to 31, such as 14 or 14.2</p></div>
+          <button class="btn" type="submit">Go</button>
+        </form>
+      </section>
+
+      <!-- Sections as expandable groups with addresses (R32) -->
+      <section aria-labelledby="sections-h">
+        <h2 id="sections-h">Sections of the Code</h2>
+        <div class="sections" id="code-sections"></div>
+        <div class="wf-note" data-note="2"><span class="wf-note-label">Behaviour</span>Each section opens in place instead of a pop-up, and has its own address (for example <code>code.html#section-2</code>) so it can be bookmarked or sent to a colleague. Clauses are listed in number order.</div>
+      </section>
+
+      <!-- Glossary (R36) -->
+      <section aria-labelledby="gloss-h">
+        <h2 id="gloss-h">Glossary</h2>
+        <p>Terms defined in Clause 1. Where they appear in clause text, select them to see the definition.</p>
+        <dl class="kv" id="glossary-list"></dl>
+        <div class="wf-note query" data-note="3"><span class="wf-note-label">Question for the PMCPA</span>Would the PMCPA be comfortable with a glossary drawn from Clause 1 definitions, kept in step with each new Code?</div>
+      </section>
+
+      <!-- Changes from 2021 (R37) -->
+      <section id="changes" aria-labelledby="changes-h">
+        <h2 id="changes-h">What changed from the 2021 Code</h2>
+        <p>Clauses that changed in 2024 are marked "Changed in 2024" on their page, with the earlier wording a click away. <a href="~/pages/clause.html?clause=14">See Clause 14 for an example</a>.</p>
+      </section>
+    </div>
+  </main>
+
+  <!-- @@include footer.html -->
+  <!-- @@include scripts.html -->
+</body>
+</html>

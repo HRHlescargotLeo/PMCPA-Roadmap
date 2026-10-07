@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/components.css">
+  <link rel="stylesheet" href="./css/pmcpa.css">
+  <link rel="stylesheet" href="./css/theme.css">
+
+  <title>PMCPA — website improvement prototypes</title>
+</head>
+<body class="hub">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <!-- Prototype navigator (replaces the PMCPA header, R01) -->
+  <header class="sticky site-header proto-nav">
+    <div class="container proto-nav-row">
+      <a class="proto-home" href="./index.html" aria-label="PMCPA prototypes, overview">PMCPA <span>prototypes</span></a>
+      <nav aria-label="Prototypes">
+        <ul class="proto-links">
+          <li><a href="./index.html" data-proto="index">Overview</a></li>
+          <li><a href="./pages/cases.html" data-proto="cases"><span class="n">1</span> Case finder</a></li>
+          <li><a href="./pages/case.html" data-proto="case"><span class="n">2</span> Case report</a></li>
+          <li><a href="./pages/code.html" data-proto="code clause"><span class="n">3</span> The Code</a></li>
+          <li><a href="./pages/raise-a-concern.html" data-proto="raise-a-concern"><span class="n">4</span> Raise a concern</a></li>
+          <li><a href="./pages/home.html" data-proto="home performance alerts"><span class="n">5</span> Open by default</a></li>
+        </ul>
+      </nav>
+      <button type="button" class="notes-toggle" role="switch" aria-checked="false" data-notes-toggle>
+        <span class="notes-track" aria-hidden="true"><span class="notes-thumb"></span></span>
+        <span class="notes-label">Notes off</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Landing page for the prototype pack -->
+  <div class="hub-hero">
+    <div class="container">
+      <div class="hub-brand">
+        <span class="wf-placeholder logo">PMCPA logo</span>
+        <span class="hub-by">Prepared by ClerksWell</span>
+      </div>
+      <h1>Five ideas for pmcpa.org.uk</h1>
+      <p class="lead">Clickable prototypes of five improvements to the PMCPA website. Each works as it would on the live site. They're greyscale on purpose, so we can agree structure and behaviour before design.</p>
+      <div class="wf-hub-meta">
+        <span>Version 1</span>
+        <span>7 October 2026</span>
+        <span>Greyscale prototypes</span>
+        <span>Sample case data</span>
+      </div>
+    </div>
+  </div>
+
+  <main id="main">
+    <div class="container">
+      <section aria-labelledby="protos-title">
+        <h2 class="hub-h2" id="protos-title">The prototypes</h2>
+        <ol class="proto-list">
+          <li class="proto-card">
+            <a class="proto-thumb" href="./pages/cases.html" tabindex="-1" aria-hidden="true"><span class="wf-placeholder">Case finder</span></a>
+            <div class="proto-body">
+              <span class="proto-num">1</span>
+              <h3><a href="./pages/cases.html">Find the right precedent quickly</a></h3>
+              <p>Completed cases open on the latest rulings, with filters for clause, outcome, company, complainant, Code year, sanctions and dates. Every result shows its outcome and clauses at a glance, and any search can become an email alert.</p>
+              <p class="proto-try"><strong>Try:</strong> filter to Clause 14 under Section 2, then add "Breach ruled" and sort by oldest first.</p>
+              <a class="btn" href="./pages/cases.html">Open prototype</a>
+            </div>
+          </li>
+          <li class="proto-card">
+            <a class="proto-thumb" href="./pages/case.html" tabindex="-1" aria-hidden="true"><span class="wf-placeholder">Case report</span></a>
+            <div class="proto-body">
+              <span class="proto-num">2</span>
+              <h3><a href="./pages/case.html">A case report you can read on screen</a></h3>
+              <p>Outcome, dates and sanctions at the top, a ruling for each clause linked to the Code, a timeline, the full report in sections, and related cases, with copy link, citation and print.</p>
+              <p class="proto-try"><strong>Try:</strong> select Clause 3.1 in the rulings table, then come back and open a related case.</p>
+              <a class="btn" href="./pages/case.html">Open prototype</a>
+            </div>
+          </li>
+          <li class="proto-card">
+            <a class="proto-thumb" href="./pages/code.html" tabindex="-1" aria-hidden="true"><span class="wf-placeholder">The Code</span></a>
+            <div class="proto-body">
+              <span class="proto-num">3</span>
+              <h3><a href="./pages/code.html">The Code, connected to its Q&amp;As, guidance and cases</a></h3>
+              <p>One search across all four, sections that open in place, "go to 14.2", and a <a href="./pages/clause.html?clause=14">clause page</a> where every sub-clause shows its Q&amp;As, guidance and cases.</p>
+              <p class="proto-try"><strong>Try:</strong> search "data on file", switch between the tabs, then open Clause 14.3 and select "health professional".</p>
+              <a class="btn" href="./pages/code.html">Open prototype</a>
+            </div>
+          </li>
+          <li class="proto-card">
+            <a class="proto-thumb" href="./pages/raise-a-concern.html" tabindex="-1" aria-hidden="true"><span class="wf-placeholder">Raise a concern</span></a>
+            <div class="proto-body">
+              <span class="proto-num">4</span>
+              <h3><a href="./pages/raise-a-concern.html">Raise a concern, step by step</a></h3>
+              <p>A scope check that points anything outside the Code elsewhere, then a stepped form with guidance beside each field, anonymity explained in a table, a check-and-send screen and a timeline of what happens next.</p>
+              <p class="proto-try"><strong>Try:</strong> choose "Side effects of a medicine" first, then switch to "How a company promotes a medicine" and complete the form.</p>
+              <a class="btn" href="./pages/raise-a-concern.html">Open prototype</a>
+            </div>
+          </li>
+          <li class="proto-card">
+            <a class="proto-thumb" href="./pages/home.html" tabindex="-1" aria-hidden="true"><span class="wf-placeholder">Open by default</span></a>
+            <div class="proto-body">
+              <span class="proto-num">5</span>
+              <h3><a href="./pages/home.html">Open by default</a></h3>
+              <p>A homepage that routes each visitor, the latest rulings and real headlines, honest training status, an <a href="./pages/performance.html">Our performance</a> page with ongoing cases you can follow, and <a href="./pages/alerts.html">email alerts</a> you can tailor.</p>
+              <p class="proto-try"><strong>Try:</strong> on Our performance, switch the snapshot to 30 June 2026; on Email alerts, pick Section 2 and watch the sample alert change.</p>
+              <a class="btn" href="./pages/home.html">Open prototype</a>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="hub-notes" aria-labelledby="review-title">
+        <div>
+          <h2 class="hub-h2" id="review-title">How to review</h2>
+          <ul>
+            <li>Everything interactive works: search, filters, sorting, alerts, tabs, the clause hub, the stepped form and its validation. Links to pages outside these five go nowhere by design.</li>
+            <li>Use the bar at the top to move between prototypes. Switch <strong>Notes on</strong> (top right) to see what each prototype proposes and why, plus notes on behaviour (yellow) and open questions for the PMCPA (red). Notes start switched off.</li>
+            <li>Case data is invented: the companies are fictional and references use CASE/9xxx and AUTH/9xxx, outside the PMCPA's real numbering. Code clause titles, Clause 14's text, Q&amp;A and guidance titles, training dates and performance figures are as published on pmcpa.org.uk.</li>
+            <li>Works on a phone: open this page on your mobile to check the layouts, especially the case filters and the form.</li>
+          </ul>
+        </div>
+        <div class="panel surface">
+          <h2 class="hub-h2">Also in this pack</h2>
+          <ul class="hub-links">
+            <li><a href="./pages/clause.html?clause=14">Clause 14 hub</a><span>Part of prototype 3</span></li>
+            <li><a href="./pages/performance.html">Our performance</a><span>Part of prototype 5</span></li>
+            <li><a href="./pages/alerts.html">Email alerts</a><span>Part of prototype 5</span></li>
+            <li><a href="./modules/library.html">Module library</a><span>The new components, each shown once</span></li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Prototype pager (replaces the PMCPA footer, R02) -->
+  <footer class="proto-footer">
+    <div class="container">
+      <nav class="proto-pager" aria-label="Previous and next prototype" data-proto-pager></nav>
+      <p class="wf-meta">Prepared by ClerksWell · Prototypes for discussion · Companies, case references and rulings are invented sample data</p>
+    </div>
+  </footer>
+
+  <script src="./js/data.js"></script>
+  <script src="./js/wireframe.js"></script>
+  <script src="./js/prototypes.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <!-- @@include head.html -->
+  <title>Case report — PMCPA prototype</title>
+</head>
+<body>
+  <!-- @@include header.html -->
+
+  <main id="main" class="flush">
+    <aside class="proposal" aria-label="About this prototype">
+      <div class="container">
+        <p class="proposal-eyebrow">Prototype 2 of 5 · Case report</p>
+        <div class="proposal-grid">
+          <div><h2>What we're proposing</h2><p>A case report you can read on screen. The outcome, key dates and sanctions are at the top; a table shows the ruling on each clause, linked to that clause in the Code; a timeline shows how the case moved. The full report is in sections with a contents list, and the PDF is still there to download. Underneath, other cases on the same clause and about the same company, plus copy link, a suggested citation and print.</p></div>
+          <div><h2>Why</h2><p>Case pages already hold the facts as fields, but the full report is a PDF and clause numbers are plain text, so moving from a ruling to the clause it applies to, or to similar cases, means starting again from search. We also saw a 2017 case showing "November 2007 Review", which a structured template would catch.</p></div>
+        </div>
+        <p class="proposal-foot">Try another case from the finder; this page opens any case with <code>?case=</code>. The report text is placeholder: real reports would fill these sections.</p>
+      </div>
+    </aside>
+
+    <div class="page-head">
+      <div class="container">
+        <a class="back-link" href="~/pages/cases.html" id="back-to-results">Back to completed cases</a>
+        <!-- Case header and key facts (R20) -->
+        <div class="case-head">
+          <div>
+            <span class="eyebrow" id="c-ref"></span>
+            <h1 id="c-title"></h1>
+            <p class="headline" id="c-headline"></p>
+            <div class="row" id="c-outcome"></div>
+            <p id="c-summary" style="margin-top:0.75rem"></p>
+            <!-- Share, cite, print, follow (R26, R27) -->
+            <div class="action-row">
+              <a class="btn btn-secondary btn-sm" href="#" id="c-pdf">Full report (PDF)</a>
+              <button type="button" class="btn btn-secondary btn-sm" id="c-copy">Copy link</button>
+              <button type="button" class="btn btn-secondary btn-sm" data-modal-open="cite-modal">Cite this case</button>
+              <button type="button" class="btn btn-secondary btn-sm" id="c-print">Print</button>
+              <button type="button" class="btn btn-secondary btn-sm" data-modal-open="follow-modal">Follow</button>
+            </div>
+          </div>
+          <div class="panel surface">
+            <h2 class="h-sm">Key facts</h2>
+            <dl class="kv" id="c-facts"></dl>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Rulings by clause (R21) -->
+      <section aria-labelledby="rulings-h" style="margin-top:2rem">
+        <h2 id="rulings-h">Rulings by clause</h2>
+        <div class="table-wrap"><table class="rulings" id="c-rulings"></table></div>
+        <div class="wf-note" data-note="1"><span class="wf-note-label">Behaviour</span>2024 Code clauses link to the clause page, which in turn lists this case. Earlier Codes link to that year's Code. The Appeal Board column only appears when there was an appeal.</div>
+      </section>
+
+      <!-- Timeline (R22) -->
+      <section aria-labelledby="tl-h">
+        <h2 id="tl-h">How the case progressed</h2>
+        <ol class="timeline" id="c-timeline"></ol>
+        <div class="wf-note query" data-note="2"><span class="wf-note-label">Question for the PMCPA</span>Panel ruling and appeal dates are recorded internally. Would the PMCPA publish them on each case, so readers can see how long each stage took?</div>
+      </section>
+
+      <!-- Report in HTML with contents (R23, R24) -->
+      <div class="report-layout">
+        <nav class="toc" aria-label="Report contents">
+          <h2 class="h-sm">In this report</h2>
+          <ol id="c-toc"></ol>
+        </nav>
+        <article class="report" id="c-report"></article>
+      </div>
+
+      <!-- Related cases (R25) -->
+      <section aria-labelledby="rel-h">
+        <h2 id="rel-h">Related cases</h2>
+        <div class="related">
+          <div><h3 class="h-sm" id="rel-clause-h"></h3><ul class="mini-list" id="rel-clause"></ul></div>
+          <div><h3 class="h-sm" id="rel-co-h"></h3><ul class="mini-list" id="rel-co"></ul></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="wf-modal" id="cite-modal" role="dialog" aria-modal="true" aria-labelledby="cite-title">
+    <div class="wf-modal-panel">
+      <button type="button" class="wf-modal-close" aria-label="Close">×</button>
+      <h2 id="cite-title">Cite this case</h2>
+      <p class="cite-box" id="cite-text"></p>
+      <button type="button" class="btn" id="cite-copy">Copy citation</button>
+      <div class="wf-note query" data-note="3"><span class="wf-note-label">Question for the PMCPA</span>Is there a preferred citation format, for example as used in the Code's own supplementary information?</div>
+    </div>
+  </div>
+
+  <div class="wf-modal" id="follow-modal" role="dialog" aria-modal="true" aria-labelledby="follow-title">
+    <div class="wf-modal-panel">
+      <button type="button" class="wf-modal-close" aria-label="Close">×</button>
+      <h2 id="follow-title">Follow</h2>
+      <form id="follow-form" novalidate>
+        <fieldset><legend>Email me when a new case is published about</legend><div id="follow-options"></div></fieldset>
+        <div class="field"><label for="follow-email">Email address</label><input type="email" id="follow-email" autocomplete="email" required><p class="field-error" hidden>Enter an email address like name@example.com</p></div>
+        <button class="btn" type="submit">Follow</button>
+      </form>
+      <div id="follow-done" hidden><h3 tabindex="-1">You're following this</h3><p>Check your inbox to confirm. <a href="~/pages/alerts.html">Manage your alerts</a></p></div>
+    </div>
+  </div>
+
+  <!-- @@include footer.html -->
+  <!-- @@include scripts.html -->
+</body>
+</html>

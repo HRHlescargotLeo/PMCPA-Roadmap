@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <!-- @@include head.html -->
+  <title>Raise a concern — PMCPA prototype</title>
+</head>
+<body>
+  <!-- @@include header.html -->
+
+  <main id="main" class="flush">
+    <aside class="proposal" aria-label="About this prototype">
+      <div class="container">
+        <p class="proposal-eyebrow">Prototype 4 of 5 · Raise a concern</p>
+        <div class="proposal-grid">
+          <div><h2>What we're proposing</h2><p>One journey from "is this for the PMCPA?" to a sent complaint. A short scope check comes first and points anything outside the Code to the right body. Its answers carry into a stepped form: the matter, evidence, about you, your interests, then a check-and-send screen. The guidance sits beside the field it applies to, and anonymity is explained in one small table. When you send, you get a reference and a timeline of what happens next.</p></div>
+          <div><h2>Why</h2><p>Today the scope check is a Typeform on a separate page and nothing carries over to the form. The form follows roughly 1,000 words of guidance, has a single page of fields, and ends with "If you cannot submit the form you may need to clear your Cache". One sentence says you will have means of appeal after a no-breach ruling; another says you won't. Nothing tells a complainant what happens next or roughly how long it takes.</p></div>
+        </div>
+        <p class="proposal-foot">Nothing is sent. The wording follows the live Make a complaint page, with the appeal sentence corrected.</p>
+      </div>
+    </aside>
+
+    <div class="page-head">
+      <div class="container">
+        <span class="eyebrow">Complaints</span>
+        <h1>Raise a concern about a pharmaceutical company</h1>
+        <p class="lead">It takes about 10 minutes. You can save your answers and finish later.</p>
+        <p class="panel surface" id="resume-banner" hidden>You have a saved draft from this session. <button type="button" class="btn-link" id="resume-btn">Carry on where you left off</button> or <button type="button" class="btn-link" id="discard-btn">start again</button>.</p>
+      </div>
+    </div>
+
+    <div class="container" style="margin-top:1.5rem">
+      <!-- Steps with progress (R42) -->
+      <ol class="stepper six" id="concern-steps">
+        <li class="current">Check we can help</li>
+        <li>The matter</li>
+        <li>Evidence</li>
+        <li>About you</li>
+        <li>Your interests</li>
+        <li>Check and send</li>
+      </ol>
+
+      <form id="concern-form" novalidate>
+        <!-- Step 1: scope check (R40, R41, R49) -->
+        <div class="step-panel" data-step="1">
+          <div class="concern-layout">
+            <div>
+              <h2>Check we can help</h2>
+              <fieldset><legend>What is your concern about?</legend>
+                <div class="option-cards">
+                  <label class="option-card"><input type="radio" name="what" value="promo" required><strong>How a company promotes a medicine</strong><span>Advertising, claims, meetings, representatives, websites, social media</span></label>
+                  <label class="option-card"><input type="radio" name="what" value="interact"><strong>A company's dealings with people or organisations</strong><span>Payments, hospitality, grants, patient groups, the public, disclosure</span></label>
+                  <label class="option-card"><input type="radio" name="what" value="sidefx"><strong>Side effects of a medicine</strong><span>A reaction you or a patient had</span></label>
+                  <label class="option-card"><input type="radio" name="what" value="pro"><strong>A doctor, nurse or pharmacist</strong><span>The conduct of an individual professional</span></label>
+                  <label class="option-card"><input type="radio" name="what" value="pharmacy"><strong>An online pharmacy or clinic's advertising</strong><span>Ads for weight-loss injections, hair loss and similar</span></label>
+                  <label class="option-card"><input type="radio" name="what" value="price"><strong>The price or supply of a medicine</strong><span>Shortages, cost, availability on the NHS</span></label>
+                </div>
+                <p class="field-error" hidden>Choose what your concern is about</p>
+              </fieldset>
+              <fieldset><legend>Who are you?</legend>
+                <div class="option-cards">
+                  <label class="option-card"><input type="radio" name="who" value="outside" required><strong>Someone outside the company</strong><span>A health professional, patient, member of the public or journalist</span></label>
+                  <label class="option-card"><input type="radio" name="who" value="employee"><strong>I work, or worked, for the company</strong><span>Employee, ex-employee or contractor</span></label>
+                  <label class="option-card"><input type="radio" name="who" value="company"><strong>I'm complaining on behalf of a pharmaceutical company</strong><span>An intercompany complaint</span></label>
+                  <label class="option-card"><input type="radio" name="who" value="admission"><strong>I'm reporting my own company</strong><span>A voluntary admission</span></label>
+                </div>
+                <p class="field-error" hidden>Choose who you are</p>
+              </fieldset>
+              <div class="scope-result" id="scope-result" hidden aria-live="polite"></div>
+            </div>
+            <aside class="guide" aria-label="Guidance">
+              <h2>What we can look at</h2>
+              <p>We apply the ABPI Code of Practice to pharmaceutical companies: how they promote prescription medicines in the UK and how they work with health professionals, patient organisations and the public.</p>
+              <p>We can't advise on treatment, look into individual professionals, or deal with side effects. We'll point you to who can.</p>
+              <div class="wf-note query" data-note="1"><span class="wf-note-label">Question for the PMCPA</span>Is this the right set of first questions, and the right bodies to refer to? The live Typeform's logic would be the starting point.</div>
+            </aside>
+          </div>
+        </div>
+
+        <!-- Step 2: the matter (R42, R43) -->
+        <div class="step-panel" data-step="2" hidden>
+          <div class="concern-layout">
+            <div>
+              <h2>The matter</h2>
+              <div class="field" id="co-field"><label for="co-input">Which pharmaceutical company or companies?</label>
+                <div class="tag-input" id="co-tags"><input type="text" id="co-input" autocomplete="off" aria-describedby="co-hint"></div>
+                <p class="field-hint" id="co-hint">Type a name and press Enter. You can add more than one.</p>
+                <input type="hidden" id="co-value" required>
+                <p class="field-error" hidden>Add at least one company</p>
+              </div>
+              <div class="form-grid">
+                <div class="field"><label for="med">Medicine <span class="muted">(optional)</span></label><input type="text" id="med"></div>
+                <div class="field"><label for="where">Where did you see or hear it?</label>
+                  <select id="where" required><option value="">Choose one</option><option>At a meeting or conference</option><option>From a company representative</option><option>Company website</option><option>Social media</option><option>Email</option><option>Printed material or journal</option><option>News or media</option><option>Somewhere else</option></select>
+                  <p class="field-error" hidden>Choose where you saw or heard it</p></div>
+                <div class="field"><label for="when">When? <span class="muted">(optional)</span></label><input type="date" id="when"></div>
+              </div>
+              <div class="field"><label for="details">What happened, and why do you think it breaks the Code?</label>
+                <textarea id="details" rows="7" required aria-describedby="details-count"></textarea>
+                <p class="char-count" id="details-count">0 characters</p>
+                <p class="field-error" hidden>Tell us what happened</p></div>
+              <div class="field"><label for="links">Links to the material <span class="muted">(optional)</span></label><input type="text" id="links" placeholder="https://"></div>
+            </div>
+            <aside class="guide" aria-label="Guidance">
+              <h2>Help us deal with it</h2>
+              <p>The PMCPA isn't an investigatory body. Complaints are judged on the evidence the parties provide, and you need to show your complaint is more likely than not to be right.</p>
+              <p>Say exactly what was said or done, by whom, where and when. If you know which clause of the Code applies, mention it, but you don't have to.</p>
+              <p><a href="~/pages/code.html">Check the Code</a></p>
+            </aside>
+          </div>
+        </div>
+
+        <!-- Step 3: evidence (R42, R43) -->
+        <div class="step-panel" data-step="3" hidden>
+          <div class="concern-layout">
+            <div>
+              <h2>Evidence</h2>
+              <div class="dropzone">
+                <p><strong>Add screenshots, emails or documents</strong></p>
+                <label class="btn btn-secondary" for="files">Choose files</label>
+                <input type="file" id="files" multiple class="visually-hidden">
+                <p class="field-hint">Up to 5 files, 20MB in total.</p>
+              </div>
+              <ul class="file-list" id="file-list"></ul>
+              <p class="field-error" id="file-error" hidden></p>
+              <label class="check" style="margin-top:1rem"><input type="checkbox" id="email-evidence"> I'll email more evidence to complaints@pmcpa.org.uk</label>
+            </div>
+            <aside class="guide" aria-label="Guidance">
+              <h2>Before you upload</h2>
+              <p>If you want to stay anonymous, remove anything that could identify you, including from the file properties. We'll also do our best to anonymise attachments.</p>
+              <div class="wf-note" data-note="2"><span class="wf-note-label">Behaviour</span>Files are checked against the limits as they're added, so the problem shows here rather than when the form is sent.</div>
+            </aside>
+          </div>
+        </div>
+
+        <!-- Step 4: about you (R42, R45, R46) -->
+        <div class="step-panel" data-step="4" hidden>
+          <div class="concern-layout">
+            <div>
+              <h2>About you</h2>
+              <div class="form-grid">
+                <div class="field"><label for="name">Your name <span class="muted">(optional)</span></label><input type="text" id="name" autocomplete="name"></div>
+                <div class="field"><label for="role">Your role</label>
+                  <select id="role" required>
+                    <option value="">Choose one</option>
+                    <option value="hp">Health professional</option>
+                    <option value="public">Member of the public</option>
+                    <option value="employee">Current employee or contractor of the company that is the subject of the complaint</option>
+                    <option value="ex">Ex-employee or ex-contractor of the company that is the subject of the complaint</option>
+                    <option value="other-co">Employee or contractor of a different pharmaceutical company submitting a complaint in a personal capacity</option>
+                    <option value="media">Media</option>
+                    <option value="company">Submitting an intercompany complaint on behalf of a pharmaceutical company</option>
+                    <option value="admission">Submitting a voluntary admission on behalf of a pharmaceutical company</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <p class="field-hint">This is shared with the company and normally appears in the case report.</p>
+                  <p class="field-error" hidden>Choose your role</p></div>
+                <div class="field full" id="role-other-field" hidden><label for="role-other">Please describe your role</label><input type="text" id="role-other" required><p class="field-error" hidden>Describe your role</p></div>
+                <div class="field"><label for="email">Email address</label><input type="email" id="email" autocomplete="email" required><p class="field-hint">Use one you check regularly. It isn't shared with the company.</p><p class="field-error" hidden>Enter an email address like name@example.com</p></div>
+                <div class="field"><label for="email2">Confirm email address</label><input type="email" id="email2" autocomplete="email" required><p class="field-error" hidden>The email addresses don't match</p></div>
+              </div>
+            </div>
+            <aside class="guide" aria-label="Guidance">
+              <h2>Your name and anonymity</h2>
+              <table class="anon-table">
+                <thead><tr><th scope="col"></th><th scope="col">With your name</th><th scope="col">Anonymous</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Company sees your name</th><td>Only if you agree</td><td>No</td></tr>
+                  <tr><th scope="row">Company sees your email</th><td>No</td><td>No</td></tr>
+                  <tr><th scope="row">Your role and interests</th><td colspan="2">Shared with the company; normally in the case report</td></tr>
+                  <tr><th scope="row">You get the ruling</th><td colspan="2">Yes, by email</td></tr>
+                  <tr><th scope="row">You see the report before it's published</th><td colspan="2">Yes, if you're still contactable</td></tr>
+                </tbody>
+              </table>
+              <p style="margin-top:0.75rem">If you stop replying, we can't ask you for more information and your complaint may not be able to proceed. If the Panel then rules no breach, the case will be closed and you won't be able to appeal.</p>
+              <div class="wf-note" data-note="3"><span class="wf-note-label">Content</span>Corrected: the live page says in one place that you "will have means of appeal" after a no-breach ruling, and in another that you won't. This prototype says it once, beside the email field it depends on.</div>
+              <div class="wf-note query" data-note="4"><span class="wf-note-label">Question for the PMCPA</span>Names of complainants from outside the industry are kept confidential. Is the same true for employees complaining about their own company, and for intercompany complaints?</div>
+            </aside>
+          </div>
+        </div>
+
+        <!-- Step 5: interests and intercompany dialogue (R42, R49) -->
+        <div class="step-panel" data-step="5" hidden>
+          <div class="concern-layout">
+            <div>
+              <h2>Your interests</h2>
+              <fieldset class="field" id="interest-field"><legend>Do you have any commercial, financial or other interest in the matter or in the company, such as working for it or for a competitor, now or in the past?</legend>
+                <label class="check"><input type="radio" name="interest" value="yes" required> Yes</label>
+                <label class="check"><input type="radio" name="interest" value="no"> No</label>
+                <p class="field-error" hidden>Choose yes or no</p>
+              </fieldset>
+              <div class="field" id="interest-detail-field" hidden><label for="interest-detail">Tell us about your interest</label><textarea id="interest-detail" rows="3" required></textarea><p class="field-error" hidden>Describe your interest</p></div>
+              <div class="panel surface" id="dialogue-block" hidden>
+                <h3 class="h-sm">Intercompany dialogue</h3>
+                <p>Companies must try to resolve a complaint with the other company before bringing it to the PMCPA.</p>
+                <div class="field"><label class="check"><input type="checkbox" id="dialogue" required> We have attempted intercompany dialogue</label><p class="field-error" hidden>Confirm you've attempted intercompany dialogue</p></div>
+                <div class="field"><label for="dialogue-date">Date dialogue ended <span class="muted">(optional)</span></label><input type="date" id="dialogue-date"></div>
+              </div>
+              <div class="panel surface" id="whistle-block" hidden>
+                <h3 class="h-sm">If you work for the company</h3>
+                <p>You may want to use your company's whistleblowing policy first. You can still raise your concern with us.</p>
+              </div>
+            </div>
+            <aside class="guide" aria-label="Guidance">
+              <h2>Why we ask</h2>
+              <p>Interests are shared with the company and will normally be included in the published case report, in line with paragraph 5.9 of the PMCPA Constitution and Procedure. This keeps the process fair for everyone.</p>
+              <p>Company staff shouldn't use a personal complaint to get around intercompany dialogue.</p>
+            </aside>
+          </div>
+        </div>
+
+        <!-- Step 6: check and send (R44) -->
+        <div class="step-panel" data-step="6" hidden>
+          <h2>Check your answers</h2>
+          <div class="review-list" id="review-list"></div>
+          <div class="field" style="margin-top:1.5rem"><label class="check"><input type="checkbox" id="privacy" required> I've read the <a href="#">privacy policy for complaints</a></label><p class="field-error" hidden>Confirm you've read the privacy policy</p></div>
+          <div class="wf-note" data-note="5"><span class="wf-note-label">Behaviour</span>Each "Change" link returns to that step and comes straight back here. Spam protection runs invisibly; a challenge only appears if needed.</div>
+        </div>
+
+        <div class="step-nav" id="concern-nav">
+          <button type="button" class="btn btn-secondary" id="step-back" hidden>Back</button>
+          <div class="row">
+            <button type="button" class="btn-link" id="save-later">Save and finish later</button>
+            <button type="submit" class="btn" id="step-next">Continue</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Confirmation with what happens next (R47) -->
+      <div id="concern-done" hidden>
+        <div class="confirm-box">
+          <div class="tick" aria-hidden="true">✓</div>
+          <h2 tabindex="-1">We've received your complaint</h2>
+          <p>Your reference is <strong id="done-ref"></strong> (sample). We've emailed a copy to <strong id="done-email"></strong>.</p>
+        </div>
+        <section aria-labelledby="next-h" style="margin-top:2rem">
+          <h2 id="next-h">What happens next</h2>
+          <ol class="timeline">
+            <li class="now"><b>Case preparation</b>We check the complaint is within the Code and may ask you for more information.<br><span class="muted">[Typical time]</span></li>
+            <li class="todo"><b>Company responds</b>The company is asked to respond to the points you raised.<br><span class="muted">[Typical time]</span></li>
+            <li class="todo"><b>Panel ruling</b>The Code of Practice Panel decides, and we email you the ruling.<br><span class="muted">[Typical time]</span></li>
+            <li class="todo"><b>Undertaking or appeal</b>Either party can appeal to the Appeal Board.<br><span class="muted">[Typical time]</span></li>
+            <li class="todo"><b>Case report</b>You see the proposed text before the report is published.</li>
+          </ol>
+          <div class="wf-note query" data-note="6"><span class="wf-note-label">Question for the PMCPA</span>What typical timings would the PMCPA be comfortable publishing for each stage? The stages match those in the ongoing-cases table.</div>
+          <p><a href="~/pages/performance.html">See how many cases are at each stage now</a></p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <div class="wf-modal" id="save-modal" role="dialog" aria-modal="true" aria-labelledby="save-title">
+    <div class="wf-modal-panel">
+      <button type="button" class="wf-modal-close" aria-label="Close">×</button>
+      <h2 id="save-title">Save and finish later</h2>
+      <form id="save-form" novalidate>
+        <p>We'll email you a link to carry on. Your draft is kept for [30] days.</p>
+        <div class="field"><label for="save-email">Email address</label><input type="email" id="save-email" required><p class="field-error" hidden>Enter an email address like name@example.com</p></div>
+        <button class="btn" type="submit">Send me a link</button>
+      </form>
+      <div id="save-done" hidden><h3 tabindex="-1">Draft saved</h3><p class="saved-note">In the prototype your draft is kept for this browser session; reload the page to see the "carry on" option.</p></div>
+    </div>
+  </div>
+
+  <!-- @@include footer.html -->
+  <!-- @@include scripts.html -->
+</body>
+</html>

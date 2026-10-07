@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pmcpa.css">
+  <link rel="stylesheet" href="../css/theme.css">
+
+  <title>Homepage — PMCPA prototype</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <!-- Prototype navigator (replaces the PMCPA header, R01) -->
+  <header class="sticky site-header proto-nav">
+    <div class="container proto-nav-row">
+      <a class="proto-home" href="../index.html" aria-label="PMCPA prototypes, overview">PMCPA <span>prototypes</span></a>
+      <nav aria-label="Prototypes">
+        <ul class="proto-links">
+          <li><a href="../index.html" data-proto="index">Overview</a></li>
+          <li><a href="../pages/cases.html" data-proto="cases"><span class="n">1</span> Case finder</a></li>
+          <li><a href="../pages/case.html" data-proto="case"><span class="n">2</span> Case report</a></li>
+          <li><a href="../pages/code.html" data-proto="code clause"><span class="n">3</span> The Code</a></li>
+          <li><a href="../pages/raise-a-concern.html" data-proto="raise-a-concern"><span class="n">4</span> Raise a concern</a></li>
+          <li><a href="../pages/home.html" data-proto="home performance alerts"><span class="n">5</span> Open by default</a></li>
+        </ul>
+      </nav>
+      <button type="button" class="notes-toggle" role="switch" aria-checked="false" data-notes-toggle>
+        <span class="notes-track" aria-hidden="true"><span class="notes-thumb"></span></span>
+        <span class="notes-label">Notes off</span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="main" class="flush">
+    <aside class="proposal" aria-label="About this prototype">
+      <div class="container">
+        <p class="proposal-eyebrow">Prototype 5 of 5 · Open by default: homepage</p>
+        <div class="proposal-grid">
+          <div><h2>What we're proposing</h2><p>A homepage that sends each visitor the right way in a click: raise a concern, check the Code, search cases or the media centre. Under that, the latest rulings with their outcomes, news with real headlines, training dates with an honest status, and a short view of how the PMCPA is performing, linking to a full <a href="../pages/performance.html">performance page</a> and <a href="../pages/alerts.html">email alerts people can tailor</a>.</p></div>
+          <div><h2>Why</h2><p>Today the homepage has no link to Make a complaint in its main content, and on a phone it is 8,217px tall. The news heading says "click tiles below" and each tile's link reads "Click here". Training is "now available to book" while every 2026 date is fully booked. The PMCPA's progress (55% more rulings in 2025, open cases down from 155 to 65) is only in a news post.</p></div>
+        </div>
+        <p class="proposal-foot">Rulings and news are sample items with invented companies. Training dates and performance figures are as published.</p>
+      </div>
+    </aside>
+
+    <!-- Hero with routes (R50) -->
+    <div class="home-hero">
+      <div class="container">
+        <span class="eyebrow">Prescription Medicines Code of Practice Authority</span>
+        <h1>Upholding the ABPI Code of Practice, independently of the ABPI</h1>
+        <p class="lead">We give advice, guidance and training on the Code, and run the complaints procedure. Every case we rule on is published.</p>
+        <form class="finder-search" action="cases.html" role="search">
+          <label class="visually-hidden" for="home-q">Search cases</label>
+          <input type="search" id="home-q" name="q" placeholder="Search cases by company, subject or case number">
+          <button class="btn" type="submit">Search cases</button>
+        </form>
+        <nav class="routes" aria-label="What would you like to do?">
+          <a class="route" href="../pages/raise-a-concern.html"><b>Raise a concern</b><span>About a pharmaceutical company's promotion or conduct</span><span class="go">Start</span></a>
+          <a class="route" href="../pages/code.html"><b>Check the Code</b><span>The 2024 Code with its Q&amp;As, guidance and cases</span><span class="go">Open the Code</span></a>
+          <a class="route" href="../pages/cases.html"><b>Search cases</b><span>Every completed case, newest first</span><span class="go">Find cases</span></a>
+          <a class="route" href="#news"><b>Media</b><span>Press releases, sanctions and media contacts</span><span class="go">Latest news</span></a>
+        </nav>
+        <div class="wf-note" data-note="1"><span class="wf-note-label">Behaviour</span>The four routes are the first thing on a phone, straight after the search. "Raise a concern" replaces the current route through the Complaints procedure menu.</div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Latest rulings (R51) -->
+      <section aria-labelledby="latest-h" style="margin-top:2.5rem">
+        <div class="row between"><h2 id="latest-h">Latest rulings</h2><a href="../pages/cases.html">All completed cases</a></div>
+        <ul class="rulings-strip" id="latest-rulings"></ul>
+      </section>
+
+      <!-- News with real headlines (R52) and training status (R53) -->
+      <div class="two-col">
+        <section id="news" aria-labelledby="news-h">
+          <div class="row between"><h2 id="news-h">News</h2><a href="#">All news and press releases</a></div>
+          <ul class="news-list">
+            <li><time datetime="2026-09-25">25 September 2026</time><a href="../pages/case.html?case=9068">Brightwater Pharma ruled in breach of Clause 2 (CASE/9068/02/26)</a></li>
+            <li><time datetime="2026-09-18">18 September 2026</time><a href="../pages/case.html?case=9046">Hartland Pharmaceuticals publicly reprimanded (CASE/9046/12/25)</a></li>
+            <li><time datetime="2026-07-01">1 July 2026</time><a href="../pages/performance.html">2025 Annual Report: 161 rulings, 55% more than in 2024</a></li>
+            <li><time>[Date]</time><a href="#">Consultation on changes to the Constitution and Procedure: now closed</a></li>
+          </ul>
+          <div class="wf-note" data-note="2"><span class="wf-note-label">Content</span>Headlines name the company and the case, and the headline is the link. No "click here". Sample headlines; the annual report and consultation items mirror real news.</div>
+        </section>
+
+        <section aria-labelledby="train-h">
+          <h2 id="train-h">ABPI Code training</h2>
+          <p>One-day seminars led by members of the Code of Practice Panel, at our London Bridge office. Up to 20 places each.</p>
+          <ul class="dates" id="training-dates"></ul>
+          <p style="margin-top:1rem"><button type="button" class="btn btn-secondary" data-modal-open="wait-modal">Join the waiting list</button></p>
+          <p class="wf-meta">Next dates announced [month]. <a href="#">Learn the Code online in the learning portal</a></p>
+          <div class="wf-note" data-note="3"><span class="wf-note-label">Content</span>Each date shows its status from one field, so the homepage can't say "available to book" when every date is full.</div>
+        </section>
+      </div>
+
+      <!-- Performance teaser (R54) -->
+      <section aria-labelledby="perf-h">
+        <div class="row between"><h2 id="perf-h">How we're doing</h2><a href="../pages/performance.html">Our performance</a></div>
+        <div class="stat-tiles">
+          <div class="stat-tile"><b>161</b><span>rulings in 2025, up from 104 in 2024</span></div>
+          <div class="stat-tile"><b>67</b><span>cases awaiting a decision or ruling at 30 September 2026, down from 155 at the start of 2025</span></div>
+          <div class="stat-tile"><b>98%</b><span>of Panel rulings on 2024 complaints accepted or upheld on appeal</span></div>
+        </div>
+      </section>
+
+      <!-- Alerts (R57) -->
+      <section class="panel surface row between" aria-labelledby="ealert-h">
+        <div><h2 id="ealert-h" class="h-sm">Get the cases and guidance you care about by email</h2><p style="margin:0">Choose content, Code sections and companies.</p></div>
+        <a class="btn" href="../pages/alerts.html">Set up email alerts</a>
+      </section>
+    </div>
+  </main>
+
+  <div class="wf-modal" id="wait-modal" role="dialog" aria-modal="true" aria-labelledby="wait-title">
+    <div class="wf-modal-panel">
+      <button type="button" class="wf-modal-close" aria-label="Close">×</button>
+      <h2 id="wait-title">Join the training waiting list</h2>
+      <form id="wait-form" novalidate>
+        <div class="field"><label for="wait-name">Name</label><input type="text" id="wait-name" required><p class="field-error" hidden>Enter your name</p></div>
+        <div class="field"><label for="wait-email">Work email</label><input type="email" id="wait-email" required><p class="field-error" hidden>Enter an email address like name@example.com</p></div>
+        <div class="field"><label for="wait-places">Places needed</label><select id="wait-places"><option>1</option><option>2</option><option>3</option><option>4 or more</option></select></div>
+        <button class="btn" type="submit">Join the waiting list</button>
+      </form>
+      <div id="wait-done" hidden><h3 tabindex="-1">You're on the list</h3><p>We'll email you if a place comes up, and when new dates are announced.</p></div>
+    </div>
+  </div>
+
+  <!-- Prototype pager (replaces the PMCPA footer, R02) -->
+  <footer class="proto-footer">
+    <div class="container">
+      <nav class="proto-pager" aria-label="Previous and next prototype" data-proto-pager></nav>
+      <p class="wf-meta">Prepared by ClerksWell · Prototypes for discussion · Companies, case references and rulings are invented sample data</p>
+    </div>
+  </footer>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/wireframe.js"></script>
+  <script src="../js/prototypes.js"></script>
+
+</body>
+</html>

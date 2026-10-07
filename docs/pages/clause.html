@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pmcpa.css">
+  <link rel="stylesheet" href="../css/theme.css">
+
+  <title>Clause — The ABPI Code of Practice 2024 — PMCPA prototype</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <!-- Prototype navigator (replaces the PMCPA header, R01) -->
+  <header class="sticky site-header proto-nav">
+    <div class="container proto-nav-row">
+      <a class="proto-home" href="../index.html" aria-label="PMCPA prototypes, overview">PMCPA <span>prototypes</span></a>
+      <nav aria-label="Prototypes">
+        <ul class="proto-links">
+          <li><a href="../index.html" data-proto="index">Overview</a></li>
+          <li><a href="../pages/cases.html" data-proto="cases"><span class="n">1</span> Case finder</a></li>
+          <li><a href="../pages/case.html" data-proto="case"><span class="n">2</span> Case report</a></li>
+          <li><a href="../pages/code.html" data-proto="code clause"><span class="n">3</span> The Code</a></li>
+          <li><a href="../pages/raise-a-concern.html" data-proto="raise-a-concern"><span class="n">4</span> Raise a concern</a></li>
+          <li><a href="../pages/home.html" data-proto="home performance alerts"><span class="n">5</span> Open by default</a></li>
+        </ul>
+      </nav>
+      <button type="button" class="notes-toggle" role="switch" aria-checked="false" data-notes-toggle>
+        <span class="notes-track" aria-hidden="true"><span class="notes-thumb"></span></span>
+        <span class="notes-label">Notes off</span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="main" class="flush">
+    <aside class="proposal" aria-label="About this prototype">
+      <div class="container">
+        <p class="proposal-eyebrow">Prototype 3 of 5 · Clause page</p>
+        <div class="proposal-grid">
+          <div><h2>What we're proposing</h2><p>Every clause as a hub. Each sub-clause shows its text and supplementary information, then the Q&amp;As, guidance and cases that apply to it, with "See all cases under 14.4" opening the case finder already filtered. Terms defined in Clause 1 show their definition in place.</p></div>
+          <div><h2>Why</h2><p>The live clause pages already show recent cases under each sub-clause, which is a strong start. But "See all" goes to the general cases page, and the Q&amp;As and guidance for the same clause are on other pages with no link between them.</p></div>
+        </div>
+        <p class="proposal-foot">Clause 14 shows its published text. Other clauses show their title with placeholder text. Open another clause from the index on the left.</p>
+      </div>
+    </aside>
+
+    <div class="container">
+      <a class="back-link" href="../pages/code.html" style="margin-top:1.5rem">All sections of the Code</a>
+      <div class="code-layout">
+        <!-- Section index and previous / next (R38) -->
+        <nav class="code-index" id="code-index" aria-label="Clauses in this section">
+          <p class="eyebrow" id="idx-section"></p>
+          <button type="button" class="btn btn-secondary btn-sm idx-toggle" id="idx-toggle" aria-expanded="false">Show clauses in this section</button>
+          <ol class="idx-list" id="idx-list"></ol>
+          <form class="goto" id="goto-form" style="margin-top:1rem">
+            <div class="field"><label for="goto-n">Go to clause</label><input type="text" id="goto-n" inputmode="decimal" placeholder="e.g. 14.2"><p class="field-error" hidden>Enter a clause from 1 to 31</p></div>
+            <button class="btn btn-sm" type="submit">Go</button>
+          </form>
+        </nav>
+
+        <!-- Clause hub (R34–R37) -->
+        <article>
+          <span class="eyebrow" id="cl-eyebrow"></span>
+          <h1 id="cl-title"></h1>
+          <div id="cl-changed"></div>
+          <p id="cl-intro"></p>
+          <nav class="subnav" id="cl-subnav" aria-label="Sub-clauses"></nav>
+          <div class="wf-note" data-note="1"><span class="wf-note-label">Behaviour</span>Each sub-clause has its own address (<code>#c14-4</code>) and a copy-link button, so a compliance team can point a colleague to exactly the right paragraph.</div>
+          <div id="cl-body"></div>
+          <div class="wf-note query" data-note="2"><span class="wf-note-label">Question for the PMCPA</span>Who maintains the link between Q&amp;As, guidance and clauses today? A single clause tag on each item in Umbraco would drive all of these panels.</div>
+          <nav class="clause-pager" id="cl-pager" aria-label="Previous and next clause"></nav>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <div class="gloss-pop" id="gloss-pop" role="dialog" aria-label="Definition" hidden></div>
+
+  <!-- Prototype pager (replaces the PMCPA footer, R02) -->
+  <footer class="proto-footer">
+    <div class="container">
+      <nav class="proto-pager" aria-label="Previous and next prototype" data-proto-pager></nav>
+      <p class="wf-meta">Prepared by ClerksWell · Prototypes for discussion · Companies, case references and rulings are invented sample data</p>
+    </div>
+  </footer>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/wireframe.js"></script>
+  <script src="../js/prototypes.js"></script>
+
+</body>
+</html>
