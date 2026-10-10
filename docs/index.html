@@ -36,17 +36,22 @@
   <!-- Landing page for the prototype pack -->
   <div class="hub-hero">
     <div class="container">
+      <div class="hero-grid">
+      <div>
       <div class="hub-brand">
-        <span class="wf-placeholder logo">PMCPA logo</span>
+        <span class="wf-placeholder logo" data-photo="logo">PMCPA</span>
         <span class="hub-by">Prepared by ClerksWell</span>
       </div>
       <h1>Five ideas for pmcpa.org.uk</h1>
-      <p class="lead">Clickable prototypes of five improvements to the PMCPA website. Each works as it would on the live site. They're greyscale on purpose, so we can agree structure and behaviour before design.</p>
+      <p class="lead">Clickable prototypes of five improvements to the PMCPA website. Each works as it would on the live site, designed to sit with the current PMCPA brand.</p>
       <div class="wf-hub-meta">
-        <span>Version 1</span>
-        <span>7 October 2026</span>
-        <span>Greyscale prototypes</span>
+        <span>Version 2</span>
+        <span>10 October 2026</span>
+        <span>Designed prototypes</span>
         <span>Sample case data</span>
+      </div>
+      </div>
+      <div class="wf-placeholder hero-art" data-photo="hero">Hero image</div>
       </div>
     </div>
   </div>
@@ -57,7 +62,7 @@
         <h2 class="hub-h2" id="protos-title">The prototypes</h2>
         <ol class="proto-list">
           <li class="proto-card">
-            <a class="proto-thumb" href="./pages/cases.html" tabindex="-1" aria-hidden="true"><span class="wf-placeholder">Case finder</span></a>
+            <a class="proto-thumb" href="./pages/cases.html" tabindex="-1" aria-hidden="true"><span class="wf-placeholder" data-photo="hands">Case finder</span></a>
             <div class="proto-body">
               <span class="proto-num">1</span>
               <h3><a href="./pages/cases.html">Find the right precedent quickly</a></h3>
@@ -67,7 +72,7 @@
             </div>
           </li>
           <li class="proto-card">
-            <a class="proto-thumb" href="./pages/case.html" tabindex="-1" aria-hidden="true"><span class="wf-placeholder">Case report</span></a>
+            <a class="proto-thumb" href="./pages/case.html" tabindex="-1" aria-hidden="true"><span class="wf-placeholder" data-photo="clause2">Case report</span></a>
             <div class="proto-body">
               <span class="proto-num">2</span>
               <h3><a href="./pages/case.html">A case report you can read on screen</a></h3>
@@ -77,7 +82,7 @@
             </div>
           </li>
           <li class="proto-card">
-            <a class="proto-thumb" href="./pages/code.html" tabindex="-1" aria-hidden="true"><span class="wf-placeholder">The Code</span></a>
+            <a class="proto-thumb" href="./pages/code.html" tabindex="-1" aria-hidden="true"><span class="wf-placeholder" data-photo="code">The Code</span></a>
             <div class="proto-body">
               <span class="proto-num">3</span>
               <h3><a href="./pages/code.html">The Code, connected to its Q&amp;As, guidance and cases</a></h3>
@@ -87,7 +92,7 @@
             </div>
           </li>
           <li class="proto-card">
-            <a class="proto-thumb" href="./pages/raise-a-concern.html" tabindex="-1" aria-hidden="true"><span class="wf-placeholder">Raise a concern</span></a>
+            <a class="proto-thumb" href="./pages/raise-a-concern.html" tabindex="-1" aria-hidden="true"><span class="wf-placeholder" data-photo="hands2">Raise a concern</span></a>
             <div class="proto-body">
               <span class="proto-num">4</span>
               <h3><a href="./pages/raise-a-concern.html">Raise a concern, step by step</a></h3>
@@ -97,7 +102,7 @@
             </div>
           </li>
           <li class="proto-card">
-            <a class="proto-thumb" href="./pages/home.html" tabindex="-1" aria-hidden="true"><span class="wf-placeholder">Open by default</span></a>
+            <a class="proto-thumb" href="./pages/home.html" tabindex="-1" aria-hidden="true"><span class="wf-placeholder" data-photo="report">Open by default</span></a>
             <div class="proto-body">
               <span class="proto-num">5</span>
               <h3><a href="./pages/home.html">Open by default</a></h3>
@@ -136,13 +141,14 @@
   <footer class="proto-footer">
     <div class="container">
       <nav class="proto-pager" aria-label="Previous and next prototype" data-proto-pager></nav>
-      <p class="wf-meta">Prepared by ClerksWell · Prototypes for discussion · Companies, case references and rulings are invented sample data</p>
+      <p class="wf-meta">Prepared by ClerksWell · Prototypes for discussion · Companies, case references and rulings are invented sample data · Images © PMCPA</p>
     </div>
   </footer>
 
   <script src="./js/data.js"></script>
   <script src="./js/wireframe.js"></script>
   <script src="./js/prototypes.js"></script>
+  <script src="./js/photos.js"></script>
 
 </body>
 </html>

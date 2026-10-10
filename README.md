@@ -1,8 +1,8 @@
-# PMCPA — website improvement prototypes (V1)
+# PMCPA — website improvement prototypes (V2)
 
-Five clickable greyscale prototypes for improvements to pmcpa.org.uk, prepared by ClerksWell following the
-phase 1 review (7 October 2026). They agree structure and behaviour first; the PMCPA design layer will be added in
-`src/css/theme.css` alone, which is empty in this version.
+Five clickable designed prototypes for improvements to pmcpa.org.uk, prepared by ClerksWell following the
+phase 1 review (7 October 2026). V1 was greyscale; V2 adds the PMCPA design layer in
+`src/css/theme.css` alone, using the phase 1 design system tokens.
 
 ## View
 Live: https://hrhlescargotleo.github.io/PMCPA-Roadmap/
@@ -36,6 +36,6 @@ the performance figures are as published on pmcpa.org.uk on 7 October 2026. Clau
 illustrative.
 
 ## Status
-V1, greyscale prototypes for internal review. The PMCPA's own header and footer are replaced by a prototype
+V2, designed prototypes for internal review. The PMCPA design layer lives entirely in `src/css/theme.css`, with images hotlinked from pmcpa.org.uk by `src/js/photos.js` (images © PMCPA; the repository and Pages site are public). Delete both to return to the greyscale V1. Gilroy and Meno Banner are licensed, so Urbanist and Libre Caslon Text stand in. The PMCPA header and footer are replaced by a prototype
 navigator. Notes are off by default; switch "Notes on" in the top bar to show what each prototype proposes and why,
 plus in-page annotations (yellow: behaviour; red: questions for the PMCPA).

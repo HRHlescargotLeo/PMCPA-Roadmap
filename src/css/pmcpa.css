@@ -290,3 +290,8 @@ mark { background: var(--wf-placeholder); color: inherit; padding: 0 0.1em; }
 .lib-item { border: 1px solid var(--wf-border); border-radius: var(--wf-radius); padding: 1.25rem; margin-bottom: 1.5rem; }
 .lib-item > h2 { font-size: 1.125rem; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
 .lib-item > h2 .wf-req { font-weight: 400; }
+
+/* Hero with image (V2) ---------------------------------------------------- */
+.hero-grid { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 2rem; align-items: center; }
+.hero-art { min-height: 280px; height: 100%; }
+@media (max-width: 1024px) { .hero-grid { grid-template-columns: minmax(0, 1fr); } .hero-art { min-height: 180px; } }

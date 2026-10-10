@@ -32,7 +32,7 @@
   function chip(sub, kind, c) {
     var label = (kind === 'b' ? '' : '') + sub;
     var title = kind === 'b' ? 'Breach of clause ' + sub : 'No breach of clause ' + sub;
-    if (c.code === 2024) return '<a class="clause-chip ' + kind + '" href="' + clauseHref(sub) + '" title="' + title + '"><span class="visually-hidden">' + (kind === 'b' ? 'Breach: ' : 'No breach: ') + '</span>' + esc(label) + '</a>';
+    if (c.code === 2024) return '<a class="clause-chip ' + kind + '" data-sec="' + ((clauseObj(sub) || {}).section || '') + '" href="' + clauseHref(sub) + '" title="' + title + '"><span class="visually-hidden">' + (kind === 'b' ? 'Breach: ' : 'No breach: ') + '</span>' + esc(label) + '</a>';
     return '<span class="clause-chip ' + kind + '" title="' + title + ' (' + c.code + ' Code)"><span class="visually-hidden">' + (kind === 'b' ? 'Breach: ' : 'No breach: ') + '</span>' + esc(label) + '</span>';
   }
   function chipsFor(c) {
@@ -549,6 +549,8 @@
     if (!(n >= 1 && n <= 31)) n = 14;
     var c = PM.CLAUSES[n - 1];
     var sec = PM.SECTIONS.filter(function (s) { return s.id === c.section; })[0];
+    $('#cl-title').closest('article').setAttribute('data-sec', c.section);
+    $('#code-index').setAttribute('data-sec', c.section);
     document.title = 'Clause ' + n + ' ' + c.title + ' — PMCPA prototype';
     $('#cl-eyebrow').textContent = 'Section ' + sec.id + ' · ' + sec.range;
     $('#cl-title').textContent = 'Clause ' + n + ' ' + c.title;
