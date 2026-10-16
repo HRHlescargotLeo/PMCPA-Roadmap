@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../css/base.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/pmcpa.css">
+  <link rel="stylesheet" href="../../css/theme.css">
+
+  <title>Fix the Directions link — Quick win 26 — PMCPA prototype</title>
+</head>
+<body class="mode-qw" data-win="directions-link" data-theme-key="fix">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <!-- Prototype navigator (replaces the PMCPA header, R01) with the two tabs of the pack (R60) -->
+  <header class="sticky site-header proto-nav">
+    <div class="mode-bar">
+      <div class="container">
+        <nav class="mode-tabs" aria-label="Pack sections">
+          <a href="../../index.html" class="mode-tab mode-big">Big improvements <span class="mode-count">5</span></a>
+          <a href="../../pages/quick-wins/index.html" class="mode-tab mode-qw">Quick wins <span class="mode-count">29</span></a>
+        </nav>
+      </div>
+    </div>
+    <div class="container proto-nav-row">
+      <a class="proto-home" href="../../index.html" aria-label="PMCPA prototypes, overview">PMCPA <span>prototypes</span></a>
+      <nav aria-label="Prototypes" class="nav-big">
+        <ul class="proto-links">
+          <li><a href="../../index.html" data-proto="index">Overview</a></li>
+          <li><a href="../../pages/cases.html" data-proto="cases"><span class="n">1</span> Case finder</a></li>
+          <li><a href="../../pages/case.html" data-proto="case"><span class="n">2</span> Case report</a></li>
+          <li><a href="../../pages/code.html" data-proto="code clause"><span class="n">3</span> The Code</a></li>
+          <li><a href="../../pages/raise-a-concern.html" data-proto="raise-a-concern"><span class="n">4</span> Raise a concern</a></li>
+          <li><a href="../../pages/home.html" data-proto="home performance alerts"><span class="n">5</span> Open by default</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Quick wins by theme" class="nav-qw">
+        <ul class="proto-links">
+          <li><a href="../../pages/quick-wins/index.html" data-qw="index">All quick wins</a></li>
+          <li><a href="../../pages/quick-wins/index.html#t-find" data-qw="find">Cases</a></li>
+          <li><a href="../../pages/quick-wins/index.html#t-code" data-qw="code">Code and guidance</a></li>
+          <li><a href="../../pages/quick-wins/index.html#t-comp" data-qw="comp">Complaints</a></li>
+          <li><a href="../../pages/quick-wins/index.html#t-open" data-qw="open">Transparency</a></li>
+          <li><a href="../../pages/quick-wins/index.html#t-news" data-qw="news">News and training</a></li>
+          <li><a href="../../pages/quick-wins/index.html#t-fix" data-qw="fix">Housekeeping</a></li>
+        </ul>
+      </nav>
+      <button type="button" class="notes-toggle" role="switch" aria-checked="false" data-notes-toggle>
+        <span class="notes-track" aria-hidden="true"><span class="notes-thumb"></span></span>
+        <span class="notes-label">Notes off</span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="main" class="flush">
+    <!-- Quick win 26: Fix the Directions link (R61) -->
+    <div class="page-head win-head">
+      <div class="container">
+        <a class="back-link" href="../../pages/quick-wins/index.html">All quick wins</a>
+        <span class="eyebrow">Quick win 26 of 29 · Housekeeping</span>
+        <h1>Fix the Directions link</h1>
+        <p class="lead">Send visitors to Goldings House, not a pin across London.</p>
+        <div class="row win-tags"><span class="win-tag">Medium impact</span><span class="win-tag">Small change</span></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Today and proposed, side by side or one at a time (R62) -->
+      <div class="ba" data-ba>
+        <div class="ba-switch" role="group" aria-label="Show">
+          <button type="button" data-ba-show="today" aria-pressed="false">Today</button>
+          <button type="button" data-ba-show="proposed" aria-pressed="true">Proposed</button>
+          <button type="button" data-ba-show="both" aria-pressed="false">Side by side</button>
+        </div>
+        <div class="ba-panels" data-ba-panels="proposed">
+          <section class="ba-panel ba-today" aria-labelledby="ba-t-directions-link">
+            <h2 class="ba-label" id="ba-t-directions-link">Today on pmcpa.org.uk</h2>
+            <div class="ba-stage">
+<div class="lv lv-foot"><p><b>Our locations</b></p><p>Prescription Medicines Code of Practice Authority<br>2nd Floor Goldings House<br>Hay's Galleria<br>2 Hay's Lane<br>London<br>SE1 2HB</p><p class="lv-link">Directions</p><p class="lv-small">Opens Google Maps at 51.497, −0.137 (near Victoria Street, SW1)</p></div>
+            </div>
+          </section>
+          <section class="ba-panel ba-proposed" aria-labelledby="ba-p-directions-link">
+            <h2 class="ba-label" id="ba-p-directions-link">Proposed</h2>
+            <div class="ba-stage">
+<div class="panel surface"><p><b>Find us</b></p><p>2nd Floor Goldings House, Hay's Galleria, 2 Hay's Lane, London SE1 2HB</p><p>Nearest station: London Bridge. what3words: <b>///lovely.record.online</b></p><p style="margin:0"><a href="#">Directions to Goldings House</a> · <a href="#">Visual guide from London Bridge station</a></p></div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- What we saw and what changes (R63) -->
+      <div class="win-why">
+        <div><h2>What we saw</h2><p>The footer's Directions link opens Google Maps at a pin near Victoria Street (51.497, −0.137). The address above it is 2nd Floor Goldings House, Hay's Galleria, London SE1 2HB.</p></div>
+        <div><h2>What changes</h2><p>Point the link at Goldings House, and reuse the what3words address and visual guides from Contact us.</p></div>
+      </div>
+
+      <nav class="win-pager" aria-label="Previous and next quick win"><a class="prev" href="../../pages/quick-wins/closed-items-menu.html"><span class="wf-meta">Previous</span>Take closed items out of the menu</a><a class="next" href="../../pages/quick-wins/titles-and-share.html"><span class="wf-meta">Next</span>Titles, descriptions and share images</a></nav>
+    </div>
+  </main>
+
+  <!-- Prototype pager (replaces the PMCPA footer, R02) -->
+  <footer class="proto-footer">
+    <div class="container">
+      <nav class="proto-pager" aria-label="Previous and next prototype" data-proto-pager></nav>
+      <p class="wf-meta">Prepared by ClerksWell · Prototypes for discussion · Companies, case references and rulings are invented sample data · Images © PMCPA</p>
+    </div>
+  </footer>
+
+  <script src="../../js/data.js"></script>
+  <script src="../../js/wins.js"></script>
+  <script src="../../js/wireframe.js"></script>
+  <script src="../../js/prototypes.js"></script>
+  <script src="../../js/quickwins.js"></script>
+  <script src="../../js/photos.js"></script>
+
+</body>
+</html>

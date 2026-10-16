@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../css/base.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/pmcpa.css">
+  <link rel="stylesheet" href="../../css/theme.css">
+
+  <title>Newest cases first — Quick win 1 — PMCPA prototype</title>
+</head>
+<body class="mode-qw" data-win="newest-first" data-theme-key="find">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <!-- Prototype navigator (replaces the PMCPA header, R01) with the two tabs of the pack (R60) -->
+  <header class="sticky site-header proto-nav">
+    <div class="mode-bar">
+      <div class="container">
+        <nav class="mode-tabs" aria-label="Pack sections">
+          <a href="../../index.html" class="mode-tab mode-big">Big improvements <span class="mode-count">5</span></a>
+          <a href="../../pages/quick-wins/index.html" class="mode-tab mode-qw">Quick wins <span class="mode-count">29</span></a>
+        </nav>
+      </div>
+    </div>
+    <div class="container proto-nav-row">
+      <a class="proto-home" href="../../index.html" aria-label="PMCPA prototypes, overview">PMCPA <span>prototypes</span></a>
+      <nav aria-label="Prototypes" class="nav-big">
+        <ul class="proto-links">
+          <li><a href="../../index.html" data-proto="index">Overview</a></li>
+          <li><a href="../../pages/cases.html" data-proto="cases"><span class="n">1</span> Case finder</a></li>
+          <li><a href="../../pages/case.html" data-proto="case"><span class="n">2</span> Case report</a></li>
+          <li><a href="../../pages/code.html" data-proto="code clause"><span class="n">3</span> The Code</a></li>
+          <li><a href="../../pages/raise-a-concern.html" data-proto="raise-a-concern"><span class="n">4</span> Raise a concern</a></li>
+          <li><a href="../../pages/home.html" data-proto="home performance alerts"><span class="n">5</span> Open by default</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Quick wins by theme" class="nav-qw">
+        <ul class="proto-links">
+          <li><a href="../../pages/quick-wins/index.html" data-qw="index">All quick wins</a></li>
+          <li><a href="../../pages/quick-wins/index.html#t-find" data-qw="find">Cases</a></li>
+          <li><a href="../../pages/quick-wins/index.html#t-code" data-qw="code">Code and guidance</a></li>
+          <li><a href="../../pages/quick-wins/index.html#t-comp" data-qw="comp">Complaints</a></li>
+          <li><a href="../../pages/quick-wins/index.html#t-open" data-qw="open">Transparency</a></li>
+          <li><a href="../../pages/quick-wins/index.html#t-news" data-qw="news">News and training</a></li>
+          <li><a href="../../pages/quick-wins/index.html#t-fix" data-qw="fix">Housekeeping</a></li>
+        </ul>
+      </nav>
+      <button type="button" class="notes-toggle" role="switch" aria-checked="false" data-notes-toggle>
+        <span class="notes-track" aria-hidden="true"><span class="notes-thumb"></span></span>
+        <span class="notes-label">Notes off</span>
+      </button>
+    </div>
+  </header>
+
+
+  <main id="main" class="flush">
+    <!-- Quick win 1: Newest cases first (R61) -->
+    <div class="page-head win-head">
+      <div class="container">
+        <a class="back-link" href="../../pages/quick-wins/index.html">All quick wins</a>
+        <span class="eyebrow">Quick win 1 of 29 · Cases</span>
+        <h1>Newest cases first</h1>
+        <p class="lead">Open completed cases on the latest rulings, with the sort order visible.</p>
+        <div class="row win-tags"><span class="win-tag">High impact</span><span class="win-tag">Small change</span><a class="win-tag win-tag-link" href="../../pages/cases.html">Also part of prototype 1: Case finder</a></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Today and proposed, side by side or one at a time (R62) -->
+      <div class="ba" data-ba>
+        <div class="ba-switch" role="group" aria-label="Show">
+          <button type="button" data-ba-show="today" aria-pressed="false">Today</button>
+          <button type="button" data-ba-show="proposed" aria-pressed="true">Proposed</button>
+          <button type="button" data-ba-show="both" aria-pressed="false">Side by side</button>
+        </div>
+        <div class="ba-panels" data-ba-panels="proposed">
+          <section class="ba-panel ba-today" aria-labelledby="ba-t-newest-first">
+            <h2 class="ba-label" id="ba-t-newest-first">Today on pmcpa.org.uk</h2>
+            <div class="ba-stage">
+<div class="lv">
+  <p class="lv-count">1923 results</p>
+  <div class="lv-sort"><span class="lv-label">ORDER BY</span><label class="check"><input type="radio" name="t-sort" disabled> Completed Date</label><label class="check"><input type="radio" name="t-sort" disabled> Received Date</label><label class="check"><input type="radio" name="t-sort" disabled> Relevance</label></div>
+  <ul class="lv-list">
+    <li><b>AUTH/2949/3/17 - Hospital doctor v A Menarini</b><span>Yellow Card Scheme details missing from company website</span><small>Received 24 March 2017 · Completed 07 June 2017</small></li>
+    <li><b>AUTH/3011/1/18 - GlaxoSmithKline v AstraZeneca</b><span>Press release issued by AstraZeneca</span><small>Received 18 January 2018 · Completed 04 May 2018</small></li>
+    <li><b>AUTH/3048/6/18 - Bial Pharma v Profile Pharma</b><span>Promotion of Xadago</span><small>Received 07 June 2018 · Completed 10 October 2018</small></li>
+  </ul>
+</div>
+            </div>
+          </section>
+          <section class="ba-panel ba-proposed" aria-labelledby="ba-p-newest-first">
+            <h2 class="ba-label" id="ba-p-newest-first">Proposed</h2>
+            <div class="ba-stage">
+<div class="results-toolbar"><p class="results-count" id="qw-sort-count">29 completed cases (sample)</p><div class="field"><label for="qw-sort">Sort by</label><select id="qw-sort" data-qw-sort><option value="completed-desc">Most recently completed</option><option value="completed-asc">Oldest completed first</option><option value="received-desc">Most recently received</option></select></div></div>
+<ol class="case-list" id="qw-sort-list"></ol>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- What we saw and what changes (R63) -->
+      <div class="win-why">
+        <div><h2>What we saw</h2><p>Completed cases opens with none of its three sort options selected. The first results we saw were AUTH/2949/3/17, completed in June 2017, and AUTH/3011/1/18, completed in May 2018, out of 1,923 results.</p></div>
+        <div><h2>What changes</h2><p>Default to "Most recently completed", show the sort choice above the results, and keep it in the address so a shared search opens the same way.</p></div>
+      </div>
+
+      <nav class="win-pager" aria-label="Previous and next quick win"><a class="prev" href="../../pages/quick-wins/index.html"><span class="wf-meta">Back to</span>All quick wins</a><a class="next" href="../../pages/quick-wins/completed-date.html"><span class="wf-meta">Next</span>Filter by when a case finished</a></nav>
+    </div>
+  </main>
+
+  <!-- Prototype pager (replaces the PMCPA footer, R02) -->
+  <footer class="proto-footer">
+    <div class="container">
+      <nav class="proto-pager" aria-label="Previous and next prototype" data-proto-pager></nav>
+      <p class="wf-meta">Prepared by ClerksWell · Prototypes for discussion · Companies, case references and rulings are invented sample data · Images © PMCPA</p>
+    </div>
+  </footer>
+
+  <script src="../../js/data.js"></script>
+  <script src="../../js/wins.js"></script>
+  <script src="../../js/wireframe.js"></script>
+  <script src="../../js/prototypes.js"></script>
+  <script src="../../js/quickwins.js"></script>
+  <script src="../../js/photos.js"></script>
+
+</body>
+</html>

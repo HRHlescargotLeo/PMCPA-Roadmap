@@ -12,11 +12,19 @@
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <!-- Prototype navigator (replaces the PMCPA header, R01) -->
+  <!-- Prototype navigator (replaces the PMCPA header, R01) with the two tabs of the pack (R60) -->
   <header class="sticky site-header proto-nav">
+    <div class="mode-bar">
+      <div class="container">
+        <nav class="mode-tabs" aria-label="Pack sections">
+          <a href="../index.html" class="mode-tab mode-big">Big improvements <span class="mode-count">5</span></a>
+          <a href="../pages/quick-wins/index.html" class="mode-tab mode-qw">Quick wins <span class="mode-count">29</span></a>
+        </nav>
+      </div>
+    </div>
     <div class="container proto-nav-row">
       <a class="proto-home" href="../index.html" aria-label="PMCPA prototypes, overview">PMCPA <span>prototypes</span></a>
-      <nav aria-label="Prototypes">
+      <nav aria-label="Prototypes" class="nav-big">
         <ul class="proto-links">
           <li><a href="../index.html" data-proto="index">Overview</a></li>
           <li><a href="../pages/cases.html" data-proto="cases"><span class="n">1</span> Case finder</a></li>
@@ -24,6 +32,17 @@
           <li><a href="../pages/code.html" data-proto="code clause"><span class="n">3</span> The Code</a></li>
           <li><a href="../pages/raise-a-concern.html" data-proto="raise-a-concern"><span class="n">4</span> Raise a concern</a></li>
           <li><a href="../pages/home.html" data-proto="home performance alerts"><span class="n">5</span> Open by default</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Quick wins by theme" class="nav-qw">
+        <ul class="proto-links">
+          <li><a href="../pages/quick-wins/index.html" data-qw="index">All quick wins</a></li>
+          <li><a href="../pages/quick-wins/index.html#t-find" data-qw="find">Cases</a></li>
+          <li><a href="../pages/quick-wins/index.html#t-code" data-qw="code">Code and guidance</a></li>
+          <li><a href="../pages/quick-wins/index.html#t-comp" data-qw="comp">Complaints</a></li>
+          <li><a href="../pages/quick-wins/index.html#t-open" data-qw="open">Transparency</a></li>
+          <li><a href="../pages/quick-wins/index.html#t-news" data-qw="news">News and training</a></li>
+          <li><a href="../pages/quick-wins/index.html#t-fix" data-qw="fix">Housekeeping</a></li>
         </ul>
       </nav>
       <button type="button" class="notes-toggle" role="switch" aria-checked="false" data-notes-toggle>
@@ -120,8 +139,10 @@
   </footer>
 
   <script src="../js/data.js"></script>
+  <script src="../js/wins.js"></script>
   <script src="../js/wireframe.js"></script>
   <script src="../js/prototypes.js"></script>
+  <script src="../js/quickwins.js"></script>
   <script src="../js/photos.js"></script>
 
 </body>
