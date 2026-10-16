@@ -66,3 +66,11 @@ Every section in `src/` carries an HTML comment naming the requirement it answer
 - R55 Ongoing cases table with labelled totals and change since the previous snapshot (#30).
 - R56 Ongoing case list with status timeline and follow (#31).
 - R57 eAlert preference centre: content types, Code sections, companies, frequency, sample alert (#37).
+
+## Quick wins tab — `pages/quick-wins/`
+- R60 A second tab in the navigator ("Big improvements" / "Quick wins"), with the quick-win themes as its sub-navigation.
+- R61 One page per small-effort idea (all 29 ideas with effort S in the phase 1 list), each independent of the five prototypes.
+- R62 Each page shows Today (as observed on pmcpa.org.uk) and Proposed, one at a time or side by side; the choice is remembered for the session.
+- R63 Each page says what we saw and what changes, links to the prototype it also appears in, and has previous / next.
+- R64 Overview grouped by theme, filterable by theme and by high impact.
+- No effort or cost estimates in the pack (to follow in the proposal).
