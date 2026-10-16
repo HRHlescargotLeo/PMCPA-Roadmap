@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <!-- @@include head.html -->
+  <title>Update the social link — Quick win 29 — PMCPA prototype</title>
+</head>
+<body class="mode-qw" data-win="social-link" data-theme-key="fix">
+  <!-- @@include header.html -->
+
+  <main id="main" class="flush">
+    <!-- Quick win 29: Update the social link (R61) -->
+    <div class="page-head win-head">
+      <div class="container">
+        <a class="back-link" href="~/pages/quick-wins/index.html">All quick wins</a>
+        <span class="eyebrow">Quick win 29 of 29 · Housekeeping</span>
+        <h1>Update the social link</h1>
+        <p class="lead">Point the footer to the channels the PMCPA actually uses, labelled correctly.</p>
+        <div class="row win-tags"><span class="win-tag">Low impact</span><span class="win-tag">Small change</span></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Today and proposed, side by side or one at a time (R62) -->
+      <div class="ba" data-ba>
+        <div class="ba-switch" role="group" aria-label="Show">
+          <button type="button" data-ba-show="today" aria-pressed="false">Today</button>
+          <button type="button" data-ba-show="proposed" aria-pressed="true">Proposed</button>
+          <button type="button" data-ba-show="both" aria-pressed="false">Side by side</button>
+        </div>
+        <div class="ba-panels" data-ba-panels="proposed">
+          <section class="ba-panel ba-today" aria-labelledby="ba-t-social-link">
+            <h2 class="ba-label" id="ba-t-social-link">Today on pmcpa.org.uk</h2>
+            <div class="ba-stage">
+<div class="lv lv-foot"><p><span class="social-dot">X</span> <span class="lv-small">alt="Twitter Logo" → twitter.com/PMCPAUK</span></p></div>
+            </div>
+          </section>
+          <section class="ba-panel ba-proposed" aria-labelledby="ba-p-social-link">
+            <h2 class="ba-label" id="ba-p-social-link">Proposed</h2>
+            <div class="ba-stage">
+<div class="panel surface"><p style="margin:0"><a href="#" class="social-link"><span class="social-dot" aria-hidden="true">X</span> PMCPA on X</a> &nbsp; <a href="#" class="social-link"><span class="social-dot" aria-hidden="true">in</span> [PMCPA on LinkedIn, if used]</a></p></div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- What we saw and what changes (R63) -->
+      <div class="win-why">
+        <div><h2>What we saw</h2><p>The footer links to twitter.com/PMCPAUK using an X logo whose alt text is "Twitter Logo".</p></div>
+        <div><h2>What changes</h2><p>Confirm which channels are active, update the link and its alt text ("PMCPA on X"), and add LinkedIn if the PMCPA uses it.</p></div>
+      </div>
+
+      <nav class="win-pager" aria-label="Previous and next quick win"><a class="prev" href="~/pages/quick-wins/font-loading.html"><span class="wf-meta">Previous</span>Lighter font loading</a><a class="next" href="~/pages/quick-wins/index.html"><span class="wf-meta">Back to</span>All quick wins</a></nav>
+    </div>
+  </main>
+
+  <!-- @@include footer.html -->
+  <!-- @@include scripts.html -->
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <!-- @@include head.html -->
+  <title>A clearer ongoing-cases table — Quick win 15 — PMCPA prototype</title>
+</head>
+<body class="mode-qw" data-win="ongoing-table" data-theme-key="open">
+  <!-- @@include header.html -->
+
+  <main id="main" class="flush">
+    <!-- Quick win 15: A clearer ongoing-cases table (R61) -->
+    <div class="page-head win-head">
+      <div class="container">
+        <a class="back-link" href="~/pages/quick-wins/index.html">All quick wins</a>
+        <span class="eyebrow">Quick win 15 of 29 · Transparency</span>
+        <h1>A clearer ongoing-cases table</h1>
+        <p class="lead">Label the totals and show how the numbers are moving.</p>
+        <div class="row win-tags"><span class="win-tag">Medium impact</span><span class="win-tag">Small change</span><a class="win-tag win-tag-link" href="~/pages/home.html">Also part of prototype 5: Open by default</a></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Today and proposed, side by side or one at a time (R62) -->
+      <div class="ba" data-ba>
+        <div class="ba-switch" role="group" aria-label="Show">
+          <button type="button" data-ba-show="today" aria-pressed="false">Today</button>
+          <button type="button" data-ba-show="proposed" aria-pressed="true">Proposed</button>
+          <button type="button" data-ba-show="both" aria-pressed="false">Side by side</button>
+        </div>
+        <div class="ba-panels" data-ba-panels="proposed">
+          <section class="ba-panel ba-today" aria-labelledby="ba-t-ongoing-table">
+            <h2 class="ba-label" id="ba-t-ongoing-table">Today on pmcpa.org.uk</h2>
+            <div class="ba-stage">
+<div class="lv"><table class="lv-table"><thead><tr><th></th><th>Number of cases (30 Sept 2026)</th></tr></thead><tbody>
+<tr><td>Case preparation stage</td><td>23</td></tr><tr><td>Referred to the Panel but not yet assigned</td><td>20</td></tr><tr><td>Assigned to Panel members</td><td>24</td></tr><tr><td>&nbsp;</td><td><b>67</b></td></tr>
+<tr><td>Awaiting either the undertaking or an appeal</td><td>6</td></tr><tr><td>Processing appeal</td><td>6</td></tr><tr><td>Sanction in progress</td><td>2</td></tr><tr><td>&nbsp;</td><td><b>81</b></td></tr></tbody></table></div>
+            </div>
+          </section>
+          <section class="ba-panel ba-proposed" aria-labelledby="ba-p-ongoing-table">
+            <h2 class="ba-label" id="ba-p-ongoing-table">Proposed</h2>
+            <div class="ba-stage">
+<div class="row between"><p class="h-sm" style="margin:0">Cases at each stage</p><div class="field" style="margin:0"><label for="qw-snap" class="visually-hidden">Snapshot</label><select id="qw-snap" data-qw-snap></select></div></div>
+<div class="table-wrap"><table class="pipeline" id="qw-pipeline"></table></div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- What we saw and what changes (R63) -->
+      <div class="win-why">
+        <div><h2>What we saw</h2><p>The table on Ongoing cases at 30 September 2026 has two total rows with no labels (67 and 81). The introduction refers to "the table of ongoing cases on the right".</p></div>
+        <div><h2>What changes</h2><p>Label both totals, show the change since the previous month, keep earlier months available, and fix the introduction.</p></div>
+      </div>
+      <p class="wf-meta win-source">Figures for 30 June and 30 September 2026 are as published by the PMCPA.</p>
+
+      <nav class="win-pager" aria-label="Previous and next quick win"><a class="prev" href="~/pages/quick-wins/anonymity-table.html"><span class="wf-meta">Previous</span>Anonymity at a glance</a><a class="next" href="~/pages/quick-wins/sanctions-by-case.html"><span class="wf-meta">Next</span>Sanctions grouped by case</a></nav>
+    </div>
+  </main>
+
+  <!-- @@include footer.html -->
+  <!-- @@include scripts.html -->
+</body>
+</html>

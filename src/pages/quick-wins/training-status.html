@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <!-- @@include head.html -->
+  <title>Honest training status — Quick win 20 — PMCPA prototype</title>
+</head>
+<body class="mode-qw" data-win="training-status" data-theme-key="news">
+  <!-- @@include header.html -->
+
+  <main id="main" class="flush">
+    <!-- Quick win 20: Honest training status (R61) -->
+    <div class="page-head win-head">
+      <div class="container">
+        <a class="back-link" href="~/pages/quick-wins/index.html">All quick wins</a>
+        <span class="eyebrow">Quick win 20 of 29 · News and training</span>
+        <h1>Honest training status</h1>
+        <p class="lead">Show whether each seminar date has places, and offer a waiting list when they're full.</p>
+        <div class="row win-tags"><span class="win-tag">High impact</span><span class="win-tag">Small change</span><a class="win-tag win-tag-link" href="~/pages/home.html">Also part of prototype 5: Open by default</a></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Today and proposed, side by side or one at a time (R62) -->
+      <div class="ba" data-ba>
+        <div class="ba-switch" role="group" aria-label="Show">
+          <button type="button" data-ba-show="today" aria-pressed="false">Today</button>
+          <button type="button" data-ba-show="proposed" aria-pressed="true">Proposed</button>
+          <button type="button" data-ba-show="both" aria-pressed="false">Side by side</button>
+        </div>
+        <div class="ba-panels" data-ba-panels="proposed">
+          <section class="ba-panel ba-today" aria-labelledby="ba-t-training-status">
+            <h2 class="ba-label" id="ba-t-training-status">Today on pmcpa.org.uk</h2>
+            <div class="ba-stage">
+<div class="lv"><p class="lv-h">ABPI Code training available in 2026</p><p class="lv-body">ABPI Code training delivered by members of the PMCPA Code of Practice Panel is now available to book. There are four dates available - click for further details.</p>
+<ul class="lv-plain"><li>11 May 2026 - Fully booked</li><li>12 May 2026 - Fully booked</li><li>5 November 2026 - Fully booked</li><li>6 November 2026 - Fully booked</li></ul></div>
+            </div>
+          </section>
+          <section class="ba-panel ba-proposed" aria-labelledby="ba-p-training-status">
+            <h2 class="ba-label" id="ba-p-training-status">Proposed</h2>
+            <div class="ba-stage">
+<h3 class="h-sm">ABPI Code training</h3><p>One-day seminars led by members of the Code of Practice Panel, at our London Bridge office. Up to 20 places each.</p>
+<ul class="dates"><li><span>11 May 2026</span><span class="status past">Took place</span></li><li><span>12 May 2026</span><span class="status past">Took place</span></li><li><span>5 November 2026</span><span class="status full">Fully booked</span></li><li><span>6 November 2026</span><span class="status full">Fully booked</span></li></ul>
+<form class="qw-inline-form" data-qw-wait novalidate><div class="field"><label for="qw-wait-email">Join the waiting list</label><input type="email" id="qw-wait-email" placeholder="Work email" required><p class="field-error" hidden>Enter an email address like name@example.com</p></div><button class="btn" type="submit">Join</button></form>
+<p class="wf-meta" id="qw-wait-done" hidden>You're on the list. We'll email you if a place comes up.</p>
+<p class="wf-meta">Next dates announced [month].</p>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- What we saw and what changes (R63) -->
+      <div class="win-why">
+        <div><h2>What we saw</h2><p>The homepage says ABPI Code training "is now available to book. There are four dates available". On the training page, all four dates (11 and 12 May, 5 and 6 November 2026) are marked "Fully booked".</p></div>
+        <div><h2>What changes</h2><p>A status on each date (places available, few places, fully booked), a waiting list when everything is full, and "next dates announced in [month]".</p></div>
+      </div>
+
+      <nav class="win-pager" aria-label="Previous and next quick win"><a class="prev" href="~/pages/quick-wins/media-page-order.html"><span class="wf-meta">Previous</span>News first on the Media page</a><a class="next" href="~/pages/quick-wins/training-hub.html"><span class="wf-meta">Next</span>A training hub by need</a></nav>
+    </div>
+  </main>
+
+  <!-- @@include footer.html -->
+  <!-- @@include scripts.html -->
+</body>
+</html>

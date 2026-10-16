@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <!-- @@include head.html -->
+  <title>Sanctions grouped by case — Quick win 16 — PMCPA prototype</title>
+</head>
+<body class="mode-qw" data-win="sanctions-by-case" data-theme-key="open">
+  <!-- @@include header.html -->
+
+  <main id="main" class="flush">
+    <!-- Quick win 16: Sanctions grouped by case (R61) -->
+    <div class="page-head win-head">
+      <div class="container">
+        <a class="back-link" href="~/pages/quick-wins/index.html">All quick wins</a>
+        <span class="eyebrow">Quick win 16 of 29 · Transparency</span>
+        <h1>Sanctions grouped by case</h1>
+        <p class="lead">Show each case once, with all its sanctions together and a link to the report.</p>
+        <div class="row win-tags"><span class="win-tag">Medium impact</span><span class="win-tag">Small change</span><a class="win-tag win-tag-link" href="~/pages/case.html">Also part of prototype 2: Case report</a></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Today and proposed, side by side or one at a time (R62) -->
+      <div class="ba" data-ba>
+        <div class="ba-switch" role="group" aria-label="Show">
+          <button type="button" data-ba-show="today" aria-pressed="false">Today</button>
+          <button type="button" data-ba-show="proposed" aria-pressed="true">Proposed</button>
+          <button type="button" data-ba-show="both" aria-pressed="false">Side by side</button>
+        </div>
+        <div class="ba-panels" data-ba-panels="proposed">
+          <section class="ba-panel ba-today" aria-labelledby="ba-t-sanctions-by-case">
+            <h2 class="ba-label" id="ba-t-sanctions-by-case">Today on pmcpa.org.uk</h2>
+            <div class="ba-stage">
+<div class="lv"><ul class="lv-list">
+<li><b>Advert - GSK – Case/0874/02/26</b><small>CASE/0874/02/26 · Date posted: 24 September 2026 · ADVERTISEMENT</small></li>
+<li><b>Public reprimand for GSK - Case/0874/02/26</b><small>CASE/0874/02/26 · Date posted: 24 September 2026 · PUBLIC REPRIMAND</small></li>
+<li><b>Advert - AGB Pharma – CASE/0719/09/25</b><small>CASE/0719/09/25 · Date posted: 28 July 2026 · ADVERTISEMENT</small></li>
+<li><b>Advert - Sanofi - SANOFI – CASE/0688/08/25</b><small>CASE/0688/08/25 · Date posted: 21 July 2026 · ADVERTISEMENT</small></li>
+<li><b>Advert - Sanofi – CASE/0689/08/25</b><small>CASE/0689/08/25 · Date posted: 21 July 2026 · ADVERTISEMENT</small></li>
+<li><b>Public reprimand for Sanofi - CASE/0689/08/25</b><small>CASE/0689/08/25 · Date posted: 21 July 2026 · PUBLIC REPRIMAND</small></li>
+</ul></div>
+            </div>
+          </section>
+          <section class="ba-panel ba-proposed" aria-labelledby="ba-p-sanctions-by-case">
+            <h2 class="ba-label" id="ba-p-sanctions-by-case">Proposed</h2>
+            <div class="ba-stage">
+<ul class="mini-list">
+<li><span class="ref">CASE/0874/02/26 · posted 24 September 2026</span><a href="#">GSK</a><div class="row"><span class="tag-s">Advertisement</span><span class="tag-s">Public reprimand</span></div></li>
+<li><span class="ref">CASE/0719/09/25 · posted 28 July 2026</span><a href="#">AGB Pharma</a><div class="row"><span class="tag-s">Advertisement</span></div></li>
+<li><span class="ref">CASE/0689/08/25 · posted 21 July 2026</span><a href="#">Sanofi</a><div class="row"><span class="tag-s">Advertisement</span><span class="tag-s">Public reprimand</span></div></li>
+<li><span class="ref">CASE/0688/08/25 · posted 21 July 2026</span><a href="#">Sanofi</a><div class="row"><span class="tag-s">Advertisement</span></div></li>
+</ul>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- What we saw and what changes (R63) -->
+      <div class="win-why">
+        <div><h2>What we saw</h2><p>Advertised sanctions lists 239 entries. An advertisement and a public reprimand for the same case appear as separate entries, and titles vary ("Advert - Sanofi - SANOFI – CASE/0688/08/25").</p></div>
+        <div><h2>What changes</h2><p>One entry per case, with each sanction as a label, a consistent title, the date posted and a link to the case report.</p></div>
+      </div>
+      <p class="wf-meta win-source">Entries are as published on Advertised sanctions on 7 October 2026. Links would open each case report.</p>
+
+      <nav class="win-pager" aria-label="Previous and next quick win"><a class="prev" href="~/pages/quick-wins/ongoing-table.html"><span class="wf-meta">Previous</span>A clearer ongoing-cases table</a><a class="next" href="~/pages/quick-wins/real-headlines.html"><span class="wf-meta">Next</span>Headlines instead of "Click here"</a></nav>
+    </div>
+  </main>
+
+  <!-- @@include footer.html -->
+  <!-- @@include scripts.html -->
+</body>
+</html>

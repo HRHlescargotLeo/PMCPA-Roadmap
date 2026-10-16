@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <!-- @@include head.html -->
+  <title>Make the outcome obvious — Quick win 3 — PMCPA prototype</title>
+</head>
+<body class="mode-qw" data-win="outcome-at-a-glance" data-theme-key="find">
+  <!-- @@include header.html -->
+
+  <main id="main" class="flush">
+    <!-- Quick win 3: Make the outcome obvious (R61) -->
+    <div class="page-head win-head">
+      <div class="container">
+        <a class="back-link" href="~/pages/quick-wins/index.html">All quick wins</a>
+        <span class="eyebrow">Quick win 3 of 29 · Cases</span>
+        <h1>Make the outcome obvious</h1>
+        <p class="lead">Show at a glance whether a breach was ruled, and on which clauses.</p>
+        <div class="row win-tags"><span class="win-tag">High impact</span><span class="win-tag">Small change</span><a class="win-tag win-tag-link" href="~/pages/cases.html">Also part of prototype 1: Case finder</a></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Today and proposed, side by side or one at a time (R62) -->
+      <div class="ba" data-ba>
+        <div class="ba-switch" role="group" aria-label="Show">
+          <button type="button" data-ba-show="today" aria-pressed="false">Today</button>
+          <button type="button" data-ba-show="proposed" aria-pressed="true">Proposed</button>
+          <button type="button" data-ba-show="both" aria-pressed="false">Side by side</button>
+        </div>
+        <div class="ba-panels" data-ba-panels="proposed">
+          <section class="ba-panel ba-today" aria-labelledby="ba-t-outcome-at-a-glance">
+            <h2 class="ba-label" id="ba-t-outcome-at-a-glance">Today on pmcpa.org.uk</h2>
+            <div class="ba-stage">
+<div class="lv">
+  <ul class="lv-list"><li><b>AUTH/3048/6/18 - Bial Pharma v Profile Pharma</b><span>Promotion of Xadago</span>
+  <dl class="lv-dl"><dt>Breach Clause(s)</dt><dd>7.2, 7.3</dd><dt>No Breach Clause(s)</dt><dd>7.2, 7.3</dd><dt>Applicable Code</dt><dd>2016</dd><dt>Received</dt><dd>07 June 2018</dd><dt>Completed</dt><dd>10 October 2018</dd></dl></li></ul>
+</div>
+            </div>
+          </section>
+          <section class="ba-panel ba-proposed" aria-labelledby="ba-p-outcome-at-a-glance">
+            <h2 class="ba-label" id="ba-p-outcome-at-a-glance">Proposed</h2>
+            <div class="ba-stage">
+<ol class="case-list">
+  <li class="case-result"><div class="top"><span class="ref">AUTH/3048/6/18</span><span class="pill mixed">Breach and no breach</span></div><h3><a href="#">Promotion of Xadago</a></h3><p class="parties">Bial Pharma v Profile Pharma</p>
+  <div class="chips-row"><span class="chip-key">Breach</span><span class="clause-chip b">7.2</span><span class="clause-chip b">7.3</span><span class="chip-key">No breach</span><span class="clause-chip nb">7.2</span><span class="clause-chip nb">7.3</span></div>
+  <p class="meta-line">2016 Code · Completed 10 October 2018 · Some allegations under 7.2 and 7.3 were upheld and others weren't</p></li>
+  <li class="case-result"><div class="top"><span class="ref">CASE/9064/02/26 · sample</span><span class="pill mixed">Breach and no breach</span></div><h3><a href="#">Comparison with a competitor's biosimilar</a></h3><p class="parties">Dunmore Medicines v Calderbank Biosciences</p>
+  <div class="chips-row"><span class="chip-key">Breach</span><a class="clause-chip b" data-sec="2" href="~/pages/clause.html?clause=14#c14-1">14.1</a><span class="chip-key">No breach</span><a class="clause-chip nb" data-sec="2" href="~/pages/clause.html?clause=14#c14-2">14.2</a><a class="clause-chip nb" data-sec="1" href="~/pages/clause.html?clause=6">6.1</a></div>
+  <p class="meta-line">2024 Code · Completed 12 September 2026</p></li>
+</ol>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- What we saw and what changes (R63) -->
+      <div class="win-why">
+        <div><h2>What we saw</h2><p>Results list "Breach Clause(s)" and "No Breach Clause(s)" as plain text. AUTH/3048/6/18 lists 7.2 and 7.3 under both, which reads as a contradiction unless you open the report.</p></div>
+        <div><h2>What changes</h2><p>Add an outcome label to every result (Breach ruled, No breach, Breach and no breach) and show clauses as chips, solid for a breach and outlined for no breach. 2024 Code clauses carry their section colour and link to the clause.</p></div>
+      </div>
+
+      <nav class="win-pager" aria-label="Previous and next quick win"><a class="prev" href="~/pages/quick-wins/completed-date.html"><span class="wf-meta">Previous</span>Filter by when a case finished</a><a class="next" href="~/pages/quick-wins/one-line-summary.html"><span class="wf-meta">Next</span>A one-line summary for every case</a></nav>
+    </div>
+  </main>
+
+  <!-- @@include footer.html -->
+  <!-- @@include scripts.html -->
+</body>
+</html>

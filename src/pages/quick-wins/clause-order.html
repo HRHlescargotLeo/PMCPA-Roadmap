@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <!-- @@include head.html -->
+  <title>Clause lists in clause order — Quick win 9 — PMCPA prototype</title>
+</head>
+<body class="mode-qw" data-win="clause-order" data-theme-key="code">
+  <!-- @@include header.html -->
+
+  <main id="main" class="flush">
+    <!-- Quick win 9: Clause lists in clause order (R61) -->
+    <div class="page-head win-head">
+      <div class="container">
+        <a class="back-link" href="~/pages/quick-wins/index.html">All quick wins</a>
+        <span class="eyebrow">Quick win 9 of 29 · Code and guidance</span>
+        <h1>Clause lists in clause order</h1>
+        <p class="lead">Let people find a clause the way they think of it: 14.2 comes after 14.1.</p>
+        <div class="row win-tags"><span class="win-tag">High impact</span><span class="win-tag">Small change</span><a class="win-tag win-tag-link" href="~/pages/code.html">Also part of prototype 3: The Code</a></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Today and proposed, side by side or one at a time (R62) -->
+      <div class="ba" data-ba>
+        <div class="ba-switch" role="group" aria-label="Show">
+          <button type="button" data-ba-show="today" aria-pressed="false">Today</button>
+          <button type="button" data-ba-show="proposed" aria-pressed="true">Proposed</button>
+          <button type="button" data-ba-show="both" aria-pressed="false">Side by side</button>
+        </div>
+        <div class="ba-panels" data-ba-panels="proposed">
+          <section class="ba-panel ba-today" aria-labelledby="ba-t-clause-order">
+            <h2 class="ba-label" id="ba-t-clause-order">Today on pmcpa.org.uk</h2>
+            <div class="ba-stage">
+<div class="lv"><p class="lv-label">SEARCH BY CLAUSE</p><select class="lv-select" size="10" aria-label="Today's clause list" disabled>
+<option>Choose an available Clause</option><option>Clause 12 Prescribing Information and Other Obligatory Information</option><option>Clause 27</option><option>Clause 29</option><option>Clause 30</option><option>Clause 10.1</option><option>Clause 12.1</option><option>Clause 15.1</option><option>Clause 24.1</option><option>Clause 26.1</option><option>Clause 28.1</option><option>Clause 31.1</option><option>Clause 8.1</option><option>Clause 12.2</option><option>Clause 15.2</option><option>Clause 18.2</option><option>Clause 19.2</option><option>Clause 24.2</option><option>Clause 26.2</option><option>Clause 28.2</option><option>Clause 29.2</option><option>Clause 6.2</option><option>Clause 8.2</option><option>Clause 9.2</option><option>Clause 14.3</option></select></div>
+            </div>
+          </section>
+          <section class="ba-panel ba-proposed" aria-labelledby="ba-p-clause-order">
+            <h2 class="ba-label" id="ba-p-clause-order">Proposed</h2>
+            <div class="ba-stage">
+<div class="qw-split">
+  <div class="field"><label for="qw-clause-sel">Clause</label><select id="qw-clause-sel" data-qw-clauses></select></div>
+  <form class="goto" data-qw-goto><div class="field"><label for="qw-clause-n">Or type a clause</label><input type="text" id="qw-clause-n" inputmode="decimal" placeholder="e.g. 26.2"><p class="field-error" hidden>Choose a clause from the list, such as 26.2</p></div><button class="btn" type="submit">Show Q&amp;As</button></form>
+</div>
+<p class="results-count" id="qw-clause-out" aria-live="polite"></p>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- What we saw and what changes (R63) -->
+      <div class="win-why">
+        <div><h2>What we saw</h2><p>The "Search by clause" list on Q&As by topic or clause runs "Clause 10.1, 12.1, 15.1, 24.1, 26.1, 28.1, 31.1, 8.1, 12.2, 15.2…", ordered by sub-clause number rather than clause.</p></div>
+        <div><h2>What changes</h2><p>Numeric order, grouped under the six Code sections, plus a box that accepts a clause number such as 14.2.</p></div>
+      </div>
+      <p class="wf-meta win-source">The proposed list shows the clauses the live Q&A list offers, sorted and grouped by section.</p>
+
+      <nav class="win-pager" aria-label="Previous and next quick win"><a class="prev" href="~/pages/quick-wins/code-page-title.html"><span class="wf-meta">Previous</span>Take "Comes into operation" out of the Code's title</a><a class="next" href="~/pages/quick-wins/qa-keyword-search.html"><span class="wf-meta">Next</span>Keyword search in Q&As</a></nav>
+    </div>
+  </main>
+
+  <!-- @@include footer.html -->
+  <!-- @@include scripts.html -->
+</body>
+</html>

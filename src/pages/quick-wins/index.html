@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <!-- @@include head.html -->
+  <title>Quick wins — PMCPA prototypes</title>
+</head>
+<body class="mode-qw" data-win="index">
+  <!-- @@include header.html -->
+
+  <main id="main" class="flush">
+    <!-- Quick wins overview (R60) -->
+    <div class="page-head">
+      <div class="container">
+        <span class="eyebrow">Quick wins</span>
+        <h1>29 small changes, each shown on its own</h1>
+        <p class="lead">Alongside the five bigger prototypes, these are smaller improvements to pmcpa.org.uk. Each can be done on its own, in any order, and each starts from something we saw on the live site.</p>
+        <p style="margin-top:1rem"><a href="~/index.html">See the five bigger improvements</a></p>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Filters (R64) -->
+      <div class="qw-filters">
+        <div class="chips" id="qw-theme-chips" role="group" aria-label="Show quick wins about"></div>
+        <label class="check"><input type="checkbox" id="qw-high"> High impact only</label>
+        <p class="results-count" id="qw-count" aria-live="polite"></p>
+      </div>
+      <div id="qw-groups"></div>
+    </div>
+  </main>
+
+  <!-- @@include footer.html -->
+  <!-- @@include scripts.html -->
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <!-- @@include head.html -->
+  <title>Headlines instead of "Click here" — Quick win 17 — PMCPA prototype</title>
+</head>
+<body class="mode-qw" data-win="real-headlines" data-theme-key="news">
+  <!-- @@include header.html -->
+
+  <main id="main" class="flush">
+    <!-- Quick win 17: Headlines instead of "Click here" (R61) -->
+    <div class="page-head win-head">
+      <div class="container">
+        <a class="back-link" href="~/pages/quick-wins/index.html">All quick wins</a>
+        <span class="eyebrow">Quick win 17 of 29 · News and training</span>
+        <h1>Headlines instead of "Click here"</h1>
+        <p class="lead">Show what each news item is about, and make the headline the link.</p>
+        <div class="row win-tags"><span class="win-tag">High impact</span><span class="win-tag">Small change</span><a class="win-tag win-tag-link" href="~/pages/home.html">Also part of prototype 5: Open by default</a></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Today and proposed, side by side or one at a time (R62) -->
+      <div class="ba" data-ba>
+        <div class="ba-switch" role="group" aria-label="Show">
+          <button type="button" data-ba-show="today" aria-pressed="false">Today</button>
+          <button type="button" data-ba-show="proposed" aria-pressed="true">Proposed</button>
+          <button type="button" data-ba-show="both" aria-pressed="false">Side by side</button>
+        </div>
+        <div class="ba-panels" data-ba-panels="proposed">
+          <section class="ba-panel ba-today" aria-labelledby="ba-t-real-headlines">
+            <h2 class="ba-label" id="ba-t-real-headlines">Today on pmcpa.org.uk</h2>
+            <div class="ba-stage">
+<div class="lv"><p class="lv-h">News <span class="lv-small">ALL NEWS</span></p><ul class="lv-plain lv-news">
+<li><span>Click here</span><small>25 September 2026</small><span class="lv-link">READ MORE</span></li>
+<li><span>Click here</span><small>24 September 2026</small><span class="lv-link">READ MORE</span></li>
+<li><span>Click here</span><small>23 September 2026</small><span class="lv-link">READ MORE</span></li></ul></div>
+            </div>
+          </section>
+          <section class="ba-panel ba-proposed" aria-labelledby="ba-p-real-headlines">
+            <h2 class="ba-label" id="ba-p-real-headlines">Proposed</h2>
+            <div class="ba-stage">
+<h3 class="h-sm">Latest news</h3><ul class="news-list">
+<li><time datetime="2026-09-25">25 September 2026</time><a href="#">Eli Lilly ruled in breach of Clause 2 (CASE/0685/08/25)</a></li>
+<li><time datetime="2026-09-24">24 September 2026</time><a href="#">[Company] ruled in breach of Clause 2 ([case reference])</a></li>
+<li><time>[Date]</time><a href="#">Consultation on changes to the Constitution and Procedure: now closed</a></li></ul>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- What we saw and what changes (R63) -->
+      <div class="win-why">
+        <div><h2>What we saw</h2><p>On the Media page, each news item shows "Click here", a date and "read more", with no headline. The homepage heading reads "Latest PMCPA News - click tiles below", and each tile's link says "Click here".</p></div>
+        <div><h2>What changes</h2><p>Show the headline and date for every item, make the headline the link, and remove "click" from headings and buttons.</p></div>
+      </div>
+      <p class="wf-meta win-source">The 25 September headline uses the facts in that press release. We didn't open the 24 September release, so its headline is a placeholder.</p>
+
+      <nav class="win-pager" aria-label="Previous and next quick win"><a class="prev" href="~/pages/quick-wins/sanctions-by-case.html"><span class="wf-meta">Previous</span>Sanctions grouped by case</a><a class="next" href="~/pages/quick-wins/press-release-titles.html"><span class="wf-meta">Next</span>Press release titles that name the case</a></nav>
+    </div>
+  </main>
+
+  <!-- @@include footer.html -->
+  <!-- @@include scripts.html -->
+</body>
+</html>

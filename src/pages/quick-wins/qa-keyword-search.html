@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <!-- @@include head.html -->
+  <title>Keyword search in Q&As — Quick win 10 — PMCPA prototype</title>
+</head>
+<body class="mode-qw" data-win="qa-keyword-search" data-theme-key="code">
+  <!-- @@include header.html -->
+
+  <main id="main" class="flush">
+    <!-- Quick win 10: Keyword search in Q&As (R61) -->
+    <div class="page-head win-head">
+      <div class="container">
+        <a class="back-link" href="~/pages/quick-wins/index.html">All quick wins</a>
+        <span class="eyebrow">Quick win 10 of 29 · Code and guidance</span>
+        <h1>Keyword search in Q&As</h1>
+        <p class="lead">Find a Q&A by what it's about, not only by topic or clause.</p>
+        <div class="row win-tags"><span class="win-tag">Medium impact</span><span class="win-tag">Small change</span><a class="win-tag win-tag-link" href="~/pages/code.html">Also part of prototype 3: The Code</a></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Today and proposed, side by side or one at a time (R62) -->
+      <div class="ba" data-ba>
+        <div class="ba-switch" role="group" aria-label="Show">
+          <button type="button" data-ba-show="today" aria-pressed="false">Today</button>
+          <button type="button" data-ba-show="proposed" aria-pressed="true">Proposed</button>
+          <button type="button" data-ba-show="both" aria-pressed="false">Side by side</button>
+        </div>
+        <div class="ba-panels" data-ba-panels="proposed">
+          <section class="ba-panel ba-today" aria-labelledby="ba-t-qa-keyword-search">
+            <h2 class="ba-label" id="ba-t-qa-keyword-search">Today on pmcpa.org.uk</h2>
+            <div class="ba-stage">
+<div class="lv"><p class="lv-label">SELECT A TOPIC</p><div class="lv-fake-select">Choose a topic ▾</div><p class="lv-label">SEARCH BY CLAUSE</p><div class="lv-fake-select">Choose an available Clause ▾</div>
+<ul class="lv-plain"><li>Are transcripts needed for audiovisual material?</li><li>Can the PMCPA give companies any guidance about using artificial intelligence (AI) to assist in the review of promotional materials and activities covered by the ABPI Code?</li><li>Do companies need to certify the final form of all invitations…</li><li>…</li></ul></div>
+            </div>
+          </section>
+          <section class="ba-panel ba-proposed" aria-labelledby="ba-p-qa-keyword-search">
+            <h2 class="ba-label" id="ba-p-qa-keyword-search">Proposed</h2>
+            <div class="ba-stage">
+<div class="field"><label for="qw-qa">Search Q&amp;As</label><input type="search" id="qw-qa" data-qw-qa value="patient" autocomplete="off"></div>
+<p class="results-count" id="qw-qa-count" aria-live="polite"></p>
+<ul class="hit-list" id="qw-qa-list"></ul>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- What we saw and what changes (R63) -->
+      <div class="win-why">
+        <div><h2>What we saw</h2><p>Q&As by topic or clause has two dropdowns and no keyword box. The page says "Q&As were last revised in October 2024, unless a later date is stated", but the dates aren't shown on each one.</p></div>
+        <div><h2>What changes</h2><p>A keyword box that filters as you type, the revision date on each Q&A, and "Updated" markers when one changes.</p></div>
+      </div>
+      <p class="wf-meta win-source">Q&A titles are as published. Clause tags are our illustration.</p>
+
+      <nav class="win-pager" aria-label="Previous and next quick win"><a class="prev" href="~/pages/quick-wins/clause-order.html"><span class="wf-meta">Previous</span>Clause lists in clause order</a><a class="next" href="~/pages/quick-wins/dated-guidance.html"><span class="wf-meta">Next</span>Dated, tagged guidance</a></nav>
+    </div>
+  </main>
+
+  <!-- @@include footer.html -->
+  <!-- @@include scripts.html -->
+</body>
+</html>

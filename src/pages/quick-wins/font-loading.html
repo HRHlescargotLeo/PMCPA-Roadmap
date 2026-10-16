@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <!-- @@include head.html -->
+  <title>Lighter font loading — Quick win 28 — PMCPA prototype</title>
+</head>
+<body class="mode-qw" data-win="font-loading" data-theme-key="fix">
+  <!-- @@include header.html -->
+
+  <main id="main" class="flush">
+    <!-- Quick win 28: Lighter font loading (R61) -->
+    <div class="page-head win-head">
+      <div class="container">
+        <a class="back-link" href="~/pages/quick-wins/index.html">All quick wins</a>
+        <span class="eyebrow">Quick win 28 of 29 · Housekeeping</span>
+        <h1>Lighter font loading</h1>
+        <p class="lead">Stop loading fonts the site doesn't use, so pages appear sooner.</p>
+        <div class="row win-tags"><span class="win-tag">Low impact</span><span class="win-tag">Small change</span></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Today and proposed, side by side or one at a time (R62) -->
+      <div class="ba" data-ba>
+        <div class="ba-switch" role="group" aria-label="Show">
+          <button type="button" data-ba-show="today" aria-pressed="false">Today</button>
+          <button type="button" data-ba-show="proposed" aria-pressed="true">Proposed</button>
+          <button type="button" data-ba-show="both" aria-pressed="false">Side by side</button>
+        </div>
+        <div class="ba-panels" data-ba-panels="proposed">
+          <section class="ba-panel ba-today" aria-labelledby="ba-t-font-loading">
+            <h2 class="ba-label" id="ba-t-font-loading">Today on pmcpa.org.uk</h2>
+            <div class="ba-stage">
+<div class="lv"><ul class="lv-plain lv-mono"><li>fonts.googleapis.com · Poppins 400, 400 italic, 600, 600 italic, 700, 700 italic</li><li>gilroy.otf</li><li>GilroyThin.woff</li><li>GilroySemiBold.woff</li><li>GilroyBold.woff</li><li>icomoon.ttf / .woff</li><li>meno-banner (Adobe Fonts)</li></ul></div>
+            </div>
+          </section>
+          <section class="ba-panel ba-proposed" aria-labelledby="ba-p-font-loading">
+            <h2 class="ba-label" id="ba-p-font-loading">Proposed</h2>
+            <div class="ba-stage">
+<ul class="lv-plain lv-mono fontlist"><li class="gone">Poppins × 6 (not used)</li><li>gilroy.woff2 <span class="tag-s">preloaded</span></li><li>gilroy-thin.woff2</li><li>gilroy-semibold.woff2</li><li>gilroy-bold.woff2</li><li>icomoon.woff2</li><li>meno-banner (Adobe Fonts) <span class="tag-s">preloaded</span></li></ul>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- What we saw and what changes (R63) -->
+      <div class="win-why">
+        <div><h2>What we saw</h2><p>The homepage requests Poppins in six styles from Google Fonts, which we didn't find in use. Gilroy is served as an OpenType (OTF) file rather than the smaller WOFF2.</p></div>
+        <div><h2>What changes</h2><p>Remove Poppins, serve Gilroy as WOFF2, and preload the two faces used at the top of the page.</p></div>
+      </div>
+
+      <nav class="win-pager" aria-label="Previous and next quick win"><a class="prev" href="~/pages/quick-wins/titles-and-share.html"><span class="wf-meta">Previous</span>Titles, descriptions and share images</a><a class="next" href="~/pages/quick-wins/social-link.html"><span class="wf-meta">Next</span>Update the social link</a></nav>
+    </div>
+  </main>
+
+  <!-- @@include footer.html -->
+  <!-- @@include scripts.html -->
+</body>
+</html>

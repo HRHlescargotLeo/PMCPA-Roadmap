@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <!-- @@include head.html -->
+  <title>One case reference format — Quick win 6 — PMCPA prototype</title>
+</head>
+<body class="mode-qw" data-win="case-references" data-theme-key="find">
+  <!-- @@include header.html -->
+
+  <main id="main" class="flush">
+    <!-- Quick win 6: One case reference format (R61) -->
+    <div class="page-head win-head">
+      <div class="container">
+        <a class="back-link" href="~/pages/quick-wins/index.html">All quick wins</a>
+        <span class="eyebrow">Quick win 6 of 29 · Cases</span>
+        <h1>One case reference format</h1>
+        <p class="lead">Write case numbers the same way everywhere, and find them however they're typed.</p>
+        <div class="row win-tags"><span class="win-tag">Medium impact</span><span class="win-tag">Small change</span><a class="win-tag win-tag-link" href="~/pages/cases.html">Also part of prototype 1: Case finder</a></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Today and proposed, side by side or one at a time (R62) -->
+      <div class="ba" data-ba>
+        <div class="ba-switch" role="group" aria-label="Show">
+          <button type="button" data-ba-show="today" aria-pressed="false">Today</button>
+          <button type="button" data-ba-show="proposed" aria-pressed="true">Proposed</button>
+          <button type="button" data-ba-show="both" aria-pressed="false">Side by side</button>
+        </div>
+        <div class="ba-panels" data-ba-panels="proposed">
+          <section class="ba-panel ba-today" aria-labelledby="ba-t-case-references">
+            <h2 class="ba-label" id="ba-t-case-references">Today on pmcpa.org.uk</h2>
+            <div class="ba-stage">
+<div class="lv"><ul class="lv-plain lv-refs">
+  <li><b>AUTH/2949/3/17</b> <small>Completed cases (before 2024)</small></li>
+  <li><b>CASE/0685/08/25</b> <small>Completed cases</small></li>
+  <li><b>Case/0685/08/25</b> <small>Press release, 25 September 2026</small></li>
+  <li><b>Advert - Sanofi - SANOFI – CASE/0688/08/25</b> <small>Advertised sanctions</small></li>
+  <li><b>Advert - GSK – Case/0874/02/26</b> <small>Advertised sanctions</small></li>
+</ul></div>
+            </div>
+          </section>
+          <section class="ba-panel ba-proposed" aria-labelledby="ba-p-case-references">
+            <h2 class="ba-label" id="ba-p-case-references">Proposed</h2>
+            <div class="ba-stage">
+<form class="finder-search" data-qw-refs role="search"><label class="visually-hidden" for="qw-ref">Find a case by reference</label><input type="search" id="qw-ref" value="case 685" autocomplete="off"><button class="btn" type="submit">Find</button></form>
+<p class="wf-meta">Try "auth 2949", "0874/02/26" or "688".</p>
+<ul class="mini-list" id="qw-ref-out" aria-live="polite"></ul>
+<p class="wf-meta">Case references before October 2024 start AUTH/. From the 2024 Code they start CASE/. Both are searchable.</p>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- What we saw and what changes (R63) -->
+      <div class="win-why">
+        <div><h2>What we saw</h2><p>References changed from AUTH/2949/3/17 to CASE/0685/08/25. The press release writes "Case/0685/08/25", and an advertised sanction is titled "Advert - Sanofi - SANOFI – CASE/0688/08/25".</p></div>
+        <div><h2>What changes</h2><p>One format everywhere (CASE/0685/08/25), a short note explaining older AUTH/ references, and search that finds a case whether someone types "case 685", "0685/08/25" or the full reference.</p></div>
+      </div>
+
+      <nav class="win-pager" aria-label="Previous and next quick win"><a class="prev" href="~/pages/quick-wins/phone-results.html"><span class="wf-meta">Previous</span>Results on the first screen of a phone</a><a class="next" href="~/pages/quick-wins/share-and-cite.html"><span class="wf-meta">Next</span>Share and cite a case</a></nav>
+    </div>
+  </main>
+
+  <!-- @@include footer.html -->
+  <!-- @@include scripts.html -->
+</body>
+</html>
