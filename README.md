@@ -1,4 +1,4 @@
-# PMCPA — website improvement prototypes (V2)
+## PMCPA — website improvement prototypes (V2)
 
 Five clickable designed prototypes for improvements to pmcpa.org.uk, prepared by ClerksWell following the
 phase 1 review (7 October 2026). V1 was greyscale; V2 adds the PMCPA design layer in
