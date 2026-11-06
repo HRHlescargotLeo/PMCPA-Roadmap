@@ -58,10 +58,10 @@
       <div class="container">
         <p class="proposal-eyebrow">Prototype 3 of 5 · Clause page</p>
         <div class="proposal-grid">
-          <div><h2>What we're proposing</h2><p>Every clause as a hub. Each sub-clause shows its text and supplementary information, then the Q&amp;As, guidance and cases that apply to it, with "See all cases under 14.4" opening the case finder already filtered. Terms defined in Clause 1 show their definition in place.</p></div>
+          <div><h2>What we're proposing</h2><p>Every clause as a hub. Each sub-clause shows its text and supplementary information, then the Q&amp;As, guidance and cases that apply to it, each panel appearing only when there's something in it, with "See all cases under 14.2" opening the case finder already filtered. Q&amp;As open in place. Terms defined in Clause 1 show their definition where they're used.</p></div>
           <div><h2>Why</h2><p>The live clause pages already show recent cases under each sub-clause, which is a strong start. But "See all" goes to the general cases page, and the Q&amp;As and guidance for the same clause are on other pages with no link between them.</p></div>
         </div>
-        <p class="proposal-foot">Clause 14 shows its published text. Other clauses show their title with placeholder text. Open another clause from the index on the left.</p>
+        <p class="proposal-foot">All 31 clauses show their published text and supplementary information, the Q&amp;As tagged to them and the most recent cases listed under them on pmcpa.org.uk (read 6 November 2026). Guidance tags are ours where the guidance page doesn't give one. Open another clause from the index on the left.</p>
       </div>
     </aside>
 
@@ -88,7 +88,8 @@
           <nav class="subnav" id="cl-subnav" aria-label="Sub-clauses"></nav>
           <div class="wf-note" data-note="1"><span class="wf-note-label">Behaviour</span>Each sub-clause has its own address (<code>#c14-4</code>) and a copy-link button, so a compliance team can point a colleague to exactly the right paragraph.</div>
           <div id="cl-body"></div>
-          <div class="wf-note query" data-note="2"><span class="wf-note-label">Question for the PMCPA</span>Who maintains the link between Q&amp;As, guidance and clauses today? A single clause tag on each item in Umbraco would drive all of these panels.</div>
+          <div class="wf-note" data-note="3"><span class="wf-note-label">Behaviour</span>Q&amp;As, guidance and cases each appear only where a sub-clause has some. With all three they share the width in thirds; with two, halves; with one, the full width. Long case lists show the five most recent first.</div>
+          <div class="wf-note query" data-note="2"><span class="wf-note-label">Question for the PMCPA</span>Who maintains the link between Q&amp;As, guidance and clauses today? Q&amp;As already carry clause tags, but guidance doesn't, and a single clause tag on each item in Umbraco would drive all of these panels. Clause pages show only the most recent cases per sub-clause: should "See all" list every case?</div>
           <nav class="clause-pager" id="cl-pager" aria-label="Previous and next clause"></nav>
         </article>
       </div>
@@ -105,6 +106,8 @@
     </div>
   </footer>
 
+  <script src="../js/code-data.js"></script>
+  <script src="../js/case-reports.js"></script>
   <script src="../js/data.js"></script>
   <script src="../js/wins.js"></script>
   <script src="../js/wireframe.js"></script>

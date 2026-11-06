@@ -179,7 +179,7 @@
     function out(v) {
       var cl = PM.CLAUSES[parseInt(v, 10) - 1];
       var qas = PM.QAS.filter(function (q) { return q.clause === v || q.clause.indexOf(v + '.') === 0; });
-      $('#qw-clause-out').textContent = 'Clause ' + v + (cl ? ' (' + cl.title + ')' : '') + ': ' + (qas.length ? qas.length + ' Q&A' + (qas.length === 1 ? '' : 's') + ' in this demo' : 'Q&As would be listed here');
+      $('#qw-clause-out').textContent = 'Clause ' + v + (cl ? ' (' + cl.title + ')' : '') + ': ' + (qas.length ? qas.length + ' Q&A' + (qas.length === 1 ? '' : 's') + ' in this demo' : 'no Q&As tagged to this clause');
     }
     sel.addEventListener('change', function () { if (sel.value) { $('#qw-clause-n').value = sel.value; out(sel.value); } });
     var f = $('[data-qw-goto]');
@@ -213,7 +213,7 @@
     var host = $('#qw-guid-list'); if (!host) return;
     $('#qw-guid-today').innerHTML = PM.GUIDANCE.map(function (g) { return '<li>' + esc(g.t) + '</li>'; }).join('');
     host.innerHTML = PM.GUIDANCE.map(function (g) {
-      return '<li class="hit"><span class="type">Guidance · 2024 Code · Published [date] · [Format]</span><h3><a href="#">' + esc(g.t) + '</a></h3><p><span class="chips-row">' + g.clauses.map(function (c) { var cl = PM.CLAUSES[parseInt(c, 10) - 1]; return '<span class="clause-chip b" data-sec="' + (cl ? cl.section : '') + '">' + c + '</span>'; }).join('') + '</span></p></li>';
+      return '<li class="hit"><span class="type">Guidance · 2024 Code · ' + (g.date ? 'Published ' + esc(g.date) : 'Date to be added') + ' · ' + (g.pdf ? 'PDF' : 'Web page') + '</span><h3><a href="' + (g.pdf || g.url) + '" target="_blank" rel="noopener">' + esc(g.t) + '</a></h3><p><span class="chips-row">' + g.clauses.map(function (c) { var cl = PM.CLAUSES[parseInt(c, 10) - 1]; return '<span class="clause-chip b" data-sec="' + (cl ? cl.section : '') + '">' + c + '</span>'; }).join('') + '</span></p></li>';
     }).join('');
   }
 

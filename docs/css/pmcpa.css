@@ -407,3 +407,43 @@ body.mode-qw .nav-qw { display: block; flex: 1; min-width: 0; }
 mark { padding: 0 0.15em; }
 .qw-callout { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; flex-wrap: wrap; border: 1px solid var(--wf-border); border-radius: var(--wf-radius); padding: 1.5rem 1.75rem; }
 .qw-callout p { max-width: 70ch; margin: 0; }
+
+/* V3: hub panels size to the content that exists (R34) */
+.hub-panels.n-1 { grid-template-columns: minmax(0, 1fr); }
+.hub-panels.n-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 1024px) { .hub-panels.n-2, .hub-panels.n-3 { grid-template-columns: minmax(0, 1fr); } }
+.hub-panels.n-1 .hub-panel ul:not(.qa-list) { grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); }
+.qa-list details { border-bottom: 1px solid var(--wf-border); padding-bottom: 0.5rem; }
+.qa-list summary { cursor: pointer; font-weight: 600; }
+.qa-answer { padding-top: 0.5rem; font-size: 0.9375rem; }
+.qa-answer p { margin-bottom: 0.5rem; }
+.qa-answer ul { margin: 0 0 0.5rem 1.1rem; list-style: disc; display: block; }
+.pill.sm { font-size: 0.75rem; padding: 0.1rem 0.5rem; }
+.accordion-content ul { margin: 0 0 0.75rem 1.25rem; }
+.hub-panel .show-more { align-self: flex-start; font-size: 0.9375rem; }
+/* Real case reports (R23) */
+.real-flag { display: inline-block; font-size: 0.75rem; padding: 0.15rem 0.5rem; border: 1px solid currentColor; border-radius: 999px; }
+.rely-note { border-left: 3px solid var(--wf-border-strong); padding-left: 0.75rem; font-size: 0.9375rem; }
+.report details.annex { border: 1px solid var(--wf-border); border-radius: var(--wf-radius); padding: 0.75rem 1rem; }
+.report details.annex > summary { cursor: pointer; font-weight: 600; }
+.report details.annex[open] > summary { margin-bottom: 0.75rem; }
+.report table { width: 100%; border-collapse: collapse; margin: 0 0 1rem; font-size: 0.9375rem; }
+.report th, .report td { border: 1px solid var(--wf-border); padding: 0.4rem 0.6rem; text-align: left; vertical-align: top; }
+.report h3 { font-size: 1.125rem; margin-top: 1.5rem; }
+.report h4 { font-size: 1rem; margin-top: 1rem; }
+.report li > p { margin-bottom: 0.25rem; }
+.toc ol ol { border-left: 0; margin-left: 0.875rem; }
+.toc ol ol a { font-size: 0.875rem; padding-top: 0.2rem; padding-bottom: 0.2rem; }
+/* V3: Raise a concern, email first (R39) and instant scope answer (R40) */
+.stepper.seven { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+@media (max-width: 768px) { .stepper.seven { display: flex; overflow-x: auto; gap: 0.25rem; } .stepper.seven li { flex: 0 0 auto; min-width: 7rem; } }
+fieldset .scope-result, fieldset .who-result { margin-top: 1rem; }
+.who-result { padding: 1rem 1.25rem; border-left: 4px solid var(--wf-text); background: var(--wf-surface); border-radius: var(--wf-radius); }
+.who-result h3 { font-size: 1.0625rem; }
+.who-result[hidden] { display: none; }
+.mock-email { border: 1px solid var(--wf-border); border-radius: var(--wf-radius); padding: 1rem 1.25rem; margin: 1rem 0; background: var(--wf-page); }
+.mock-email-meta { display: grid; gap: 0.15rem; font-size: 0.8125rem; color: var(--wf-text-muted); border-bottom: 1px solid var(--wf-border); padding-bottom: 0.5rem; }
+.label-like { display: block; font-weight: 600; margin-bottom: 0.25rem; }
+.verified-line { margin: 0; }
+.verified-box p { margin: 0 0 0.25rem; }
+.btn[hidden], .btn-link[hidden] { display: none !important; }

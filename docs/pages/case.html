@@ -58,10 +58,10 @@
       <div class="container">
         <p class="proposal-eyebrow">Prototype 2 of 5 · Case report</p>
         <div class="proposal-grid">
-          <div><h2>What we're proposing</h2><p>A case report you can read on screen. The outcome, key dates and sanctions are at the top; a table shows the ruling on each clause, linked to that clause in the Code; a timeline shows how the case moved. The full report is in sections with a contents list, and the PDF is still there to download. Underneath, other cases on the same clause and about the same company, plus copy link, a suggested citation and print.</p></div>
-          <div><h2>Why</h2><p>Case pages already hold the facts as fields, but the full report is a PDF and clause numbers are plain text, so moving from a ruling to the clause it applies to, or to similar cases, means starting again from search. We also saw a 2017 case showing "November 2007 Review", which a structured template would catch.</p></div>
+          <div><h2>What we're proposing</h2><p>A case report built for the screen, using the report structure the PMCPA now intends to use. The outcome and key dates sit at the top once; a table shows the ruling on each clause in the PMCPA's own words, linked to that clause in the Code; a timeline shows how the case moved. The report reads in sections with a contents list that follows you down the page, the complaint and response are folded away until wanted, and the PDF is still there to download. Underneath, other cases on the same clause and about the same company, plus copy link, a suggested citation and print.</p></div>
+          <div><h2>Why</h2><p>The full report is already on the case page, but it arrives as a copy of the Word document. The key facts appear twice, the contents list shows Word page numbers instead of links, and the page has six top-level headings, which makes it hard to scan and harder for screen readers and search engines. Clause numbers in the ruling text are plain text, the complaint and response run on at full length, and there's nothing to take you to related cases, so moving from a ruling to its clause or to similar cases means starting again from search.</p></div>
         </div>
-        <p class="proposal-foot">Try another case from the finder; this page opens any case with <code>?case=</code>. The report text is placeholder: real reports would fill these sections.</p>
+        <p class="proposal-foot">This page shows Case/0395/12/24. Two more real cases use the new format: <a href="../pages/case.html?case=0466">Case/0466/01/25</a> (a voluntary admission) and <a href="../pages/case.html?case=0440">Case/0440/01/25</a> (2021 Code, no breach). Other cases in the finder are invented and show placeholder text.</p>
       </div>
     </aside>
 
@@ -105,7 +105,7 @@
       <section aria-labelledby="tl-h">
         <h2 id="tl-h">How the case progressed</h2>
         <ol class="timeline" id="c-timeline"></ol>
-        <div class="wf-note query" data-note="2"><span class="wf-note-label">Question for the PMCPA</span>Panel ruling and appeal dates are recorded internally. Would the PMCPA publish them on each case, so readers can see how long each stage took?</div>
+        <div class="wf-note query" data-note="2" id="tl-note"><span class="wf-note-label">Question for the PMCPA</span>Panel ruling and appeal dates are recorded internally. Would the PMCPA publish them on each case, so readers can see how long each stage took?</div>
       </section>
 
       <!-- Report in HTML with contents (R23, R24) -->
@@ -116,6 +116,7 @@
         </nav>
         <article class="report" id="c-report"></article>
       </div>
+      <div class="wf-note" data-note="5" id="c-report-note" hidden><span class="wf-note-label">Behaviour</span>The report is the PMCPA's text as supplied, set in one heading structure: one page title, a heading per section, and the allegations and clauses beneath. The contents list is built from those headings, so it always matches the report and needs no page numbers. Annexes A and B open in place, and the contents list opens them when you jump to them. In the Panel's ruling, 2024 Code clause numbers link to the clause page.</div>
 
       <!-- Related cases (R25) -->
       <section aria-labelledby="rel-h">
@@ -159,6 +160,8 @@
     </div>
   </footer>
 
+  <script src="../js/code-data.js"></script>
+  <script src="../js/case-reports.js"></script>
   <script src="../js/data.js"></script>
   <script src="../js/wins.js"></script>
   <script src="../js/wireframe.js"></script>

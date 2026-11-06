@@ -221,7 +221,7 @@
       if (S.page > pages) S.page = pages;
       var slice = res.slice((S.page - 1) * PER, S.page * PER);
       var total = PM.CASES.length;
-      $('#results-count').textContent = res.length === total && !activeChips().length ? total + ' completed cases (sample)' : res.length + ' of ' + total + ' cases match';
+      $('#results-count').textContent = res.length === total && !activeChips().length ? total + ' completed cases (3 real, the rest invented)' : res.length + ' of ' + total + ' cases match';
       list.innerHTML = slice.length ? slice.map(function (c) {
         var meta = [c.code + ' Code', 'Completed ' + fmtDate(c.completed)];
         if (c.appeal !== 'No appeal') meta.push(c.appeal);
@@ -350,10 +350,74 @@
   function initCase() {
     var root = $('#c-report');
     if (!root) return;
-    var c = caseById(WF.param('case') || '') || caseById('9068');
+    var c = caseById(WF.param('case') || '') || caseById('0395');
     var o = outcome(c);
     document.title = c.ref + ' ' + parties(c) + ' — PMCPA prototype';
     try { var last = window.sessionStorage.getItem('pm-last-search'); if (last) $('#back-to-results').setAttribute('href', 'cases.html?' + last); } catch (e) { /* ignore */ }
+    var R = (window.PM_REPORTS || {})[c.id];
+    if (R) renderReport(c, R); else renderSample(c, o);
+    initCaseExtras(c);
+  }
+
+  /* A real report in the PMCPA's new format (case-reports.js) */
+  function renderReport(c, R) {
+    var linkable = R.code === 2024;
+    $('#c-ref').textContent = R.ref + (linkable ? '' : ' · ' + R.code + ' Code');
+    $('#c-title').textContent = parties(c);
+    $('#c-headline').textContent = R.title;
+    $('#c-outcome').innerHTML = pill(c) + '<span class="real-flag">Real case · new report format</span>';
+    var tmp = document.createElement('div'); tmp.innerHTML = R.summaryHtml;
+    var first = tmp.querySelector('p');
+    $('#c-summary').textContent = first ? first.textContent : '';
+    $('#c-facts').innerHTML = [
+      ['Case number', R.ref], [R.received.indexOf(' and ') > -1 ? 'Complaints received' : 'Complaint received', R.received],
+      [R.va ? 'Company' : 'Complainant', R.va ? 'Voluntary admission by ' + R.respondent : R.complainant]
+    ].concat(R.va ? [] : [['Respondent', R.respondent]]).concat([
+      ['Applicable Code', R.code], ['Clauses raised', R.clausesRaised], ['Panel decision', R.panel]
+    ]).concat(R.undertaking ? [['Respondent undertaking', R.undertaking]] : []).concat([['Appeal Board review', R.appealBoard]])
+      .map(function (r) { return '<dt>' + r[0] + '</dt><dd>' + esc(r[1]) + '</dd>'; }).join('');
+    var pdf = $('#c-pdf');
+    if (R.pdf) { pdf.setAttribute('href', R.pdf); pdf.setAttribute('target', '_blank'); pdf.setAttribute('rel', 'noopener'); pdf.setAttribute('data-real', '1'); }
+    var t = '<thead><tr><th scope="col">Clause</th><th scope="col">What the clause requires</th><th scope="col">Panel ruling</th></tr></thead><tbody>';
+    R.rulings.forEach(function (r) {
+      var link = linkable ? '<a href="' + clauseHref(r.clause) + '">Clause ' + r.clause + '</a>' : 'Clause ' + r.clause + ' <span class="small muted">(' + R.code + ' Code)</span>';
+      t += '<tr><th scope="row">' + link + '</th><td>' + esc(r.about) + '</td><td><span class="pill ' + (r.ruling === 'Breach' ? 'breach' : 'nobreach') + '">' + r.ruling + '</span></td></tr>';
+    });
+    $('#c-rulings').innerHTML = t + '</tbody>';
+    var steps = [[R.va ? 'Voluntary admission received' : 'Complaint received', R.received], ['Panel decision', R.panel]];
+    if (R.undertaking) steps.push(['Respondent undertaking', R.undertaking]);
+    steps.push(['Appeal Board review', R.appealBoard]);
+    $('#c-timeline').innerHTML = steps.map(function (s) { return '<li><b>' + s[0] + '</b>' + esc(s[1]) + '</li>'; }).join('');
+    $('#tl-note').hidden = true;
+    var secs = [{ id: 'summary', title: 'Case summary', subs: [], html: R.summaryHtml + '<p class="rely-note"><strong>This summary should not be relied upon in isolation.</strong> The full case report follows.</p>' }].concat(R.sections);
+    $('#c-report').innerHTML = secs.map(function (s) {
+      var body = s.annex ? '<details class="annex"><summary>Show ' + esc(s.title.replace(/^Annex [A-Z] – /, '').toLowerCase()) + ' in full</summary>' + s.html + '</details>' : s.html;
+      return '<section id="r-' + s.id + '" aria-labelledby="h-' + s.id + '"><h2 id="h-' + s.id + '">' + esc(s.title) + '</h2>' + body + '</section>';
+    }).join('');
+    $('#c-toc').innerHTML = secs.map(function (s) {
+      return '<li><a href="#r-' + s.id + '">' + esc(s.title) + '</a>' + (s.subs.length && !s.annex ? '<ol>' + s.subs.map(function (x) { return '<li><a href="#' + x.id + '">' + esc(x.t) + '</a></li>'; }).join('') + '</ol>' : '') + '</li>';
+    }).join('');
+    $('#c-toc').addEventListener('click', function (e) {
+      var a = e.target.closest('a'); if (!a) return;
+      var target = document.getElementById(a.getAttribute('href').slice(1));
+      var d = target && (target.querySelector('details.annex') || target.closest('details')); if (d) d.open = true;
+    });
+    trackToc();
+    $('#c-report-note').hidden = false;
+  }
+
+  function trackToc() {
+    var links = $all('#c-toc a');
+    if (!('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id); }); });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    $all('#c-report section, #c-report h3[id]').forEach(function (s) { io.observe(s); });
+  }
+
+  /* Sample cases: the original placeholder report */
+  function renderSample(c, o) {
+    var root = $('#c-report');
     $('#c-ref').textContent = c.ref + (c.code === 2024 ? '' : ' · ' + c.code + ' Code');
     $('#c-title').textContent = parties(c);
     $('#c-headline').textContent = c.headline;
@@ -401,27 +465,25 @@
     }).join('') : '<li>No sanctions: no breach was ruled.</li>') + '</ul>' + (extra.length ? '<div class="wf-note" data-note="4"><span class="wf-note-label">Behaviour</span>Advertisements and public reprimands for this case are grouped here and link to the published notice, instead of appearing only as separate entries under Advertised sanctions.</div>' : '')]);
     root.innerHTML = sec.map(function (s) { return '<section id="r-' + s[0] + '" aria-labelledby="h-' + s[0] + '"><h2 id="h-' + s[0] + '">' + s[1] + '</h2>' + s[2] + '</section>'; }).join('');
     $('#c-toc').innerHTML = sec.map(function (s) { return '<li><a href="#r-' + s[0] + '">' + s[1] + '</a></li>'; }).join('');
-    var links = $all('#c-toc a');
-    if ('IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) { if (en.isIntersecting) links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id); }); });
-      }, { rootMargin: '-30% 0px -60% 0px' });
-      $all('#c-report section').forEach(function (s) { io.observe(s); });
-    }
-    // Notes added after load inherit the notes switch state through the body class.
+    trackToc();
+  }
 
+  function initCaseExtras(c) {
     // Related (R25)
     var key = (c.breach[0] || c.nobreach[0] || '');
     var keyTop = key.split('.')[0];
     var byClause = PM.CASES.filter(function (x) { return x.id !== c.id && x.code === c.code && x.breach.concat(x.nobreach).some(function (s) { return s.split('.')[0] === keyTop; }); }).slice(0, 3);
     $('#rel-clause-h').textContent = 'Other cases under Clause ' + keyTop + (c.code === 2024 ? '' : ' (' + c.code + ' Code)');
-    $('#rel-clause').innerHTML = byClause.length ? byClause.map(function (x) { return caseCard(x, true); }).join('') + (c.code === 2024 ? '<li><a href="cases.html?clause=' + keyTop + '">All cases under Clause ' + keyTop + '</a></li>' : '') : '<li class="muted">No other cases under this clause in the sample.</li>';
+    var realRel = (window.PM_REPORTS || {})[c.id] && c.code === 2024 ? publishedCasesFor(keyTop).filter(function (x) { return x.ref !== c.ref; }).slice(0, 3) : null;
+    if (realRel && realRel.length) {
+      $('#rel-clause').innerHTML = realRel.map(function (x) { return publishedCaseItem(x); }).join('') + '<li><a href="cases.html?clause=' + keyTop + '">All cases under Clause ' + keyTop + '</a></li>';
+    } else $('#rel-clause').innerHTML = byClause.length ? byClause.map(function (x) { return caseCard(x, true); }).join('') + (c.code === 2024 ? '<li><a href="cases.html?clause=' + keyTop + '">All cases under Clause ' + keyTop + '</a></li>' : '') : '<li class="muted">No other cases under this clause in the sample.</li>';
     var byCo = PM.CASES.filter(function (x) { return x.id !== c.id && x.respondent === c.respondent; }).slice(0, 3);
     $('#rel-co-h').textContent = 'Other cases involving ' + c.respondent;
     $('#rel-co').innerHTML = byCo.map(function (x) { return caseCard(x, true); }).join('') + '<li><a href="cases.html?company=' + encodeURIComponent(c.respondent) + '">All cases involving ' + esc(c.respondent) + '</a></li>';
 
     // Copy, cite, print, follow (R26, R27)
-    $('#c-pdf').addEventListener('click', function (e) { e.preventDefault(); WF.toast('The PDF would download here'); });
+    $('#c-pdf').addEventListener('click', function (e) { if (!this.hasAttribute('data-real')) { e.preventDefault(); WF.toast('The PDF would download here'); } });
     $('#c-copy').addEventListener('click', function () { WF.copyText(window.location.href.split('#')[0].split('?')[0] + '?case=' + c.id, function () { WF.toast('Link copied'); }); });
     var cite = 'PMCPA, ' + c.ref + ', ' + parties(c) + ', completed ' + fmtDate(c.completed) + ', ' + c.code + ' ABPI Code of Practice.';
     $('#cite-text').textContent = cite;
@@ -505,19 +567,19 @@
       var cl = parseClause(q);
       function has(text) { var t = text.toLowerCase(); return t.indexOf(phrase) > -1 || toks.every(function (k) { return t.indexOf(k) > -1; }); }
       PM.CLAUSES.forEach(function (c) {
-        var ct = PM.CLAUSE_TEXT[String(c.n)];
-        if (ct) {
-          ct.subs.forEach(function (s) {
-            var body = strip(s.text) + ' ' + s.supp.join(' ');
-            var exact = cl && (cl.sub === s.n);
-            if (exact || has(body) || has('clause ' + s.n + ' ' + c.title)) hits.push({ type: 'Code', rank: exact ? 100 : 10, title: 'Clause ' + s.n + ' · ' + c.title, text: strip(s.text).slice(0, 220), href: 'clause.html?clause=' + c.n + '#c' + s.n.replace('.', '-') });
-          });
-        } else if ((cl && cl.top === c.n) || has('clause ' + c.n + ' ' + c.title + ' ' + (c.kw || ''))) {
-          hits.push({ type: 'Code', rank: cl && cl.top === c.n ? 90 : 8, title: 'Clause ' + c.n + ' · ' + c.title, text: 'Section ' + c.section + ' of the 2024 Code.', href: 'clause.html?clause=' + c.n });
-        }
+        var cc = codeClause(c.n);
+        if (cl && cl.top === c.n && !cl.sub) hits.push({ type: 'Code', rank: 100, title: 'Clause ' + c.n + ' · ' + c.title, text: 'Section ' + c.section + ' of the 2024 Code.', href: 'clause.html?clause=' + c.n });
+        (cc ? cc.subs : []).forEach(function (s) {
+          var txt = strip(s.text), body = txt + ' ' + s.supp.map(function (x) { return x.t + ' ' + strip(x.h); }).join(' ');
+          var exact = cl && cl.sub === s.n;
+          if (exact || has(body) || has('clause ' + s.n + ' ' + c.title)) hits.push({ type: 'Code', rank: exact ? 100 : has(txt) ? 10 : 9, title: 'Clause ' + s.n + ' · ' + c.title, text: (txt || strip((s.supp[0] || {}).h || '')).slice(0, 220), href: 'clause.html?clause=' + c.n + '#c' + s.n.replace('.', '-') });
+        });
       });
-      PM.QAS.forEach(function (x) { if (has(x.q + ' ' + x.topic) || (cl && x.clause.split('.')[0] === String(cl.top) && (!cl.sub || x.clause === cl.sub))) hits.push({ type: 'Q&A', rank: 6, title: x.q, text: 'Clause ' + x.clause + ' · ' + x.topic + ' · Revised ' + x.revised, href: 'clause.html?clause=' + x.clause.split('.')[0] + '#c' + x.clause.replace('.', '-') }); });
-      PM.GUIDANCE.forEach(function (x) { if (has(x.t) || (cl && x.clauses.some(function (s) { return s.split('.')[0] === String(cl.top); }))) hits.push({ type: 'Guidance', rank: 5, title: x.t, text: 'Clauses ' + x.clauses.join(', ') + ' · Published [date]', href: '#' }); });
+      PM.QAS.forEach(function (x) {
+        var tagHit = cl && x.clauses.some(function (t) { return t.split('.')[0] === String(cl.top) && (!cl.sub || t === cl.sub); });
+        if (tagHit || has(x.q + ' ' + strip(x.a) + ' ' + x.topic)) hits.push({ type: 'Q&A', rank: has(x.q) ? 7 : 6, title: x.q, text: 'Clause ' + x.clauses.join(', ') + (x.topic ? ' · ' + x.topic : '') + ' · Revised ' + x.revised, href: 'clause.html?clause=' + x.clause.split('.')[0] + '#c' + x.clause.replace('.', '-') });
+      });
+      PM.GUIDANCE.forEach(function (x) { if (has(x.t + ' ' + (x.summary || '')) || (cl && x.clauses.some(function (s) { return s.split('.')[0] === String(cl.top); }))) hits.push({ type: 'Guidance', rank: 5, title: x.t, text: 'Clauses ' + x.clauses.join(', ') + (x.date ? ' · Published ' + x.date : ''), href: x.pdf || x.url }); });
       PM.CASES.forEach(function (x) { if (has(x.headline + ' ' + x.summary + ' ' + x.ref) || (cl && x.code === 2024 && matchesClause(x, cl.sub || String(cl.top)))) hits.push({ type: 'Case', rank: 3, title: x.ref + ' · ' + x.headline, text: parties(x) + ' · ' + OUTCOME_LABEL[outcome(x)] + ' · Completed ' + fmtDate(x.completed), href: 'case.html?case=' + x.id }); });
       hits.sort(function (a, b) { return b.rank - a.rank; });
       return { hits: hits, toks: toks };
@@ -542,12 +604,39 @@
     var q0 = WF.param('q'); if (q0) { $('#code-q').value = q0; renderSearch(q0); }
   }
 
+  /* Published cases listed under each sub-clause on pmcpa.org.uk (code-data.js) */
+  var MONTH_N = { January: 0, February: 1, March: 2, April: 3, May: 4, June: 5, July: 6, August: 7, September: 8, October: 9, November: 10, December: 11 };
+  function longDate(s) { var m = String(s || '').match(/(\d{1,2}) (\w+) (\d{4})/); return m ? new Date(+m[3], MONTH_N[m[2]] || 0, +m[1]).getTime() : 0; }
+  function codeClause(n) { return ((PM.CODE && PM.CODE.clauses) || [])[parseInt(n, 10) - 1] || null; }
+  function publishedCasesFor(sel) {
+    var cl = codeClause(String(sel).split('.')[0]), seen = {}, out = [];
+    if (!cl) return out;
+    cl.subs.forEach(function (s) {
+      if (String(sel).indexOf('.') > -1 && s.n !== sel) return;
+      s.cases.forEach(function (x) { if (!seen[x.ref]) { seen[x.ref] = 1; out.push(x); } });
+    });
+    return out.sort(function (a, b) { return longDate(b.completed) - longDate(a.completed); });
+  }
+  function reportIdFor(ref) {
+    var R = window.PM_REPORTS || {}, k;
+    for (k in R) { if (R[k].ref.toUpperCase() === String(ref).toUpperCase()) return k; }
+    return '';
+  }
+  function publishedCaseItem(x, sub) {
+    var id = reportIdFor(x.ref);
+    var onThis = sub ? (x.breach.indexOf(sub) > -1 ? 'Breach of ' + sub : x.nobreach.indexOf(sub) > -1 ? 'No breach of ' + sub : '') : '';
+    var o = x.breach.length && x.nobreach.length ? 'mixed' : x.breach.length ? 'breach' : 'nobreach';
+    var link = id ? '<a href="case.html?case=' + id + '">' + esc(x.parties) + '</a>' : '<a href="' + x.url + '" target="_blank" rel="noopener">' + esc(x.parties) + '<span class="visually-hidden"> (opens pmcpa.org.uk)</span></a>';
+    return '<li>' + link + '<span class="small">' + esc(x.ref) + ' · ' + (onThis ? '<span class="pill sm ' + (onThis.indexOf('No') === 0 ? 'nobreach' : 'breach') + '">' + onThis + '</span>' : '<span class="pill sm ' + o + '">' + OUTCOME_LABEL[o] + '</span>') + ' · Completed ' + esc(x.completed) + '</span></li>';
+  }
+
   function initClause() {
     var body = $('#cl-body');
     if (!body) return;
     var n = parseInt(WF.param('clause') || '14', 10);
     if (!(n >= 1 && n <= 31)) n = 14;
     var c = PM.CLAUSES[n - 1];
+    var code = codeClause(n);
     var sec = PM.SECTIONS.filter(function (s) { return s.id === c.section; })[0];
     $('#cl-title').closest('article').setAttribute('data-sec', c.section);
     $('#code-index').setAttribute('data-sec', c.section);
@@ -560,41 +649,47 @@
     }).join('');
     $('#idx-toggle').addEventListener('click', function () { var ix = $('#code-index'); var open = !ix.classList.contains('open'); ix.classList.toggle('open', open); this.setAttribute('aria-expanded', open ? 'true' : 'false'); this.textContent = open ? 'Hide clauses in this section' : 'Show clauses in this section'; });
 
-    var ct = PM.CLAUSE_TEXT[String(n)];
-    var subs = ct ? ct.subs : [{ n: String(n), text: '<p class="placeholder-text">[Clause ' + n + ' text as published in the 2024 Code.]</p>', supp: [] }];
-    if (ct && ct.changed) {
+    var subs = code ? code.subs : [];
+    if (n === 14) {
       $('#cl-changed').innerHTML = '<p><span class="changed">Changed in 2024</span> <span class="sample-flag">Illustration</span> <button type="button" class="btn-link" aria-expanded="false" aria-controls="earlier">Show the 2021 wording</button></p><div class="panel surface" id="earlier" hidden><p class="placeholder-text" style="margin:0">[The equivalent wording in the 2021 Code, with changes highlighted.]</p></div>';
       $('#cl-changed button').addEventListener('click', function () { var p = $('#earlier'); p.hidden = !p.hidden; this.setAttribute('aria-expanded', p.hidden ? 'false' : 'true'); this.textContent = p.hidden ? 'Show the 2021 wording' : 'Hide the 2021 wording'; });
     }
-    $('#cl-intro').textContent = ct ? ct.intro : '';
+    $('#cl-intro').innerHTML = code ? 'As published on pmcpa.org.uk. <a href="' + code.url + '" target="_blank" rel="noopener">Clause ' + n + ' on the live site<span class="visually-hidden"> (opens in a new tab)</span></a>' : '';
     $('#cl-subnav').innerHTML = subs.length > 1 ? subs.map(function (s) { return '<a href="#c' + s.n.replace('.', '-') + '">' + s.n + '</a>'; }).join('') : '';
 
-    function forSub(sn, isWhole) {
-      var match = function (tag) { return isWhole ? tag.split('.')[0] === sn : (tag === sn || tag.indexOf(sn + '.') === 0); };
-      return {
-        qas: PM.QAS.filter(function (x) { return match(x.clause); }),
-        guid: PM.GUIDANCE.filter(function (x) { return x.clauses.some(match); }),
-        cases: PM.CASES.filter(function (x) { return x.code === 2024 && x.breach.concat(x.nobreach).some(match); }).sort(function (a, b) { return a.completed < b.completed ? 1 : -1; })
-      };
+    // A tag of the whole clause ("27") belongs to the clause's general section, or its first sub-clause.
+    var hasGeneral = subs.some(function (s) { return s.n === String(n); });
+    function owner(tag) {
+      if (String(tag).split('.')[0] !== String(n)) return null;
+      if (tag.indexOf('.') > -1) return subs.some(function (s) { return s.n === tag; }) ? tag : (subs[0] || {}).n;
+      return hasGeneral ? String(n) : (subs[0] || {}).n;
     }
+    function itemsFor(sn, list) { return list.filter(function (x) { return x.clauses.some(function (t) { return owner(t) === sn; }); }); }
+
     body.innerHTML = subs.map(function (s) {
-      var whole = !ct;
-      var d = forSub(s.n, whole);
-      var supp = s.supp.length ? '<div class="accordion" style="margin-bottom:1rem">' + s.supp.map(function (t) { return '<div class="accordion-item"><button type="button" class="accordion-title">Supplementary information: ' + esc(t) + '<span class="accordion-icon" aria-hidden="true">▾</span></button><div class="accordion-content"><p class="placeholder-text">[Supplementary information as published.]</p></div></div>'; }).join('') + '</div>' : '';
-      return '<section class="sub-clause" id="c' + s.n.replace('.', '-') + '" aria-labelledby="h' + s.n.replace('.', '-') + '"><header><h2 id="h' + s.n.replace('.', '-') + '">' + s.n + '</h2><button type="button" class="btn-link copy-anchor" data-copy-sub="' + s.n + '">Copy link to ' + s.n + '</button></header>' +
-        '<div class="clause-text">' + s.text + '</div>' + supp +
-        '<div class="hub-panels">' +
-          '<div class="hub-panel"><h3>Q&amp;As <span class="count">' + d.qas.length + '</span></h3>' + (d.qas.length ? '<ul>' + d.qas.map(function (q) { return '<li><a href="#">' + esc(q.q) + '</a><span class="small">Revised ' + q.revised + '</span></li>'; }).join('') + '</ul>' : '<p class="none">No Q&amp;As on ' + s.n + '.</p>') + '</div>' +
-          '<div class="hub-panel"><h3>Guidance <span class="count">' + d.guid.length + '</span></h3>' + (d.guid.length ? '<ul>' + d.guid.map(function (g) { return '<li><a href="#">' + esc(g.t) + '</a><span class="small">Published [date]</span></li>'; }).join('') + '</ul>' : '<p class="none">No guidance on ' + s.n + '.</p>') + '</div>' +
-          '<div class="hub-panel"><h3>Cases <span class="count">' + d.cases.length + '</span></h3>' + (d.cases.length ? '<ul>' + d.cases.slice(0, 3).map(function (x) { return '<li><a href="case.html?case=' + x.id + '">' + esc(x.headline) + '</a><span class="small">' + esc(x.ref) + ' · ' + OUTCOME_LABEL[outcome(x)] + ' on ' + (x.breach.some(function (b) { return b === s.n || b.indexOf(s.n + '.') === 0 || (whole && b.split('.')[0] === s.n); }) ? 'this clause' : 'other clauses') + '</span></li>'; }).join('') + '</ul><a class="see-all" href="cases.html?clause=' + s.n + '">See all ' + d.cases.length + ' case' + (d.cases.length === 1 ? '' : 's') + ' under ' + s.n + '</a>' : '<p class="none">No sample cases on ' + s.n + '.</p>') + '</div>' +
-        '</div></section>';
+      var id = s.n.replace('.', '-');
+      var qas = itemsFor(s.n, PM.QAS), guid = itemsFor(s.n, PM.GUIDANCE);
+      var cases = s.cases.slice().sort(function (a, b) { return longDate(b.completed) - longDate(a.completed); });
+      var panels = [];
+      if (qas.length) panels.push('<div class="hub-panel"><h3>Q&amp;As <span class="count">' + qas.length + '</span></h3><ul class="qa-list">' + qas.map(function (q) {
+        return '<li><details><summary>' + esc(q.q) + '</summary><div class="qa-answer">' + q.a + '<p class="small">Revised ' + esc(q.revised) + (q.topic ? ' · ' + esc(q.topic) : '') + ' · <a href="' + q.url + '" target="_blank" rel="noopener">On pmcpa.org.uk</a></p></div></details></li>';
+      }).join('') + '</ul></div>');
+      if (guid.length) panels.push('<div class="hub-panel"><h3>Guidance <span class="count">' + guid.length + '</span></h3><ul>' + guid.map(function (g) {
+        return '<li><a href="' + (g.pdf || g.url) + '" target="_blank" rel="noopener">' + esc(g.t) + (g.pdf ? ' (PDF)' : '') + '</a><span class="small">' + (g.date ? 'Published ' + esc(g.date) : 'Date not shown on the live site') + ' · 2024 Code</span>' + (g.summary ? '<span class="small">' + esc(g.summary.slice(0, 180)) + '…</span>' : '') + '</li>';
+      }).join('') + '</ul></div>');
+      if (cases.length) panels.push('<div class="hub-panel"><h3>Cases <span class="count">' + cases.length + '</span></h3><ul class="case-mini">' + cases.map(function (x, i) { return publishedCaseItem(x, s.n).replace('<li>', i >= 5 ? '<li class="more" hidden>' : '<li>'); }).join('') + '</ul>' + (cases.length > 5 ? '<button type="button" class="btn-link show-more" aria-expanded="false">Show ' + (cases.length - 5) + ' more</button>' : '') + '<a class="see-all" href="cases.html?clause=' + s.n + '">See all cases under ' + s.n + '</a></div>');
+      var supp = s.supp.length ? '<div class="accordion" style="margin-bottom:1rem">' + s.supp.map(function (t) { return '<div class="accordion-item"><button type="button" class="accordion-title">Supplementary information: ' + esc(t.t) + '<span class="accordion-icon" aria-hidden="true">▾</span></button><div class="accordion-content">' + t.h + '</div></div>'; }).join('') + '</div>' : '';
+      return '<section class="sub-clause" id="c' + id + '" aria-labelledby="h' + id + '"><header><h2 id="h' + id + '">' + (s.n === String(n) ? 'Clause ' + n + ': general' : s.n) + '</h2><button type="button" class="btn-link copy-anchor" data-copy-sub="' + s.n + '">Copy link to ' + s.n + '</button></header>' +
+        (s.text ? '<div class="clause-text">' + s.text + '</div>' : '') + supp +
+        (panels.length ? '<div class="hub-panels n-' + panels.length + '">' + panels.join('') + '</div>' : '') + '</section>';
     }).join('');
-    // Re-run accordion wiring for injected markup
     $all('.accordion-title', body).forEach(function (t) {
       t.setAttribute('aria-expanded', 'false');
       t.addEventListener('click', function () { var it = t.closest('.accordion-item'); var o = !it.classList.contains('open'); it.classList.toggle('open', o); t.setAttribute('aria-expanded', o ? 'true' : 'false'); });
     });
     body.addEventListener('click', function (e) {
+      var sm = e.target.closest('.show-more');
+      if (sm) { var open = sm.getAttribute('aria-expanded') !== 'true'; $all('li.more', sm.closest('.hub-panel')).forEach(function (li) { li.hidden = !open; }); sm.setAttribute('aria-expanded', open ? 'true' : 'false'); sm.textContent = open ? 'Show fewer' : 'Show ' + $all('li.more', sm.closest('.hub-panel')).length + ' more'; }
       var b = e.target.closest('[data-copy-sub]');
       if (b) WF.copyText(window.location.href.split('#')[0] + '#c' + b.getAttribute('data-copy-sub').replace('.', '-'), function () { WF.toast('Link to ' + b.getAttribute('data-copy-sub') + ' copied'); });
     });
@@ -631,7 +726,7 @@
   function initConcern() {
     var form = $('#concern-form');
     if (!form) return;
-    var step = 1, MAX = 6, returnToReview = false;
+    var step = 1, MAX = 7, returnToReview = false, verified = '';
     var panels = $all('.step-panel', form);
     var steps = $all('#concern-steps li');
     var companiesList = [];
@@ -643,7 +738,9 @@
       panels.forEach(function (p) { p.hidden = parseInt(p.getAttribute('data-step'), 10) !== n; });
       steps.forEach(function (li, i) { li.classList.toggle('current', i + 1 === n); li.classList.toggle('done', i + 1 < n); if (i + 1 === n) li.setAttribute('aria-current', 'step'); else li.removeAttribute('aria-current'); });
       $('#step-back').hidden = n === 1;
-      $('#step-next').textContent = n === MAX ? 'Send complaint' : returnToReview ? 'Back to check your answers' : 'Continue';
+      $('#save-later').hidden = !verified;
+      $('#start-email-field').hidden = !!verified; $('#verified-box').hidden = !verified;
+      $('#step-next').textContent = n === MAX ? 'Send complaint' : returnToReview ? 'Back to check your answers' : n === 1 && !verified ? 'Send me a link' : 'Continue';
       if (n === MAX) buildReview();
       var h = $('.step-panel[data-step="' + n + '"] h2'); if (h) { h.setAttribute('tabindex', '-1'); h.focus(); }
     }
@@ -655,20 +752,28 @@
       pharmacy: ['Contact the Advertising Standards Authority', 'Advertising by online pharmacies and clinics is usually a matter for the ASA.', 'Go to the ASA'],
       price: ['We can’t help with prices or supply', 'The Code doesn’t cover the price or availability of medicines. Your GP, pharmacist or local NHS can advise.', 'NHS help with medicines']
     };
+    var WHO = {
+      employee: ['We recommend your company’s whistleblowing policy first', 'If you work, or worked, for the company, its whistleblowing policy is usually the quickest way to get the matter looked at, and it protects you. If you’ve already tried it, or don’t want to, you can still raise your concern with us.'],
+      company: ['Try intercompany dialogue first', 'Companies must try to resolve a complaint with the other company before bringing it to us. We’ll ask you to confirm you’ve done this.'],
+      admission: ['Thank you for telling us', 'A voluntary admission is handled like a complaint. We’ll ask what happened, when you found out and what you’ve done about it.']
+    };
     function scope() {
       var what = (form.querySelector('[name="what"]:checked') || {}).value;
       var who = (form.querySelector('[name="who"]:checked') || {}).value;
-      var box = $('#scope-result');
-      if (!what) { box.hidden = true; return null; }
+      var box = $('#scope-result'), wbox = $('#who-result');
+      if (!what) { box.hidden = true; $('#who-fieldset').hidden = false; wbox.hidden = true; return null; }
       if (REFER[what]) {
         var r = REFER[what];
         box.className = 'scope-result out'; box.hidden = false;
         box.innerHTML = '<h3>' + r[0] + '</h3><p>' + r[1] + '</p><p><a href="#">' + r[2] + '</a></p><p class="wf-meta">Not sure? <a href="#">Email us for informal advice</a>.</p>';
+        $('#who-fieldset').hidden = true;
         return 'out';
       }
       box.className = 'scope-result'; box.hidden = false;
-      var extra = who === 'company' ? '<p>As a company, you’ll need to have tried intercompany dialogue first. We’ll ask about that later.</p>' : who === 'employee' ? '<p>If you work for the company, you may want to try its whistleblowing policy first. You can still continue.</p>' : '';
-      box.innerHTML = '<h3>This sounds like something we can look at</h3><p>Continue to tell us what happened. It takes about 10 minutes.</p>' + extra;
+      box.innerHTML = '<h3>This is something we can look at</h3><p>Tell us who you are below, then continue to tell us what happened. It takes about 10 minutes.</p>';
+      $('#who-fieldset').hidden = false;
+      if (who && WHO[who]) { wbox.hidden = false; wbox.innerHTML = '<h3>' + WHO[who][0] + '</h3><p>' + WHO[who][1] + '</p>'; }
+      else wbox.hidden = true;
       return 'in';
     }
     form.addEventListener('change', function (e) {
@@ -740,6 +845,12 @@
       var panel = $('.step-panel[data-step="' + n + '"]');
       var ok = true, first = null;
       if (n === 1) {
+        if (verified) return true;
+        ok = WF.validateForm(wrap(panel));
+        if (ok) { $('#inbox-to').textContent = $('#start-email').value.trim(); WF.openModal('inbox-modal'); }
+        return false;
+      }
+      if (n === 2) {
         ['what', 'who'].forEach(function (name) {
           var fs = panel.querySelector('[name="' + name + '"]').closest('fieldset');
           var on = !!panel.querySelector('[name="' + name + '"]:checked');
@@ -749,14 +860,9 @@
         if (first) first.focus();
         return ok;
       }
-      if (n === 2) addCo();
+      if (n === 3) addCo();
       ok = WF.validateForm(wrap(panel));
-      if (n === 2 && !companiesList.length) coInput.focus();
-      if (n === 4 && ok) {
-        var f2 = $('#email2').closest('.field'), same = $('#email').value.trim() === $('#email2').value.trim();
-        f2.classList.toggle('has-error', !same); $('.field-error', f2).hidden = same;
-        if (!same) { $('#email2').focus(); ok = false; }
-      }
+      if (n === 3 && !companiesList.length) coInput.focus();
       return ok;
     }
     /* Validate only the fields in the visible panel, using the shared validator. */
@@ -788,11 +894,12 @@
     function buildReview() {
       var roleSel = $('#role'); var role = roleSel.value ? roleSel.options[roleSel.selectedIndex].text : '—';
       var blocks = [
-        [1, 'Check we can help', [['Concern about', radioLabel('what')], ['You are', radioLabel('who')]]],
-        [2, 'The matter', [['Companies', companiesList.join(', ') || '—'], ['Medicine', val('med')], ['Where', val('where')], ['When', $('#when').value ? fmtDate($('#when').value) : '—'], ['What happened', val('details')], ['Links', val('links')]]],
-        [3, 'Evidence', [['Files', files.length ? files.map(function (f) { return f.name; }).join(', ') : 'None'], ['More by email', $('#email-evidence').checked ? 'Yes' : 'No']]],
-        [4, 'About you', [['Name', $('#name').value || 'Not given (anonymous)'], ['Email', val('email')], ['Role', role + ($('#role').value === 'other' ? ': ' + val('role-other') : '')]]],
-        [5, 'Your interests', [['Interest declared', radioLabel('interest')], ['Details', $('#interest-detail-field').hidden ? '—' : val('interest-detail')]].concat($('#role').value === 'company' ? [['Intercompany dialogue', $('#dialogue').checked ? 'Attempted' : 'Not confirmed']] : [])]
+        [1, 'Your email', [['Email', verified + ' (confirmed)']]],
+        [2, 'Check we can help', [['Concern about', radioLabel('what')], ['You are', radioLabel('who')]]],
+        [3, 'The matter', [['Companies', companiesList.join(', ') || '—'], ['Medicine', val('med')], ['Where', val('where')], ['When', $('#when').value ? fmtDate($('#when').value) : '—'], ['What happened', val('details')], ['Links', val('links')]]],
+        [4, 'Evidence', [['Files', files.length ? files.map(function (f) { return f.name; }).join(', ') : 'None'], ['More by email', $('#email-evidence').checked ? 'Yes' : 'No']]],
+        [5, 'About you', [['Name', $('#name').value || 'Not given (anonymous)'], ['Role', role + ($('#role').value === 'other' ? ': ' + val('role-other') : '')]]],
+        [6, 'Your interests', [['Interest declared', radioLabel('interest')], ['Details', $('#interest-detail-field').hidden ? '—' : val('interest-detail')]].concat($('#role').value === 'company' ? [['Intercompany dialogue', $('#dialogue').checked ? 'Attempted' : 'Not confirmed']] : [])]
       ];
       $('#review-list').innerHTML = blocks.map(function (b) {
         return '<div class="review-block"><header><h3>' + b[1] + '</h3><button type="button" class="btn-link" data-edit="' + b[0] + '">Change<span class="visually-hidden"> ' + b[1] + '</span></button></header><dl>' + b[2].map(function (r) { return '<dt>' + r[0] + '</dt><dd>' + esc(r[1]) + '</dd>'; }).join('') + '</dl></div>';
@@ -800,15 +907,33 @@
     }
     $('#review-list').addEventListener('click', function (e) { var b = e.target.closest('[data-edit]'); if (b) { returnToReview = true; show(parseInt(b.getAttribute('data-edit'), 10)); } });
 
+    // Confirm email first (R39): the inbox window stands in for the email and its link
+    function setVerified(addr) {
+      verified = addr;
+      $('#email').value = addr; $('#email-show').textContent = addr; $('#verified-email').textContent = addr; $('#save-to').textContent = addr;
+      $('#start-email').value = addr;
+    }
+    $('#inbox-link').addEventListener('click', function () {
+      setVerified($('#start-email').value.trim());
+      WF.closeModal('inbox-modal');
+      WF.toast('Email address confirmed');
+      show(2); save();
+    });
+    $('#inbox-resend').addEventListener('click', function () { WF.toast('We’ve sent the link again'); });
+    function changeEmail() { verified = ''; WF.closeModal('inbox-modal'); show(1); $('#start-email').focus(); }
+    $('#inbox-change').addEventListener('click', changeEmail);
+    $('#change-email').addEventListener('click', changeEmail);
+
     // Save and finish later (R48): kept in sessionStorage for the prototype
-    var FIELDS = ['med', 'where', 'when', 'details', 'links', 'name', 'role', 'role-other', 'email', 'email2', 'interest-detail'];
+    var FIELDS = ['med', 'where', 'when', 'details', 'links', 'name', 'role', 'role-other', 'interest-detail'];
     function save() {
-      var d = { step: step, companies: companiesList, fields: {}, radios: {}, checks: { 'email-evidence': $('#email-evidence').checked, dialogue: $('#dialogue').checked } };
+      var d = { step: step, verified: verified, companies: companiesList, fields: {}, radios: {}, checks: { 'email-evidence': $('#email-evidence').checked, dialogue: $('#dialogue').checked } };
       FIELDS.forEach(function (id) { d.fields[id] = $('#' + id).value; });
       ['what', 'who', 'interest'].forEach(function (n) { var r = form.querySelector('[name="' + n + '"]:checked'); if (r) d.radios[n] = r.value; });
       try { window.sessionStorage.setItem(KEY, JSON.stringify(d)); } catch (e) { /* ignore */ }
     }
     function restore(d) {
+      if (d.verified) setVerified(d.verified);
       companiesList = d.companies || []; renderTags();
       Object.keys(d.fields || {}).forEach(function (id) { var el = $('#' + id); if (el) el.value = d.fields[id]; });
       Object.keys(d.radios || {}).forEach(function (n) { var r = form.querySelector('[name="' + n + '"][value="' + d.radios[n] + '"]'); if (r) r.checked = true; });
@@ -822,13 +947,14 @@
     wireSimpleForm('save-form', 'save-done');
     try {
       var draft = JSON.parse(window.sessionStorage.getItem(KEY) || 'null');
-      if (draft && (draft.step > 1 || (draft.radios && draft.radios.what))) {
+      if (draft && draft.verified) {
         $('#resume-banner').hidden = false;
         $('#resume-btn').addEventListener('click', function () { $('#resume-banner').hidden = true; restore(draft); });
         $('#discard-btn').addEventListener('click', function () { $('#resume-banner').hidden = true; window.sessionStorage.removeItem(KEY); });
       }
     } catch (e) { /* ignore */ }
     steps[0].setAttribute('aria-current', 'step');
+    $('#step-next').textContent = 'Send me a link'; $('#save-later').hidden = true;
   }
 
   /* ======================================================================

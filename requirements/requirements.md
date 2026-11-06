@@ -1,4 +1,4 @@
-# PMCPA website prototypes — requirements (V1)
+# PMCPA website prototypes — requirements (V4)
 
 Source: ClerksWell phase 1 review of pmcpa.org.uk, 7 October 2026. Idea numbers (#) refer to the opportunities list.
 Every section in `src/` carries an HTML comment naming the requirement it answers.
@@ -10,7 +10,7 @@ Every section in `src/` carries an HTML comment naming the requirement it answer
 - R04 Context passes between pages by `?param=` with a sessionStorage fallback.
 - R05 Works at 390px with no horizontal scroll; keyboard-operable; Escape closes overlays.
 - R06 Descriptive link text throughout; no "click here" (#43).
-- R07 Sample data is labelled. Company names, case references (CASE/9xxx) and rulings are invented. Code clause titles, Clause 14 text, Q&A and guidance titles, training dates and performance figures are as published on pmcpa.org.uk.
+- R07 Sample data is labelled. The 2024 Code, its supplementary information, clause-tagged Q&As and the cases listed per sub-clause are as published on pmcpa.org.uk (read 6 November 2026); three case reports are real, in the PMCPA's new format. Other company names, case references (CASE/9xxx) and rulings are invented. Training dates and performance figures are as published.
 
 ## 1 Case finder — `pages/cases.html`
 - R10 Newest completed first by default; sort control visible and kept in the URL (#1).
@@ -28,7 +28,7 @@ Every section in `src/` carries an HTML comment naming the requirement it answer
 - R20 Header: reference, parties, headline, outcome pill, key facts (#9).
 - R21 Rulings table by clause, each clause linked to its clause page (#9, #14).
 - R22 Case timeline (received, Panel ruling, appeal, completed) (#9).
-- R23 Report in HTML with a contents list that tracks scrolling; PDF kept as a download (#9).
+- R23 The full report (already on the live case page, but pasted from Word) set in one heading structure, using the PMCPA's new report format: summary with outcome table, case preparation, Panel ruling by allegation, annex notes, Annexes A and B folded until opened; a contents list built from the headings that tracks scrolling; PDF kept as a download (#9). Real content: Case/0395/12/24, Case/0440/01/25, Case/0466/01/25.
 - R24 Sanctions grouped with the case, linked to the published advertisement or reprimand (#32).
 - R25 Related cases: same clause, same company (#10).
 - R26 Copy link, suggested citation, print (#11).
@@ -39,14 +39,15 @@ Every section in `src/` carries an HTML comment naming the requirement it answer
 - R31 One search across Code, Q&As, guidance and cases, with tabs, counts and no duplicates (#15).
 - R32 Sections as expandable groups with their own addresses, not pop-ups (#19).
 - R33 "Go to clause" accepts "14.2"; clause lists in numeric order (#16).
-- R34 Clause hub: text, supplementary information, Q&As, guidance and cases per sub-clause; "See all cases under 14.4" opens the filtered finder (#14).
+- R34 Clause hub for all 31 clauses with published text and supplementary information; Q&As (answers open in place), guidance and cases per sub-clause, each panel shown only when it has content (three: thirds; two: halves; one: full width); "See all cases under 14.2" opens the filtered finder (#14).
 - R35 Q&As and guidance carry dates and clause tags (#17, #18).
 - R36 Glossary terms in clause text open a definition popover (#20).
 - R37 "Changed in 2024" marker with the earlier wording a click away (#21).
 - R38 Section index beside the clause; previous / next clause.
 
 ## 4 Raise a concern — `pages/raise-a-concern.html`
-- R40 Scope check on-site, with out-of-scope concerns routed to the right body (#22).
+- R39 First step: enter an email address and confirm it by clicking a link in an email (simulated), before the scope check; the confirmed address is used later in the form and for save and finish later.
+- R40 Scope check on-site: the in-scope (green) or out-of-scope (yellow, with the right body) answer appears directly beneath the concern question as soon as it's answered; who you are adds advice beneath that question where it changes something, such as the whistleblowing policy for company staff (#22).
 - R41 Answers carry into the form (#22).
 - R42 Steps: the matter, evidence, about you, your interests, check and send, with progress (#23).
 - R43 Guidance beside each field rather than above the form (#23).
