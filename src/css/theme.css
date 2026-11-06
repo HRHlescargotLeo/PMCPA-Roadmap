@@ -483,3 +483,12 @@ fieldset.facet > legend ~ * { clear: both; }
 .qw-callout p { color: #e6f1f1; }
 .qw-callout .btn { background: var(--pm-mist); border-color: var(--pm-mist); color: var(--pm-teal-deep); }
 .qw-callout .btn:hover { background: #fff; border-color: #fff; }
+/* V3 additions */
+.who-result { background: var(--pm-teal-wash); border-left-color: var(--pm-teal-deep); border-radius: 16px; }
+.who-result h3 { color: var(--pm-teal-deep); font-family: var(--pm-sans); }
+.mock-email { border-radius: 14px; border-color: var(--pm-rule); }
+.label-like { text-transform: uppercase; letter-spacing: 0.6px; font-size: 0.875rem; color: var(--pm-heading-grey); }
+.real-flag { color: var(--pm-teal-deep); font-family: var(--pm-sans); font-weight: 600; }
+.page-head .real-flag { color: #fff; border-color: rgba(255,255,255,0.7); }
+.qa-list summary { color: var(--pm-teal-deep); }
+.report details.annex { border-radius: 14px; border-color: var(--pm-rule); background: #fff; }

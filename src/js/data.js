@@ -1,8 +1,10 @@
-/* data.js — sample data for the PMCPA prototypes.
-   As published on pmcpa.org.uk (7 October 2026): Code sections and clause titles, the text of
-   Clause 14, Q&A and guidance titles, training dates, performance figures, ongoing-case totals.
-   Invented for the prototypes: every company name, every CASE/9xxx and AUTH/9xxx reference,
-   every ruling, summary and ongoing case. Clause tags on Q&As and guidance are illustrative. */
+/* data.js — data for the PMCPA prototypes.
+   As published on pmcpa.org.uk: Code sections and clause titles, training dates, performance figures,
+   ongoing-case totals. The full 2024 Code, its Q&As, guidance and the cases listed under each clause come
+   from code-data.js (read 6 November 2026). Three completed cases (Case/0395/12/24, Case/0440/01/25,
+   Case/0466/01/25) are real, using the report format the PMCPA supplied (case-reports.js).
+   Invented for the prototypes: every other company name, every CASE/9xxx and AUTH/9xxx reference,
+   and their rulings, summaries and ongoing cases. */
 (function () {
   'use strict';
 
@@ -38,66 +40,26 @@
   CLAUSES[25].kw = 'social media press releases journalists patients the public';
   CLAUSES[11].kw = 'black triangle adverse event reporting';
 
-  /* Clause 14 as published, with its supplementary information headings. */
-  var CLAUSE_TEXT = {
-    '14': {
-      intro: 'Clauses 6 and 18 may also be relevant.',
-      changed: true,
-      subs: [
-        { n: '14.1', text: '<p>A comparison is only permitted in promotional material if:</p><ul><li>it is not misleading</li><li>medicines or services for the same needs or intended for the same purpose are compared</li><li>one or more material, relevant, substantiable and representative features are compared</li><li>no confusion is created between the medicine advertised and that of a competitor or between the advertiser’s trademarks, brand names, other distinguishing marks and those of a competitor</li><li>the trademarks, brand names, other distinguishing marks, medicines, services, activities or circumstances of a competitor are not discredited or denigrated</li><li>no unfair advantage is taken of the reputation of a trademark, brand name or other distinguishing marks of a competitor</li><li>medicines or services are not presented as imitations or replicas of goods or services bearing a competitor’s trademark or brand name.</li></ul>', supp: ['Clause 14.1 Comparisons'] },
-        { n: '14.2', text: '<p>When promotional material refers to published studies, clear references must be given.</p>', supp: ['Clause 14.2 References'] },
-        { n: '14.3', text: '<p>When promotional material refers to data on file, the relevant part of that data must be provided as soon as possible, and certainly within ten working days, in response to a request from a <button type="button" class="gloss" data-term="hp">health professional</button> or <button type="button" class="gloss" data-term="ordm">other relevant decision maker</button>.</p>', supp: [] },
-        { n: '14.4', text: '<p>Promotion must encourage the rational use of a medicine by presenting it objectively and without exaggerating its properties. Exaggerated or all-embracing claims must not be made and superlatives must not be used except for those limited circumstances where they relate to a clear fact about a medicine. Claims should not imply that a medicine or an active ingredient has some special merit, quality or property unless this can be substantiated.</p>', supp: ['Clause 14.4 Superlatives', 'Clause 14.4 Use of the Words ‘The’ and ‘Unique’', 'Clause 14.4 Benefit/Risk Profile'] },
-        { n: '14.5', text: '<p>None of the individual screens or pages, etc. of a multi screen/page advertisement must be false or misleading when read in isolation.</p>', supp: [] }
-      ]
-    }
-  };
-
-  var GLOSSARY = {
-    hp: { term: 'Health professional', def: '[Definition as set out in Clause 1 of the 2024 Code.]' },
-    ordm: { term: 'Other relevant decision maker', def: '[Definition as set out in Clause 1 of the 2024 Code.]' },
-    promo: { term: 'Promotion', def: '[Definition as set out in Clause 1 of the 2024 Code.]' },
-    tov: { term: 'Transfer of value', def: '[Definition as set out in Clause 1 of the 2024 Code.]' }
-  };
-
-  /* Q&A titles as published; clause tags illustrative. */
-  var QAS = [
-    { q: 'What are the expectations with regards to using data on file?', clause: '14.3', topic: 'References', revised: 'October 2024' },
-    { q: 'Are transcripts needed for audiovisual material?', clause: '8.1', topic: 'Certification/Examination', revised: 'October 2024' },
-    { q: 'Can the PMCPA give companies any guidance about using artificial intelligence (AI) to assist in the review of promotional materials and activities covered by the ABPI Code?', clause: '8.1', topic: 'Certification/Examination', revised: 'October 2024' },
-    { q: 'Do companies need to certify the final form of all invitations, e.g. where the date or name has changed or automated tailored email content?', clause: '8.1', topic: 'Certification/Examination', revised: 'October 2024' },
-    { q: 'Does material have to be certified for each platform it appears on, e.g. computer, tablet and mobile?', clause: '8.1', topic: 'Certification/Examination', revised: 'October 2024' },
-    { q: 'Can a company pay for its press release to be published?', clause: '26.2', topic: 'Press Releases', revised: 'October 2024' },
-    { q: 'Is the black triangle symbol required on press releases?', clause: '26.2', topic: 'Press Releases', revised: 'October 2024' },
-    { q: 'Can pharmaceutical companies respond to enquiries from patients?', clause: '26.4', topic: 'Patients/Members of the Public/Patient Organisations', revised: 'October 2024' },
-    { q: 'Can patient campaigns mirror health professional campaigns?', clause: '26.2', topic: 'Patients/Members of the Public/Patient Organisations', revised: 'October 2024' },
-    { q: 'What is an expert patient and how do companies interact with them?', clause: '26.1', topic: 'Patients/Members of the Public/Patient Organisations', revised: 'October 2024' },
-    { q: 'Are patient organisation representatives considered to be members of the public?', clause: '27.1', topic: 'Patients/Members of the Public/Patient Organisations', revised: 'October 2024' },
-    { q: 'Can companies sponsor patient organisation meetings?', clause: '27.2', topic: 'Patients/Members of the Public/Patient Organisations', revised: 'October 2024' }
-  ];
-
-  /* Guidance titles as published; clause tags illustrative, dates to be supplied. */
-  var GUIDANCE = [
-    { t: 'PMCPA social media guidance', clauses: ['26.1', '26.2', '5.1'] },
-    { t: 'PMCPA Guidance Clause 3.1 and Clause 11', clauses: ['3.1', '11.1'] },
-    { t: 'PMCPA Guidance on Advisory Boards', clauses: ['24.1'] },
-    { t: 'PMCPA Guidance on Package Deals', clauses: ['19.1'] },
-    { t: 'Guidance on the Methodological Note for Annual Disclosure of Transfers of Value to Health Professionals, Other Relevant Decision Makers and Healthcare Organisations', clauses: ['28.1'] },
-    { t: 'PMCPA Guidance for Disclosure of Transfers of Value to Patient Organisations and Members of the Public', clauses: ['29.1', '30.1'] },
-    { t: '2024 Guidelines On Company Procedures', clauses: ['8.1', '9.1'] },
-    { t: 'Clinical Trial Disclosure - Decision Tree', clauses: ['3.1'] }
-  ];
+  /* The Code text, glossary (Clause 1 definitions), Q&As and guidance as published: see code-data.js. */
+  var CODE = window.PM_CODE || { clauses: [], qas: [], guidance: [], glossary: {} };
+  var GLOSSARY = CODE.glossary;
+  var QAS = CODE.qas;
+  var GUIDANCE = CODE.guidance;
 
   /* Sample completed cases. Invented companies and references. */
   var CTYPES = {
     hp: 'Health professional', pub: 'Member of the public', anon: 'Anonymous complainant',
-    co: 'Pharmaceutical company', va: 'Voluntary admission', ex: 'Ex-employee'
+    co: 'Pharmaceutical company', va: 'Voluntary admission', ex: 'Ex-employee', nc: 'Named, contactable complainant'
   };
   function C(id, ref, ctype, resp, headline, summary, breach, nobreach, code, received, completed, appeal, sanctions, complainantCo) {
     return { id: id, ref: ref, ctype: ctype, respondent: resp, complainantCo: complainantCo || '', headline: headline, summary: summary,
       breach: breach, nobreach: nobreach, code: code, received: received, completed: completed, appeal: appeal, sanctions: sanctions };
   }
   var CASES = [
+    /* Real cases, in the PMCPA's new report format (see case-reports.js). */
+    C('0395', 'CASE/0395/12/24', 'nc', 'CSL Vifor', 'Allegations regarding information contained on the Vifor Vault website', 'This complaint related to materials on CSL Vifor’s “Vifor Vault” – a website designed for health professionals, which housed materials related to CSL Vifor’s medicines and therapy areas.', ['6.5', '16.1', '26.1'], ['5.1', '8.5'], 2024, '2024-12-12', '2025-11-27', 'No appeal', ['Undertaking']),
+    C('0466', 'CASE/0466/01/25', 'va', 'Pierre Fabre Ltd', 'A video on the website of a medical journal', 'This voluntary admission related to a video that appeared on the website of a medical journal. Pierre Fabre submitted that the video had, in error, been promoted to UK health professionals by email.', ['5.1', '5.6', '8.1', '11.2', '12.1', '12.6', '15.6'], ['2'], 2024, '2025-01-31', '2025-11-20', 'No appeal', ['Undertaking']),
+    C('0440', 'CASE/0440/01/25', 'nc', 'CSL Vifor', 'Allegations relating to a meeting venue', 'This complaint related to an advisory board held in Los Angeles and attended by a UK health professional.', [], ['2', '5.1', '10.1'], 2021, '2025-01-16', '2025-11-20', 'No appeal', []),
     C('9071', 'CASE/9071/03/26', 'hp', 'Alder Therapeutics', 'Superlative claim in a leavepiece', 'A leavepiece called an asthma inhaler “the most effective option”; the Panel ruled the superlative unsubstantiated.', ['14.4', '6.1'], [], 2024, '2026-03-04', '2026-09-30', 'No appeal', ['Undertaking']),
     C('9068', 'CASE/9068/02/26', 'anon', 'Brightwater Pharma', 'Promotion on LinkedIn before marketing authorisation', 'A medical director’s LinkedIn post promoted an unlicensed indication to the public; breaches including Clause 2 were ruled.', ['2', '3.1', '5.1', '26.1'], [], 2024, '2026-02-19', '2026-09-25', 'Appeal by respondent – Panel rulings upheld', ['Undertaking', 'Public reprimand', 'Advertisement']),
     C('9064', 'CASE/9064/02/26', 'co', 'Calderbank Biosciences', 'Comparison with a competitor’s biosimilar', 'An intercompany complaint about a comparison chart; the Panel found the comparison misleading in one respect but not in two others.', ['14.1'], ['14.2', '6.1'], 2024, '2026-02-02', '2026-09-12', 'No appeal', ['Undertaking'], 'Dunmore Medicines'),
@@ -159,7 +121,7 @@
   ];
 
   window.PM = {
-    SECTIONS: SECTIONS, CLAUSES: CLAUSES, CLAUSE_TEXT: CLAUSE_TEXT, GLOSSARY: GLOSSARY, QAS: QAS, GUIDANCE: GUIDANCE,
+    SECTIONS: SECTIONS, CLAUSES: CLAUSES, CODE: CODE, GLOSSARY: GLOSSARY, QAS: QAS, GUIDANCE: GUIDANCE,
     CASES: CASES, CTYPES: CTYPES, ONGOING: ONGOING, STAGES: STAGES, PERFORMANCE: PERFORMANCE, TRAINING: TRAINING
   };
 })();
